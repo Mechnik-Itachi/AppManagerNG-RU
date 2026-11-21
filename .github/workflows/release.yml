@@ -18,23 +18,23 @@ jobs:
           yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null || true
           $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-37" "ndk;28.2.13676358" || true
       - run: chmod +x gradlew
-      - run: ./gradlew assembleFlossRelease --dependency-verification=lenient
-      - name: Sign APK
+      - name: Prepare keystore
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.keystore"
+      - name: Build signed release
+        env:
           KS_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASS: ${{ secrets.KEY_PASSWORD }}
-        run: |
-          set -e
-          echo "$KEYSTORE_BASE64" | base64 -d > release.keystore
-          BT=$(ls $ANDROID_HOME/build-tools | sort -V | tail -1)
-          APK=$(find app/build/outputs/apk -name '*.apk' | head -1)
-          $ANDROID_HOME/build-tools/$BT/zipalign -p -f 4 "$APK" aligned.apk
-          $ANDROID_HOME/build-tools/$BT/apksigner sign --ks release.keystore --ks-key-alias "$KEY_ALIAS" --ks-pass env:KS_PASS --key-pass env:KEY_PASS --out AppManagerNG-release.apk aligned.apk
-          rm release.keystore
+        run: >
+          ./gradlew assembleFlossRelease --dependency-verification=lenient
+          -Pandroid.injected.signing.store.file="$RUNNER_TEMP/release.keystore"
+          -Pandroid.injected.signing.store.password="$KS_PASS"
+          -Pandroid.injected.signing.key.alias="$KEY_ALIAS"
+          -Pandroid.injected.signing.key.password="$KEY_PASS"
       - uses: actions/upload-artifact@v5
         with:
           name: AppManagerNG-release
-          path: AppManagerNG-release.apk
+          path: app/build/outputs/apk/**/*.apk
           retention-days: 7
