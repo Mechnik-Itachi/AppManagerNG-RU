@@ -511,8 +511,8 @@
     <string name="keyboard_type">Тип клавиатуры</string>
     <string name="navigation">Навигация</string>
     <string name="touchscreen">Сенсорный экран</string>
-    <string name="pref_export_msg">Экспортировать правила блокировки, настроенные в App Manager на внешнее хранилище.</string>
-    <string name="pref_import_msg">Импортировать ранее экспортированные правила блокировки из App Manager.</string>
+    <string name="pref_export_msg">Экспортировать правила блокировки, настроенные в AppManagerNG на внешнее хранилище.</string>
+    <string name="pref_import_msg">Импортировать ранее экспортированные правила блокировки из AppManagerNG.</string>
     <string name="pref_import_watt_msg">Импортировать правила блокировки из Watt, каждый файл содержит правила для одного названного пакета как <tt>packagename.xml</tt> и т. д.</string>
     <string name="pref_import_blocker_msg">Импортировать правила блокировки из Blocker, каждый файл содержит правила для одного пакета.</string>
     <string name="pref_import_my_android_tools_msg">Импорт текстовых резервных копий MyAndroidTools или архивов резервных копий <tt>.ifw</tt>.</string>
@@ -525,13 +525,13 @@
     <string name="component_rules_ifw_xml_title">XML Intent Firewall</string>
     <string name="component_rules_ifw_xml_copied">XML Intent Firewall скопирован в буфер обмена.</string>
     <string name="pref_app_theme">Тема приложения</string>
-    <string name="follow_system">Согласно системным настройкам</string>
+    <string name="follow_system">Как в системе</string>
     <string name="battery_mode">Режим батареи</string>
     <string name="day">Светлая тема</string>
     <string name="night">Темная тема</string>
     <string name="select_theme">Тема</string>
     <string name="apply">Применить</string>
-    <string name="pref_about_msg">Версия App Manager, лицензия, авторы и т. д.</string>
+    <string name="pref_about_msg">Версия AppManagerNG, лицензия, авторы и т.д.</string>
     <string name="version">Версия</string>
     <string name="sort_by_wifi_data">Данные Wi-Fi</string>
     <string name="block_trackers">Блокировать трекеры</string>
@@ -595,7 +595,7 @@
     <string name="community">Сообщество</string>
     <string name="community_links"><a href="https://matrix.to/#/#appmanager:matrix.org">Matrix</a> • <a href="https://t.me/AppManagerChannel">Telegram</a> • <a href="https://twitter.com/AppManagerNews">Twitter</a></string>
     <string name="pref_import_existing">Импорт существующих правил</string>
-    <string name="pref_import_existing_msg">Добавить компоненты, отключенные другими приложениями, в App Manager. Будьте осторожны при использовании этого инструмента, так как может быть много ложных срабатываний. Выбирайте только те приложения, в которых вы уверены.</string>
+    <string name="pref_import_existing_msg">Добавить компоненты, отключенные другими приложениями, в AppManagerNG. Будьте осторожны при использовании этого инструмента, так как может быть много ложных срабатываний. Выбирайте только те приложения, в которых вы уверены.</string>
     <string name="clear_cache">Очистить кэш</string>
     <string name="block_unblock_trackers_description">Блокировать или разблокировать рекламу и компоненты трекеров во всех установленных приложениях</string>
     <string name="block_components_dots">Блокировать компоненты…</string>
@@ -884,7 +884,7 @@
     <string name="profile_capture_failed">Захват не удался: %1$s</string>
     <string name="open_perfetto_ui">Открыть Perfetto UI</string>
     <string name="open_developer_options">Открыть параметры разработчика</string>
-    <string name="pref_launcher_icon">Значок лаунчера</string>
+    <string name="pref_launcher_icon">Иконка приложения</string>
     <string name="pref_launcher_icon_summary">Выберите, как AppManagerNG отображается на домашнем экране.</string>
     <string name="launcher_icon_default">По умолчанию</string>
     <string name="launcher_icon_ng_mark">Знак AppManagerNG</string>
@@ -1239,10 +1239,10 @@
     <string name="no_libs">Нет библиотек</string>
     <string name="lib_details">Подробности библиотеки</string>
     <string name="tap_to_see_details">Нажмите, чтобы увидеть подробности</string>
-    <string name="view_missing_signatures">Нажмите, чтобы просмотреть или отправить подписи, которых еще нет в базе библиотек App Manager.</string>
+    <string name="view_missing_signatures">Нажмите, чтобы просмотреть или отправить подписи, которых еще нет в базе библиотек AppManagerNG.</string>
     <string name="copy">Копировать</string>
     <string name="filter_running_apps">Работающие приложения</string>
-    <string name="am_crashed">Произошло падение App Manager</string>
+    <string name="am_crashed">Произошло падение AppManagerNG</string>
     <string name="tap_to_submit_crash_report">Нажмите, чтобы отправить отчет о сбое.</string>
     <string name="send_crash_report">Отправить отчет о сбое</string>
     <string name="pref_export_diagnostics">Экспорт диагностического отчёта</string>
@@ -1331,8 +1331,8 @@
     <string name="profile_clear_data_msg">Очистка данных приложений</string>
     <string name="profile_block_trackers_msg">Блокирование трекеров в приложениях</string>
     <string name="profile_state_msg">Настраиваемое состояние включения/выключения для этого профиля</string>
-    <string name="on">ВКЛ</string>
-    <string name="off">ВЫКЛ</string>
+    <string name="on">Вкл</string>
+    <string name="off">Выкл</string>
     <string name="options">Параметры</string>
     <string name="input_permissions">Ввод разрешений</string>
     <string name="input_permissions_description">Введите разрешения с пробелами, например <tt>com.permission.GET_ACCOUNTS android.permission.ACCESS_MEDIA_LOCATION</tt> и т.п. Используйте <tt>*</tt>, чтобы подать заявку на все разрешения.</string>
@@ -1375,7 +1375,7 @@
     <string name="source_stamp_verified_and_identified_to_be_from_source">SourceStamp проверен и идентифицирован как принадлежащий <xliff:g id="source" example="Google Play">%1$s</xliff:g> .</string>
     <string name="splits">Сплиты</string>
     <string name="input_keystore_pass">Введите пароль хранилища ключей</string>
-    <string name="input_keystore_pass_description">Введите пароль хранилища ключей App Manager. Если вы видите это впервые, используйте генератор паролей, чтобы сгенерировать пароль и сохранить его в безопасном месте, прежде чем вставлять его здесь.</string>
+    <string name="input_keystore_pass_description">Введите пароль хранилища ключей AppManagerNG. Если вы видите это впервые, используйте генератор паролей, чтобы сгенерировать пароль и сохранить его в безопасном месте, прежде чем вставлять его здесь.</string>
     <string name="input_keystore_pass_msg">Нажмите здесь, чтобы ввести пароль хранилища ключей</string>
     <string name="keystore_password_generated_title">Пароль восстановления</string>
     <string name="keystore_password_input_title">Разблокировать пароль восстановления</string>
@@ -1505,7 +1505,7 @@
     <string name="restore_api_risk_runtime_permissions">Модель runtime-разрешений изменилась между этими версиями — выдачи разрешений в резервной копии могут не примениться.</string>
     <string name="restore_api_risk_package_visibility">Фильтрация видимости пакетов изменилась между этими версиями — перекрёстные ссылки в резервной копии могут не разрешиться.</string>
     <string name="restore_legacy_gcm_integrity_warning">Эта зашифрованная резервная копия использует устаревший 32-битный тег аутентификации GCM. Целостность ciphertext слабая; после восстановления создайте резервную копию заново, чтобы перейти на более стойкий тег.</string>
-    <string name="backup_rules_description">Резервное копирование правил, настроенных в App Manager.<font fgcolor="#ff0000">В зависимости от разрешений не все правила можно повторно применить во время восстановления.</font> </string>
+    <string name="backup_rules_description">Резервное копирование правил, настроенных в AppManagerNG.<font fgcolor="#ff0000">В зависимости от разрешений не все правила можно повторно применить во время восстановления.</font> </string>
     <string name="backup_system_data">Системные данные</string>
     <string name="backup_system_data_description">Резервное копирование только с root для Android System: сети Wi-Fi, сопряжения Bluetooth и базы данных аккаунтов.</string>
     <string name="backup_multiple_description">Создание отдельной резервной копии, с <i>именем</i> , которое отличается от основного наименования бекапа.</string>
@@ -1564,14 +1564,14 @@
     <string name="internal_storage">Внутреннее хранилище</string>
     <string name="external_storage">Внешнее хранилище</string>
     <string name="sd_card">SD-карта</string>
-    <string name="unlock_app_manager">Разблокировать App Manager</string>
+    <string name="unlock_app_manager">Разблокировать AppManagerNG</string>
     <string name="auth_feature_request_rejected">Авторизация не удалась. Запрос был отклонён.</string>
     <string name="auth_feature_not_supported">Это авторизованное действие не поддерживается.</string>
     <string name="authenticate_to_install">Аутентификация для установки</string>
     <string name="authenticate_to_uninstall">Аутентификация для удаления</string>
     <string name="authenticate_to_clear_data">Аутентификация для очистки данных</string>
     <string name="screen_lock">Блокировка экрана</string>
-    <string name="screen_lock_msg">Блокировать App Manager с помощью блокировки экрана Android</string>
+    <string name="screen_lock_msg">Блокировать AppManagerNG с помощью блокировки экрана Android</string>
     <string name="pref_enable_action_auth_gate">Требовать аутентификацию для изменений приложений</string>
     <string name="pref_enable_action_auth_gate_msg">Запрашивать блокировку экрана Android перед установкой, удалением и очисткой данных.</string>
     <string name="type_null">Нет значения</string>
@@ -1666,7 +1666,7 @@
     <string name="restart_to_reflect_changes">Вы должны немедленно перезагрузить устройство, чтобы использовать новые изменения.</string>
     <string name="installed_apps">Установленные приложения</string>
     <string name="enable_disable_features">Включение/отключение функций</string>
-    <string name="pref_enable_disable_features_msg">Включить или отключить функции в App Manager.</string>
+    <string name="pref_enable_disable_features_msg">Включить или отключить функции в AppManagerNG.</string>
     <string name="last_actions">Последние действия</string>
     <string name="isolated">Изолированно</string>
     <string name="screen_lock_not_enabled">Включите блокировку экрана в настройках Android или очистите данные приложения.</string>
@@ -1679,7 +1679,7 @@
     <string name="input_key">Ввод ключа (в шестнадцатеричном формате)</string>
     <string name="generate_key">Генерировать</string>
     <string name="failed_to_save_key">Не удалось сохранить ключ.</string>
-    <string name="failed_to_initialize_key_store">Не удалось инициализировать хранилище ключей App Manager.</string>
+    <string name="failed_to_initialize_key_store">Не удалось инициализировать хранилище ключей AppManagerNG.</string>
     <string name="invalid_aes_key_size">Неверный размер ключа для AES шифрования. Размер ключа может быть 128 или 256 бит.</string>
     <string name="crypto_key_size">Размер ключа</string>
     <string name="invalid_rsa_key_size">Неверный размер ключа для шифрования RSA. Размер ключа может составлять 1024, 2048 или 4096 бит.</string>
@@ -1859,7 +1859,7 @@
     <string name="gz_bz2_compressed">%1$s сжато</string>
     <string name="latest_backup">Последняя резервная копия</string>
     <string name="pref_import_export_keystore">Импорт/экспорт хранилища ключей</string>
-    <string name="pref_import_export_keystore_msg">Импорт/экспорт Bouncy Castle KeyStore (BKS), используемых внутри App Manager.</string>
+    <string name="pref_import_export_keystore_msg">Импорт/экспорт Bouncy Castle KeyStore (BKS), используемых внутри AppManagerNG.</string>
     <string name="import_keystore">Импортировать хранилище ключей</string>
     <string name="confirm_import_keystore">Вы уверены, что хотите заменить существующее хранилище ключей\? Это действие нельзя отменить.</string>
     <string name="keystore_export_failed">Не удалось экспортировать хранилище ключей AppManagerNG.</string>
@@ -1907,7 +1907,7 @@
     <string name="minimum_version">Мин. версия: %d</string>
     <string name="added_to_queue">Добавлено в очередь</string>
     <string name="pref_selected_users">Выбранные пользователи</string>
-    <string name="pref_selected_users_msg">Разрешить App Manager работу только с выбранными пользователями.</string>
+    <string name="pref_selected_users_msg">Разрешить AppManagerNG работу только с выбранными пользователями.</string>
     <string name="profile_visibility_not_visible_current_mode">Private Space / скрытые профили могут быть не видны в текущем режиме/состоянии. Android требует роль лаунчера по умолчанию и разблокированный профиль.</string>
     <string name="profile_visibility_available_when_unlocked">Private Space / скрытые профили видны, когда Android предоставляет профиль и он разблокирован.</string>
     <string name="permission_flags">Флаги разрешений</string>
@@ -1917,11 +1917,11 @@
     <string name="no_sensor_permission">Нет разрешения на датчики.</string>
     <string name="no_manage_network_policy_permission">Нет разрешения MANAGE_NETWORK_POLICY.</string>
     <string name="notice">Уведомление</string>
-    <string name="notice_saf">В отличие от томов, выбранный каталог будет использоваться для хранения всех файлов, связанных с App Manager, включая сохраненные APK и резервные копии. Storage Access Framework (SAF) работает очень медленно, поэтому вы должны использовать этот вариант только тогда, когда другие не могут быть использованы.</string>
-    <string name="backup_volume_dialog_description">Тома с префиксом <tt>/tree</tt> это папки, выбранные с помощью Storage Access Framework (SAF). Кроме этих папок, каталог по умолчанию для App Manager это подпапка с именем <tt>AppManager</tt>.</string>
+    <string name="notice_saf">В отличие от томов, выбранный каталог будет использоваться для хранения всех файлов, связанных с AppManagerNG, включая сохраненные APK и резервные копии. Storage Access Framework (SAF) работает очень медленно, поэтому вы должны использовать этот вариант только тогда, когда другие не могут быть использованы.</string>
+    <string name="backup_volume_dialog_description">Тома с префиксом <tt>/tree</tt> это папки, выбранные с помощью Storage Access Framework (SAF). Кроме этих папок, каталог по умолчанию для AppManagerNG это подпапка с именем <tt>AppManager</tt>.</string>
     <string name="storage">Хранилище</string>
     <string name="files">Файлы</string>
-    <string name="keystore_password_info">Ниже приведен пароль хранилища ключей App Manager. Пожалуйста, храните его в надежном месте, если вы собираетесь делать резервное копирование/восстановление хранилища ключей App Manager. <b>Это сообщение не будет отображаться снова.</b></string>
+    <string name="keystore_password_info">Ниже приведен пароль хранилища ключей AppManagerNG. Пожалуйста, храните его в надежном месте, если вы собираетесь делать резервное копирование/восстановление хранилища ключей AppManagerNG. <b>Это сообщение не будет отображаться снова.</b></string>
     <string name="recovery_password_helper">Храните этот пароль в секрете. AppManagerNG не сможет восстановить его за вас.</string>
     <string name="recovery_password_copy_and_continue">Копировать и продолжить</string>
     <string name="recovery_password_saved_continue">Я сохранил(а) его</string>
@@ -1979,14 +1979,14 @@
     <string name="installer_split_cert_reason">Причина: %1$s</string>
     <string name="installer_split_cert_reason_base_unreadable">Не удалось прочитать сертификат подписи базового APK.</string>
     <string name="installer_split_cert_reason_split_unreadable">Не удалось прочитать сертификат подписи сплита.</string>
-    <string name="installer_split_cert_reason_signer_count">Количество подписантов отличается от базового APK.</string>
+    <string name="installer_split_cert_reason_signer_count">Количество подписей отличается от базового APK.</string>
     <string name="installer_split_cert_reason_cert_differs">Сертификат подписи отличается от базового APK.</string>
     <string name="finder_loaded_at">Загружено в %1$s</string>
     <string name="share_backup">Поделиться резервной копией</string>
     <string name="share_backup_empty">В выбранной резервной копии нет файлов для отправки.</string>
     <string name="share_backup_no_handler">Нет приложения, зарегистрированного для приёма файлов резервных копий.</string>
     <string name="next">Следующий</string>
-    <string name="pref_block_trackers_msg">Блокирование компонентов трекеров после установки приложения через App Manager.</string>
+    <string name="pref_block_trackers_msg">Блокирование компонентов трекеров после установки приложения через AppManagerNG.</string>
     <string name="pref_always_on_background">Установить в фоновом режиме</string>
     <string name="pref_always_on_background_msg">Всегда устанавливать приложения в фоновом режиме и выводить уведомление по завершении операции.</string>
     <string name="type_uri_array">Массив URI</string>
@@ -2046,12 +2046,12 @@
     <string name="startup_recovery_request_local_network_permission">Запросить разрешение локальной сети</string>
     <string name="startup_recovery_request_shizuku_permission">Запросить разрешение Shizuku</string>
     <string name="startup_recovery_cancel_pairing">Отменить сопряжение</string>
-    <string name="search_type_contains">cодержит</string>
-    <string name="search_type_prefix">префикс</string>
-    <string name="search_type_suffix">суффикс</string>
-    <string name="search_type_regular_expressions">регулярные выражения</string>
+    <string name="search_type_contains">Cодержит</string>
+    <string name="search_type_prefix">Префикс</string>
+    <string name="search_type_suffix">Суффикс</string>
+    <string name="search_type_regular_expressions">Регулярные выражения</string>
     <string name="toggle_internet">Использовать интернет</string>
-    <string name="pref_toggle_internet_msg">Активируйте интернет возможности в App Manager</string>
+    <string name="pref_toggle_internet_msg">Активируйте интернет возможности в AppManagerNG</string>
     <string name="pref_auto_update_debloat_definitions">Обновлять определения debloat при запуске</string>
     <string name="pref_auto_update_debloat_definitions_msg">Разрешить загрузку последних определений debloat из закреплённого raw-манифеста GitHub AppManagerNG. Требует доступ в интернет; при сбое используются кэшированные файлы.</string>
     <string name="pref_auto_update_debloat_definitions_msg_current">Текущие кэшированные определения debloat: %1$s. Только стандартные HTTPS GET; список пакетов и идентификатор устройства не отправляются.</string>
@@ -2068,9 +2068,9 @@
     <string name="vt_scan_date">Дата сканирования: %1$s</string>
     <string name="vt_permalink">Постоянная ссылка на VirusTotal</string>
     <string name="vt_slowness_warning">В зависимости от скорости интернета и нагрузки на сервер, это может занять некоторое время.</string>
-    <string name="vt_disclaimer">VirusTotal и его логотипы являются торговой маркой компании Chronicle LLC. Ни App Manager - клиент API, ни его авторы не несут ответственности за любые данные, которые вы можете отправить в VirusTotal.</string>
+    <string name="vt_disclaimer">VirusTotal и его логотипы являются торговой маркой компании Chronicle LLC. Ни AppManagerNG - клиент API, ни его авторы не несут ответственности за любые данные, которые вы можете отправить в VirusTotal.</string>
     <string name="pref_vt_apikey">VirusTotal API-ключ</string>
-    <string name="pref_vt_apikey_description">API-ключ позволяет App Manager загружать APK-файлы на VirusTotal, а также получать отчеты. Зарегистрируйтесь на сайте https://virustotal.com, чтобы получить API-ключ бесплатно.</string>
+    <string name="pref_vt_apikey_description">API-ключ позволяет AppManagerNG загружать APK-файлы на VirusTotal, а также получать отчеты. Зарегистрируйтесь на сайте https://virustotal.com, чтобы получить API-ключ бесплатно.</string>
     <string name="pref_vt_apikey_summary">Включить сканирование файлов APK через VirusTotal.</string>
     <string name="uses_play_app_signing">Подпись Play App</string>
     <string name="uses_play_app_signing_description">Это приложение содержит определенные маркеры, указывающие на то, что оно <i>возможно</i> использует <a href="https://support.google.com/googleplay/android-developer/answer/9842756">Play App Signing</a>. В этой схеме ключи подписи хранятся на серверах Google, и Google несет ответственность за подписание приложения. Обратите внимание, что соответствие информации о подписи — это единственный способ убедиться, что приложение не было изменено кем-либо, кроме разработчика (и в данном случае также Google).</string>
@@ -2534,12 +2534,12 @@
     <string name="restore_empty_latest_title">Более новых резервных копий не найдено</string>
     <string name="restore_empty_latest_summary">Нет версии резервной копии новее установленного приложения.</string>
     <string name="restart_device">Перезагрузить устройство</string>
-    <string name="import_backups_warning_delete_backups_after_import">Удалить резервные копии после их импорта в App Manager\? Каждая резервная копия удаляется отдельно после успешного импорта. Выберите <b>Нет</b>, если не уверены.</string>
+    <string name="import_backups_warning_delete_backups_after_import">Удалить резервные копии после их импорта в AppManagerNG\? Каждая резервная копия удаляется отдельно после успешного импорта. Выберите <b>Нет</b>, если не уверены.</string>
     <string name="import_backups_delete_after_import">Удалить после импорта</string>
     <string name="import_backups_keep_source">Сохранить исходные резервные копии</string>
     <string name="troubleshooting">Устранение неполадок</string>
     <string name="pref_reload_apps">Перезагрузить приложения</string>
-    <string name="pref_reload_apps_msg">Перезагрузка списка приложений, хранящихся в базе данных App Manager, в случае неожиданного поведения.</string>
+    <string name="pref_reload_apps_msg">Перезагрузка списка приложений, хранящихся в базе данных AppManagerNG, в случае неожиданного поведения.</string>
     <string name="pref_replay_onboarding">Повторить мастер приветствия</string>
     <string name="pref_replay_onboarding_msg">Снова показать экран выбора режима работы.</string>
     <string name="pref_replay_tour">Повторить быстрый тур</string>
@@ -2712,8 +2712,8 @@
     <string name="waiting_for_the_phone_to_be_locked">Ожидание блокировки телефона…</string>
     <string name="action_stop_service">Остановить</string>
     <string name="app_manager_build_expired">Требуется обновление</string>
-    <string name="app_manager_build_expired_message">Версия App Manager, которую вы используете, устарела. Чтобы обеспечить безопасность вашего устройства и данных, вы должны обновить приложение до последней версии, чтобы продолжить использовать его, или удалить его, если обновление недоступно.</string>
-    <string name="app_manager_build_expiring_soon_warning">Срок действия этой версии App Manager скоро истечет. Пожалуйста, обновите приложение до последней версии.</string>
+    <string name="app_manager_build_expired_message">Версия AppManagerNG, которую вы используете, устарела. Чтобы обеспечить безопасность вашего устройства и данных, вы должны обновить приложение до последней версии, чтобы продолжить использовать его, или удалить его, если обновление недоступно.</string>
+    <string name="app_manager_build_expiring_soon_warning">Срок действия этой версии AppManagerNG скоро истечет. Пожалуйста, обновите приложение до последней версии.</string>
     <string name="app_can_write_and_execute_in_same_place">Это приложение нарушает <a href="https://en.wikipedia.org/wiki/W%5EX">политику W^X</a> и может выполнять запись и выполнение в том же каталоге или в той же части памяти. Это позволяет выполнять произвольные исполняемые файлы либо путем модификации исполняемых файлов, встроенных в приложение, либо путем их загрузки из Интернета. Если это не является предполагаемым поведением приложения (например, эмуляторы терминала), рекомендуется найти более новую версию приложения, предназначенную для SDK 29 (Android 10) и более поздних версий, или поискать альтернативы.</string>
     <string name="renamed_successfully">Переименовано</string>
     <string name="selinux_context">SELinux контекст</string>
@@ -2764,8 +2764,8 @@
     <string name="install_for_another_user">Установить для…</string>
     <string name="confirm_uninstallation">Подтвердить удаление</string>
     <string name="grant_required_permission">Предоставить необходимое разрешение</string>
-    <string name="grant_overlay_permission_message">Разрешить App Manager отображать плавающее окно поверх всех остальных окон</string>
-    <string name="grant_accessibility_permission_for_tracking_window_contents">Позволяет App Manager использовать специальные возможности для отслеживания содержимого ведущего окна.</string>
+    <string name="grant_overlay_permission_message">Разрешить AppManagerNG отображать плавающее окно поверх всех остальных окон</string>
+    <string name="grant_accessibility_permission_for_tracking_window_contents">Позволяет AppManagerNG использовать специальные возможности для отслеживания содержимого ведущего окна.</string>
     <string name="class_hierarchy">Иерархия</string>
     <string name="title_ui_tracker">UI трекер</string>
     <string name="tracker_window_expand">Развернуть UI-трекер</string>
@@ -2885,7 +2885,7 @@
     <string name="title_code_editor">Редактор кода</string>
     <string name="redo">Повторить</string>
     <string name="read_only_file">Файл только для чтения</string>
-    <string name="read_only_file_warning">Изменения не могут быть записаны в файл, возможно, из-за того, что он находится в томе, на запись в который у App Manager нет разрешения. Сохранить его в другом месте\?</string>
+    <string name="read_only_file_warning">Изменения не могут быть записаны в файл, возможно, из-за того, что он находится в томе, на запись в который у AppManagerNG нет разрешения. Сохранить его в другом месте\?</string>
     <string name="line_separator">Разделитель строк</string>
     <plurals name="search_results">
         <item quantity="one">%d результат</item>
@@ -3063,14 +3063,14 @@
     <string name="xposed_module_info">Информация о модуле Xposed</string>
     <string name="title_description">Описание</string>
     <string name="module_name">Название модуля</string>
-    <string name="app_manager_is_running">App Manager запущен</string>
+    <string name="app_manager_is_running">AppManagerNG запущен</string>
     <string name="tap_to_open_notification_settings">Нажмите, чтобы скрыть</string>
-    <string name="app_manager_is_unlocked">App Manager разблокирован</string>
+    <string name="app_manager_is_unlocked">AppManagerNG разблокирован</string>
     <string name="action_lock_app">Блокировка</string>
-    <string name="pref_enable_persistent_session">Запуск App Manager в фоновом режиме</string>
-    <string name="pref_enable_persistent_session_msg">Запуск App Manager в фоновом режиме уменьшает задержку инициализации. Полезно, если вы часто используете App Manager.</string>
+    <string name="pref_enable_persistent_session">Запуск AppManagerNG в фоновом режиме</string>
+    <string name="pref_enable_persistent_session_msg">Запуск AppManagerNG в фоновом режиме уменьшает задержку инициализации. Полезно, если вы часто используете AppManagerNG.</string>
     <string name="pref_enable_auto_lock">Автоматическая блокировка</string>
-    <string name="pref_enable_auto_lock_msg">Блокировка App Manager\'а при заблокированном устройстве.</string>
+    <string name="pref_enable_auto_lock_msg">Блокировка AppManagerNG\'а при заблокированном устройстве.</string>
     <string name="path_does_not_exist">“%1$s” не существует</string>
     <string name="path_not_a_folder">“%1$s” не является папкой</string>
     <string name="action_checking">Проверка…</string>
@@ -3081,7 +3081,7 @@
     <string name="profile_id">ID профиля</string>
     <string name="copy_profile_id">Скопировать идентификатор профиля</string>
     <string name="launch_activity_dialog_title">Запуск Активити: Требуется Действие</string>
-    <string name="launch_activity_dialog_message">App Manager пытается запустить активити через <b>Поисковый помощник</b> (обычно Google Assistant), но не может этого сделать из-за недостаточного разрешения. Для запуска активити, включите <b>Поисковый помощник</b> вручную (обычно это делается долгим нажатием на кнопку Домой). Нажмите на кнопку <b>Закрыть</b> после завершения запуска активити, чтобы вернуться к исходному помощнику.</string>
+    <string name="launch_activity_dialog_message">AppManagerNG пытается запустить активити через <b>Поисковый помощник</b> (обычно Google Assistant), но не может этого сделать из-за недостаточного разрешения. Для запуска активити, включите <b>Поисковый помощник</b> вручную (обычно это делается долгим нажатием на кнопку Домой). Нажмите на кнопку <b>Закрыть</b> после завершения запуска активити, чтобы вернуться к исходному помощнику.</string>
     <string name="finder_title">Поисковик</string>
     <string name="select_filter">Выберите фильтр</string>
     <string name="size_in_bytes">Размер (байты)</string>
@@ -3148,7 +3148,7 @@
     <string name="sensors">Датчики</string>
     <string name="tag_sensors_disabled">Датчики отключены</string>
     <string name="pref_use_system_font">Использовать системный шрифт</string>
-    <string name="pref_use_system_font_msg">Использовать системный шрифт по умолчанию вместо material шрифта. <font fgcolor="#ff0000">Это экспериментальная функция.</font></string>
+    <string name="pref_use_system_font_msg">Использовать системный шрифт по умолчанию вместо шрифта material. <font fgcolor="#ff0000">Это экспериментальная функция.</font></string>
     <string name="actual_installer">Фактический установщик</string>
     <string name="apk_source">Источник APK</string>
     <string name="backup_cache">Кэш</string>
@@ -3222,7 +3222,7 @@
     <string name="network_ledger_disabled">отключено</string>
     <string name="profiles_action_import_external">Импорт из Canta / UAD-NG / Hail…</string>
     <string name="profiles_external_import_failed">Внешний импорт профиля не удался · %1$s</string>
-    <string name="pref_export_upstream_compat">Экспорт для upstream App Manager</string>
+    <string name="pref_export_upstream_compat">Экспорт для upstream AppManagerNG</string>
     <string name="profile_export_upstream_compat_done">Экспортировано в форме, совместимой с upstream-AM</string>
     <string name="pref_backup_schedule_enabled">Запланированное авто-резервное копирование</string>
     <string name="pref_backup_schedule_enabled_msg">Ежедневно запускать резервное копирование установленных приложений через WorkManager с текущими параметрами резервного копирования.</string>
@@ -3396,7 +3396,7 @@
     <string name="signing_cert_change_replaced_title">%1$s заменил ключ подписи</string>
     <string name="signing_cert_change_rotated_title">%1$s выполнил ротацию ключа подписи</string>
     <string name="signing_cert_change_replaced_body">Новый: %1$s. Удалён: %2$s. Нажмите, чтобы проверить в сведениях о приложении, прежде чем доверять обновлению.</string>
-    <string name="signing_cert_change_rotated_body">Добавлен подписант: %1$s. Существующие подписанты по-прежнему доверяются. (Ротация ключа V3.)</string>
+    <string name="signing_cert_change_rotated_body">Добавлен подпис: %1$s. Существующие подписи по-прежнему доверяются. (Ротация ключа V3.)</string>
     <string name="op_history_summary">Показано %1$s из %2$s · %3$s · %4$s</string>
     <string name="op_history_clear_confirmation">Это удалит всю сохранённую историю операций. Выполненные операции не отменяются.</string>
     <string name="op_history_delete_confirmation">Это удалит сохранённую запись истории. Выполненная операция не отменяется.</string>
@@ -3821,4 +3821,1384 @@
     <string name="lan_sync_storage_failed">Не удалось создать папку загрузок</string>
     <string name="lan_sync_request_failed">Другое устройство не смогло ответить: %1$s</string>
     <string name="lan_sync_connection_lost">Соединение потеряно: %1$s</string>
+    <plurals name="main_status_showing_apps">
+        <item quantity="one">%1$d/%2$d приложение</item>
+        <item quantity="few">%1$d/%2$d приложения</item>
+        <item quantity="many">%1$d/%2$d приложений</item>
+        <item quantity="other">%1$d/%2$d приложения</item>
+    </plurals>
+    <plurals name="cleanup_items_failed_suffix">
+        <item quantity="one">Не удалось удалить %1$d элемент</item>
+        <item quantity="few">Не удалось удалить %1$d элемента</item>
+        <item quantity="many">Не удалось удалить %1$d элементов</item>
+        <item quantity="other">Не удалось удалить %1$d элемента</item>
+    </plurals>
+    <plurals name="main_status_all_apps">
+        <item quantity="one">%1$d приложение</item>
+        <item quantity="few">%1$d приложения</item>
+        <item quantity="many">%1$d приложений</item>
+        <item quantity="other">%1$d приложения</item>
+    </plurals>
+    <string name="main_status_with_tracker_suffix">%1$s · %2$s</string>
+    <string name="main_status_breakdown_calculating">Подсчёт разбивки…</string>
+    <string name="main_status_filter_trackers_a11y">Нажмите, чтобы показать только приложения с незаблокированными трекерами.</string>
+    <string name="main_status_filter_permissions_a11y">Нажмите, чтобы показать только приложения с выданными опасными разрешениями.</string>
+    <plurals name="main_status_load_failed_stale">
+        <item quantity="one">Показан последний известный список (%d приложение). Не удалось обновить.</item>
+        <item quantity="few">Показан последний известный список (%d приложения). Не удалось обновить.</item>
+        <item quantity="many">Показан последний известный список (%d приложений). Не удалось обновить.</item>
+        <item quantity="other">Показан последний известный список (%d приложения). Не удалось обновить.</item>
+    </plurals>
+    <plurals name="main_status_package_enumeration_shortfall">
+        <item quantity="one">%1$s вернул %2$d из %3$d пакета. Показан непривилегированный список Android.</item>
+        <item quantity="few">%1$s вернул %2$d из %3$d пакетов. Показан непривилегированный список Android.</item>
+        <item quantity="many">%1$s вернул %2$d из %3$d пакетов. Показан непривилегированный список Android.</item>
+        <item quantity="other">%1$s вернул %2$d из %3$d пакетов. Показан непривилегированный список Android.</item>
+    </plurals>
+    <string name="main_status_guided_trackers_hint">Нажмите на эту панель, чтобы выбрать приложения с трекерами.</string>
+    <string name="main_status_guided_permissions_hint">Нажмите на эту панель, чтобы выбрать приложения с выданными опасными разрешениями.</string>
+    <string name="main_status_guided_details_hint">Нажмите на приложение, чтобы увидеть подробности. Долгое нажатие выбирает приложения.</string>
+    <plurals name="main_active_filters_clear">
+        <item quantity="one">%d фильтр активен · сбросить</item>
+        <item quantity="few">%d фильтра активно · сбросить</item>
+        <item quantity="many">%d фильтров активно · сбросить</item>
+        <item quantity="other">%d фильтра активно · сбросить</item>
+    </plurals>
+    <plurals name="installer_tracker_callout">
+        <item quantity="one">⚠ Этот APK содержит %1$d известный трекинговый SDK. Блокировать трекеры можно на экране сведений о приложении после установки.</item>
+        <item quantity="few">⚠ Этот APK содержит %1$d известных трекинговых SDK. Блокировать трекеры можно на экране сведений о приложении после установки.</item>
+        <item quantity="many">⚠ Этот APK содержит %1$d известных трекинговых SDK. Блокировать трекеры можно на экране сведений о приложении после установки.</item>
+        <item quantity="other">⚠ Этот APK содержит %1$d известных трекинговых SDK. Блокировать трекеры можно на экране сведений о приложении после установки.</item>
+    </plurals>
+    <plurals name="main_status_tracker_suffix">
+        <item quantity="one">%1$d трекер</item>
+        <item quantity="few">%1$d трекера</item>
+        <item quantity="many">%1$d трекеров</item>
+        <item quantity="other">%1$d трекера</item>
+    </plurals>
+    <plurals name="main_status_perm_suffix">
+        <item quantity="one">%1$d выданное опасное разрешение</item>
+        <item quantity="few">%1$d выданных опасных разрешения</item>
+        <item quantity="many">%1$d выданных опасных разрешений</item>
+        <item quantity="other">%1$d выданных опасных разрешения</item>
+    </plurals>
+    <string name="main_list_uid_label">UID %1$s</string>
+    <string name="main_list_uid_a11y">UID %1$s.</string>
+    <plurals name="main_list_app_id_multi_user_a11y">
+        <item quantity="one">ID приложения %1$s, установлено для %2$d пользователя.</item>
+        <item quantity="few">ID приложения %1$s, установлено для %2$d пользователей.</item>
+        <item quantity="many">ID приложения %1$s, установлено для %2$d пользователей.</item>
+        <item quantity="other">ID приложения %1$s, установлено для %2$d пользователей.</item>
+    </plurals>
+    <string name="package_user_state_short">u%1$d %2$s</string>
+    <plurals name="main_list_tracker_count_badge_a11y">
+        <item quantity="one">%1$d трекер</item>
+        <item quantity="few">%1$d трекера</item>
+        <item quantity="many">%1$d трекеров</item>
+        <item quantity="other">%1$d трекера</item>
+    </plurals>
+    <plurals name="main_list_tracker_badge_label">
+        <item quantity="one">%1$d трекер</item>
+        <item quantity="few">%1$d трекера</item>
+        <item quantity="many">%1$d трекеров</item>
+        <item quantity="other">%1$d трекера</item>
+    </plurals>
+    <plurals name="main_list_tracker_badge_all_blocked">
+        <item quantity="one">%1$d заблокирован</item>
+        <item quantity="few">%1$d заблокировано</item>
+        <item quantity="many">%1$d заблокировано</item>
+        <item quantity="other">%1$d заблокировано</item>
+    </plurals>
+    <plurals name="main_list_tracker_count_all_blocked_a11y">
+        <item quantity="one">Все трекеры заблокированы (%1$d)</item>
+        <item quantity="few">Все трекеры заблокированы (%1$d)</item>
+        <item quantity="many">Все трекеры заблокированы (%1$d)</item>
+        <item quantity="other">Все трекеры заблокированы (%1$d)</item>
+    </plurals>
+    <string name="main_list_ad_source_badge">Возможный источник рекламы</string>
+    <string name="main_list_ad_source_boot">Возможный источник рекламы. Может рисовать поверх других приложений и запускается сам после перезагрузки. Многие обычные приложения тоже так умеют. Нажмите, чтобы посмотреть его разрешения.</string>
+    <string name="main_list_ad_source_full_screen">Возможный источник рекламы. Может рисовать поверх других приложений и открываться на весь экран из уведомления. Многие обычные приложения тоже так умеют. Нажмите, чтобы посмотреть его разрешения.</string>
+    <string name="main_list_ad_source_both">Возможный источник рекламы. Может рисовать поверх других приложений, открываться на весь экран из уведомления и запускаться сам после перезагрузки. Многие обычные приложения тоже так умеют. Нажмите, чтобы посмотреть его разрешения.</string>
+    <plurals name="scanner_signature_count">
+        <item quantity="one">%1$d сигнатура</item>
+        <item quantity="few">%1$d сигнатуры</item>
+        <item quantity="many">%1$d сигнатур</item>
+        <item quantity="other">%1$d сигнатуры</item>
+    </plurals>
+    <string name="scanner_category_chip">%1$s (%2$d)</string>
+    <string name="scanner_category_summary">%1$s %2$d</string>
+    <string name="code_editor_unavailable">Не удалось открыть редактор кода: %1$s</string>
+    <plurals name="running_apps_status_summary">
+        <item quantity="one">Показано процессов: %1$d из %2$d</item>
+        <item quantity="few">Показано процессов: %1$d из %2$d</item>
+        <item quantity="many">Показано процессов: %1$d из %2$d</item>
+        <item quantity="other">Показано процессов: %1$d из %2$d</item>
+    </plurals>
+    <string name="running_apps_memory_overview_summary">Текущее использование ОЗУ и swap.</string>
+    <string name="running_apps_process_metrics">PID %1$d · ОЗУ %2$s · VM %3$s</string>
+    <string name="running_apps_state_with_extra_compact">%1$s (%2$s)</string>
+    <string name="running_apps_user_state_compact">%1$s (%2$d) · %3$s</string>
+    <string name="running_apps_process_content_description">%1$s, %2$s. %3$s. %4$s. %5$s.</string>
+    <string name="running_apps_process_details_title">Сведения о процессе</string>
+    <plurals name="clear_uninstalled_app_data_confirmation">
+        <item quantity="one">Очистить остаточные данные %1$d удалённого приложения?</item>
+        <item quantity="few">Очистить остаточные данные %1$d удалённых приложений?</item>
+        <item quantity="many">Очистить остаточные данные %1$d удалённых приложений?</item>
+        <item quantity="other">Очистить остаточные данные %1$d удалённых приложений?</item>
+    </plurals>
+    <plurals name="alert_failed_to_install_existing">
+        <item quantity="one">Не удалось вернуть %1$d приложение</item>
+        <item quantity="few">Не удалось вернуть %1$d приложения</item>
+        <item quantity="many">Не удалось вернуть %1$d приложений</item>
+        <item quantity="other">Не удалось вернуть %1$d приложения</item>
+    </plurals>
+    <plurals name="scanner_tracker_database_summary">
+        <item quantity="one">База данных: %1$s (%2$d сигнатура)</item>
+        <item quantity="few">База данных: %1$s (%2$d сигнатуры)</item>
+        <item quantity="many">База данных: %1$s (%2$d сигнатур)</item>
+        <item quantity="other">База данных: %1$s (%2$d сигнатуры)</item>
+    </plurals>
+    <string name="component_rules_overview_summary">Пакетов: %1$d · записей IFW: %2$d · записей PackageManager/провайдеров: %3$d. Путь IFW: %4$s</string>
+    <string name="component_rules_package_summary">%1$s\n%2$d IFW, %3$d только отключённых, %4$d провайдеров, %5$d в ожидании</string>
+    <string name="component_rules_dialog_summary">Пакет: %1$s\nЗаписей IFW: %2$d\nТолько отключённых записей: %3$d\nЗаписей провайдеров: %4$d\nЗаписей в ожидании: %5$d</string>
+    <plurals name="tracker_breakdown_organizations">
+        <item quantity="one">%1$d организация</item>
+        <item quantity="few">%1$d организации</item>
+        <item quantity="many">%1$d организаций</item>
+        <item quantity="other">%1$d организации</item>
+    </plurals>
+    <plurals name="scanner_match_confidence_row">
+        <item quantity="one">%1$s · %2$d совпадение класса</item>
+        <item quantity="few">%1$s · %2$d совпадения классов</item>
+        <item quantity="many">%1$s · %2$d совпадений классов</item>
+        <item quantity="other">%1$s · %2$d совпадения классов</item>
+    </plurals>
+    <string name="runtime_telemetry_wifi_data">Wi-Fi — RX %1$s · TX %2$s</string>
+    <plurals name="package_visibility_callers_header">
+        <item quantity="one">Найдено %1$d установленное приложение, указывающее этот пакет в &lt;queries&gt;:</item>
+        <item quantity="few">Найдено %1$d установленных приложения, указывающих этот пакет в &lt;queries&gt;:</item>
+        <item quantity="many">Найдено %1$d установленных приложений, указывающих этот пакет в &lt;queries&gt;:</item>
+        <item quantity="other">Найдено %1$d установленных приложения, указывающих этот пакет в &lt;queries&gt;:</item>
+    </plurals>
+    <plurals name="alert_succeeded_backup">
+        <item quantity="one">Бекап сделан для %1$d приложения</item>
+        <item quantity="few">Бекап сделан для %1$d приложений</item>
+        <item quantity="many">Бекап сделан для %1$d приложений</item>
+        <item quantity="other">Бекап сделан для %1$d приложений</item>
+    </plurals>
+    <plurals name="alert_succeeded_backup_apk">
+        <item quantity="one">Сохранён APK из %1$d приложения</item>
+        <item quantity="few">Сохранены APK из %1$d приложений</item>
+        <item quantity="many">Сохранены APK из %1$d приложений</item>
+        <item quantity="other">Сохранены APK из %1$d приложений</item>
+    </plurals>
+    <plurals name="alert_succeeded_restore">
+        <item quantity="one">Восстановлено %1$d приложение</item>
+        <item quantity="few">Восстановлено %1$d приложения</item>
+        <item quantity="many">Восстановлено %1$d приложений</item>
+        <item quantity="other">Восстановлено %1$d приложения</item>
+    </plurals>
+    <plurals name="alert_succeeded_delete_backup">
+        <item quantity="one">Удалён %1$d бекап</item>
+        <item quantity="few">Удалено %1$d бекапа</item>
+        <item quantity="many">Удалено %1$d бекапов</item>
+        <item quantity="other">Удалено %1$d бекапа</item>
+    </plurals>
+    <plurals name="alert_succeeded_import_backups">
+        <item quantity="one">Импортирован %1$d бекап</item>
+        <item quantity="few">Импортировано %1$d бекапа</item>
+        <item quantity="many">Импортировано %1$d бекапов</item>
+        <item quantity="other">Импортировано %1$d бекапа</item>
+    </plurals>
+    <plurals name="alert_succeeded_freeze">
+        <item quantity="one">Заморожено %1$d приложение</item>
+        <item quantity="few">Заморожено %1$d приложения</item>
+        <item quantity="many">Заморожено %1$d приложений</item>
+        <item quantity="other">Заморожено %1$d приложения</item>
+    </plurals>
+    <plurals name="alert_succeeded_unfreeze">
+        <item quantity="one">Разморожено %1$d приложение</item>
+        <item quantity="few">Разморожено %1$d приложения</item>
+        <item quantity="many">Разморожено %1$d приложений</item>
+        <item quantity="other">Разморожено %1$d приложения</item>
+    </plurals>
+    <plurals name="alert_succeeded_archive_request">
+        <item quantity="one">Запрошена архивация для %1$d приложения</item>
+        <item quantity="few">Запрошена архивация для %1$d приложений</item>
+        <item quantity="many">Запрошена архивация для %1$d приложений</item>
+        <item quantity="other">Запрошена архивация для %1$d приложений</item>
+    </plurals>
+    <plurals name="alert_succeeded_unarchive_request">
+        <item quantity="one">Запрошена разархивация для %1$d приложения</item>
+        <item quantity="few">Запрошена разархивация для %1$d приложений</item>
+        <item quantity="many">Запрошена разархивация для %1$d приложений</item>
+        <item quantity="other">Запрошена разархивация для %1$d приложений</item>
+    </plurals>
+    <plurals name="alert_succeeded_force_stop">
+        <item quantity="one">Принудительно остановлено %1$d приложение</item>
+        <item quantity="few">Принудительно остановлено %1$d приложения</item>
+        <item quantity="many">Принудительно остановлено %1$d приложений</item>
+        <item quantity="other">Принудительно остановлено %1$d приложения</item>
+    </plurals>
+    <plurals name="alert_succeeded_clear_data">
+        <item quantity="one">Данные очищены у %1$d приложения</item>
+        <item quantity="few">Данные очищены у %1$d приложений</item>
+        <item quantity="many">Данные очищены у %1$d приложений</item>
+        <item quantity="other">Данные очищены у %1$d приложений</item>
+    </plurals>
+    <plurals name="alert_succeeded_clear_cache">
+        <item quantity="one">Кэш очищен у %1$d приложения</item>
+        <item quantity="few">Кэш очищен у %1$d приложений</item>
+        <item quantity="many">Кэш очищен у %1$d приложений</item>
+        <item quantity="other">Кэш очищен у %1$d приложений</item>
+    </plurals>
+    <plurals name="alert_succeeded_block_trackers">
+        <item quantity="one">Трекеры заблокированы в %1$d приложении</item>
+        <item quantity="few">Трекеры заблокированы в %1$d приложениях</item>
+        <item quantity="many">Трекеры заблокированы в %1$d приложениях</item>
+        <item quantity="other">Трекеры заблокированы в %1$d приложениях</item>
+    </plurals>
+    <plurals name="alert_succeeded_unblock_trackers">
+        <item quantity="one">Трекеры разблокированы в %1$d приложении</item>
+        <item quantity="few">Трекеры разблокированы в %1$d приложениях</item>
+        <item quantity="many">Трекеры разблокированы в %1$d приложениях</item>
+        <item quantity="other">Трекеры разблокированы в %1$d приложениях</item>
+    </plurals>
+    <plurals name="alert_succeeded_uninstall">
+        <item quantity="one">Удалено %1$d приложение</item>
+        <item quantity="few">Удалено %1$d приложения</item>
+        <item quantity="many">Удалено %1$d приложений</item>
+        <item quantity="other">Удалено %1$d приложения</item>
+    </plurals>
+    <plurals name="alert_succeeded_install_existing">
+        <item quantity="one">Возвращено %1$d приложение</item>
+        <item quantity="few">Возвращено %1$d приложения</item>
+        <item quantity="many">Возвращено %1$d приложений</item>
+        <item quantity="other">Возвращено %1$d приложения</item>
+    </plurals>
+    <plurals name="alert_succeeded_dexopt">
+        <item quantity="one">Оптимизировано %1$d приложение</item>
+        <item quantity="few">Оптимизировано %1$d приложения</item>
+        <item quantity="many">Оптимизировано %1$d приложений</item>
+        <item quantity="other">Оптимизировано %1$d приложения</item>
+    </plurals>
+    <plurals name="delete_selected_backups_confirmation">
+        <item quantity="one">Удалить %1$d выбранный бекап?</item>
+        <item quantity="few">Удалить %1$d выбранных бекапа?</item>
+        <item quantity="many">Удалить %1$d выбранных бекапов?</item>
+        <item quantity="other">Удалить %1$d выбранных бекапа?</item>
+    </plurals>
+    <string name="batch_undo_pending">%1$s начинается — нажмите «Отменить», чтобы прервать</string>
+    <plurals name="leftover_files_deleted">
+        <item quantity="one">Удалена %1$d папка, освобождено %2$s.</item>
+        <item quantity="few">Удалено %1$d папки, освобождено %2$s.</item>
+        <item quantity="many">Удалено %1$d папок, освобождено %2$s.</item>
+        <item quantity="other">Удалено %1$d папки, освобождено %2$s.</item>
+    </plurals>
+    <plurals name="duplicate_apks_deleted">
+        <item quantity="one">Удалён %1$d APK-файл, освобождено %2$s.</item>
+        <item quantity="few">Удалено %1$d APK-файла, освобождено %2$s.</item>
+        <item quantity="many">Удалено %1$d APK-файлов, освобождено %2$s.</item>
+        <item quantity="other">Удалено %1$d APK-файла, освобождено %2$s.</item>
+    </plurals>
+    <string name="perfetto_trace_confirm">Записать системную трассу Perfetto длиной около 10 секунд для этого приложения? Файл <tt>.perfetto-trace</tt> будет сохранён в «Загрузки».</string>
+    <string name="cpu_profile_confirm">Записать профиль ЦП simpleperf длиной около 10 секунд для этого приложения? Необработанный файл <tt>perf.data</tt> сохраняется в «Загрузки». <tt>simpleperf</tt> входит в состав платформы; выборка использует граф вызовов DWARF.</string>
+    <string name="cpu_profile_confirm_with_options">Записать профиль ЦП simpleperf (%1$s) для этого приложения с событием <tt>%2$s</tt>? Необработанный файл <tt>perf.data</tt> сохраняется в «Загрузки». Выборка использует граф вызовов DWARF.</string>
+    <string name="cpu_profile_saved">Профиль ЦП сохранён:\n%1$s</string>
+    <string name="language_files">Языковые файлы</string>
+    <string name="language_files_summary">Импортируйте и делитесь переводами, которые люди делают сами.</string>
+    <string name="language_files_import">Импортировать языковой файл</string>
+    <string name="language_files_import_summary">Выберите .json-файл. В нём только текст, поэтому он безопасен и не может выполнять код.</string>
+    <string name="language_files_start">Начать перевод</string>
+    <string name="language_files_start_summary">Сохраните файл с английскими строками для перевода или исправьте встроенный перевод.</string>
+    <string name="language_files_start_from">Начать с</string>
+    <string name="language_files_start_scratch">Ничего, все строки пустые</string>
+    <string name="language_files_yours">Ваши языковые файлы</string>
+    <string name="language_files_none">Языковых файлов пока нет</string>
+    <string name="language_files_needs_android_11">Для использования языкового файла нужен Android 11 или новее. Создавать и отправлять их можно и здесь.</string>
+    <plurals name="language_files_translated">
+        <item quantity="one">Переведена %1$d строка из %2$d</item>
+        <item quantity="few">Переведено %1$d строки из %2$d</item>
+        <item quantity="many">Переведено %1$d строк из %2$d</item>
+        <item quantity="other">Переведено %1$d строки из %2$d</item>
+    </plurals>
+    <plurals name="language_files_outdated">
+        <item quantity="one">%d может быть устаревшей</item>
+        <item quantity="few">%d могут быть устаревшими</item>
+        <item quantity="many">%d могут быть устаревшими</item>
+        <item quantity="other">%d могут быть устаревшими</item>
+    </plurals>
+    <plurals name="language_files_need_fixing">
+        <item quantity="one">%d требует исправления</item>
+        <item quantity="few">%d требуют исправления</item>
+        <item quantity="many">%d требуют исправления</item>
+        <item quantity="other">%d требуют исправления</item>
+    </plurals>
+    <string name="language_files_in_use">Используется</string>
+    <string name="language_files_use">Использовать этот язык</string>
+    <string name="language_files_stop_using">Перестать использовать</string>
+    <string name="language_files_export">Экспортировать для редактирования</string>
+    <string name="language_files_added">Добавлен: %s</string>
+    <string name="language_files_updated">Обновлён: %s</string>
+    <string name="language_files_removed">Удалён: %s</string>
+    <string name="language_files_save_failed">Не удалось сохранить файл</string>
+    <string name="language_files_use_failed">Не удалось переключиться на этот языковой файл</string>
+    <string name="language_files_import_failed">Не удалось импортировать файл. %s</string>
+    <string name="language_files_error_not_a_pack">Это не языковой файл.</string>
+    <string name="language_files_error_too_large">Он больше 4 МБ.</string>
+    <string name="language_files_error_newer">Он создан для более новой версии приложения.</string>
+    <string name="language_files_error_bad_code">Укажите в language_code код вроде de или pt-BR.</string>
+    <string name="language_files_error_bad_name">Укажите в language_name название языка.</string>
+    <string name="language_files_error_english">Английский встроен, поэтому в файле нужен другой язык.</string>
+    <string name="language_files_error_nothing_usable">Ни один из его переводов нельзя использовать с этой версией.</string>
+    <string name="language_files_error_read">Не удалось прочитать файл.</string>
+    <string name="attention_badge_content_description">%1$s · %2$s</string>
+    <string name="installer_recovery_signer_pin">Получите APK из надёжного источника. Если разработчик действительно сменил ключи, проверьте новый ключ в разделе «Сведения о приложении» → «Подписи» → «Закрепление подписанта».</string>
+    <string name="automation_request_component_target">%1$s / %2$s</string>
+    <plurals name="automation_request_package_count">
+        <item quantity="one">%1$d пакет</item>
+        <item quantity="few">%1$d пакета</item>
+        <item quantity="many">%1$d пакетов</item>
+        <item quantity="other">%1$d пакета</item>
+    </plurals>
+    <string name="batch_results_failed_title">Операция требует внимания</string>
+    <string name="batch_results_failure_summary">%1$s\n%2$s · %3$s</string>
+    <string name="batch_results_meta">%1$s · %2$s</string>
+    <plurals name="batch_results_failed_app_count">
+        <item quantity="one">%d приложение с ошибкой</item>
+        <item quantity="few">%d приложения с ошибкой</item>
+        <item quantity="many">%d приложений с ошибкой</item>
+        <item quantity="other">%d приложения с ошибкой</item>
+    </plurals>
+    <string name="batch_results_retry_confirm_body">Повторит «%1$s» для %2$s. Приложения, которые уже обработаны, не включаются.</string>
+    <string name="default_app_role_sms">SMS</string>
+    <string name="installer_privilege_cascade_chip_info">%1$s</string>
+    <string name="installer_privilege_cascade_chip_shizuku">Shizuku</string>
+    <string name="installer_privilege_cascade_chip_root">Root</string>
+    <string name="installer_error_signer_pin">Этот APK не подписан ключом, который вы закрепили для этого приложения.</string>
+    <string name="signer_pin">Закрепление подписанта</string>
+    <string name="signer_pin_unverified">Подпись этого APK не проходит проверку, поэтому закреплять нечего.</string>
+    <string name="signer_pin_unverified_pinned">%1$s закреплено за:\n%2$s\n\nПодпись этого APK не проходит проверку, поэтому установщик отклоняет его.</string>
+    <string name="signer_pin_unpinned_message">Закрепить %1$s за этим подписантом? После этого установка или обновление приложения, подписанного любым другим ключом, будет отклоняться до начала.\n\nЭтот APK подписан:\n%2$s</string>
+    <string name="signer_pin_matches_message">%1$s закреплено за:\n%2$s\n\nЭтот APK подписан тем же ключом.</string>
+    <string name="signer_pin_rotated_message">%1$s закреплено за:\n%2$s\n\nЭтот APK подписан более новым ключом, которому закреплённый передал полномочия:\n%3$s\n\nОбновления с этим ключом уже устанавливаются. Закрепляйте новый ключ, только если старый больше не должен работать.</string>
+    <string name="signer_pin_different_message">%1$s закреплено за:\n%2$s\n\nЭтот APK подписан другим ключом:\n%3$s\n\nУстановщик отклоняет его. Заменяйте закрепление, только если знаете, что разработчик сменил ключи.</string>
+    <string name="signer_pin_action_pin">Закрепить</string>
+    <string name="signer_pin_action_replace">Заменить закрепление</string>
+    <string name="signer_pin_action_unpin">Снять закрепление</string>
+    <string name="signer_pin_saved">Закрепление подписанта сохранено</string>
+    <string name="signer_pin_removed">Закрепление подписанта снято</string>
+    <string name="signer_pin_failed">Не удалось сохранить закрепление подписи</string>
+    <string name="signer_pin_unreadable">Список закреплённых подписей не читается. Очистите его в «Настройки» → «Конфиденциальность» → «Закреплённые подписи».</string>
+    <string name="signer_pin_history_pin">Закрепить подпись</string>
+    <string name="signer_pin_history_unpin">Снять закрепление подписи</string>
+    <string name="signer_pin_history_restored">Из снимка</string>
+    <string name="signer_pin_history_replaced">Заменено: %1$s</string>
+    <string name="signer_pin_history_unreadable_list">Все закрепления (список не удалось прочитать)</string>
+    <string name="signer_pin_history_every_pin">Все закрепления</string>
+    <string name="signer_pin_changed">Закрепление подписанта изменилось после открытия этого окна, поэтому ничего не изменено. Откройте его снова, чтобы увидеть текущее закрепление.</string>
+    <string name="signer_pins_clear_failed">Не удалось очистить закрепления подписантов</string>
+    <string name="pref_signer_pins">Закреплённые подписи</string>
+    <string name="pref_signer_pins_summary">Установки и обновления закреплённого приложения должны быть подписаны закреплённым вами ключом. Закрепить приложение можно в «Сведения о приложении» → «Подписи».</string>
+    <string name="signer_pins_title_count">Закреплённых подписей (%1$d)</string>
+    <string name="signer_pins_unreadable">Список закреплённых подписей не читается, поэтому все установки отклоняются, пока вы его не очистите.</string>
+    <string name="signer_pins_none">Ни одно приложение не закреплено. Откройте вкладку «Подписи» приложения и выберите в меню «Закрепление подписи».</string>
+    <string name="signer_pins_clear_all">Очистить всё</string>
+    <string name="signer_pins_cleared">Закрепленые подписи очищены</string>
+    <plurals name="failed_to_activate_obb_files_for_users">
+        <item quantity="one">Не удалось обновить файлы OBB для пользователя %2$s. Прежние файлы сохранены — повторите установку, чтобы обновить их.</item>
+        <item quantity="few">Не удалось обновить файлы OBB для пользователей %2$s. Прежние файлы сохранены — повторите установку, чтобы обновить их.</item>
+        <item quantity="many">Не удалось обновить файлы OBB для пользователей %2$s. Прежние файлы сохранены — повторите установку, чтобы обновить их.</item>
+        <item quantity="other">Не удалось обновить файлы OBB для пользователей %2$s. Прежние файлы сохранены — повторите установку, чтобы обновить их.</item>
+    </plurals>
+    <plurals name="profiles_status_all">
+        <item quantity="one">Показан %1$d профиль</item>
+        <item quantity="few">Показано %1$d профиля</item>
+        <item quantity="many">Показано %1$d профилей</item>
+        <item quantity="other">Показано %1$d профиля</item>
+    </plurals>
+    <plurals name="profiles_status_filtered">
+        <item quantity="one">Показан %1$d из %2$d профилей</item>
+        <item quantity="few">Показано %1$d из %2$d профилей</item>
+        <item quantity="many">Показано %1$d из %2$d профилей</item>
+        <item quantity="other">Показано %1$d из %2$d профилей</item>
+    </plurals>
+    <string name="profile_apply_review_id">ID: %1$s</string>
+    <plurals name="profile_apply_failed_app_count">
+        <item quantity="one">%d приложение с ошибкой</item>
+        <item quantity="few">%d приложения с ошибкой</item>
+        <item quantity="many">%d приложений с ошибкой</item>
+        <item quantity="other">%d приложения с ошибкой</item>
+    </plurals>
+    <string name="quick_assist_history_route">Маршрут</string>
+    <plurals name="pref_backup_exclusion_patterns_summary">
+        <item quantity="one">Папки временных файлов по умолчанию пропускаются. Настроен %1$d свой шаблон.</item>
+        <item quantity="few">Папки временных файлов по умолчанию пропускаются. Настроено %1$d своих шаблона.</item>
+        <item quantity="many">Папки временных файлов по умолчанию пропускаются. Настроено %1$d своих шаблонов.</item>
+        <item quantity="other">Папки временных файлов по умолчанию пропускаются. Настроено %1$d своих шаблона.</item>
+    </plurals>
+    <string name="diagnostic_ready">Диагностический отчёт готов. Нажмите, чтобы поделиться.</string>
+    <string name="shizuku">Shizuku</string>
+    <string name="shizuku_shell">Shizuku (shell)</string>
+    <string name="shizuku_root">Shizuku (root)</string>
+    <plurals name="profile_routine_triggers_summary">
+        <item quantity="one">%1$d расписание, включено: %2$d</item>
+        <item quantity="few">%1$d расписания, включено: %2$d</item>
+        <item quantity="many">%1$d расписаний, включено: %2$d</item>
+        <item quantity="other">%1$d расписания, включено: %2$d</item>
+    </plurals>
+    <plurals name="profile_trigger_recovery_dropped">
+        <item quantity="one">%1$d сохранённый триггер не удалось прочитать, он пропущен. Остальные не затронуты.</item>
+        <item quantity="few">%1$d сохранённых триггера не удалось прочитать, они пропущены. Остальные не затронуты.</item>
+        <item quantity="many">%1$d сохранённых триггеров не удалось прочитать, они пропущены. Остальные не затронуты.</item>
+        <item quantity="other">%1$d сохранённых триггера не удалось прочитать, они пропущены. Остальные не затронуты.</item>
+    </plurals>
+    <string name="profile_trigger_recovery_continue">Продолжить</string>
+    <string name="profile_trigger_summary">%1$s\n%2$s\n%3$s</string>
+    <string name="profile_trigger_last_run_format">%1$s: %2$s</string>
+    <string name="user_profile_kind_private_space">Частное пространство</string>
+    <plurals name="batch_selected_app_count">
+        <item quantity="one">%1$d выбранное приложение</item>
+        <item quantity="few">%1$d выбранных приложения</item>
+        <item quantity="many">%1$d выбранных приложений</item>
+        <item quantity="other">%1$d выбранных приложения</item>
+    </plurals>
+    <plurals name="running_apps_kill_count">
+        <item quantity="one">%d процесс</item>
+        <item quantity="few">%d процесса</item>
+        <item quantity="many">%d процессов</item>
+        <item quantity="other">%d процесса</item>
+    </plurals>
+    <string name="filter_apps_possible_ad_sources">Возможные источники рекламы</string>
+    <plurals name="interceptor_unreadable_extras_skipped">
+        <item quantity="one">Пропущен %1$d нечитаемый extra интента. Базовые данные интента по-прежнему доступны.</item>
+        <item quantity="few">Пропущено %1$d нечитаемых extra интента. Базовые данные интента по-прежнему доступны.</item>
+        <item quantity="many">Пропущено %1$d нечитаемых extras интента. Базовые данные интента по-прежнему доступны.</item>
+        <item quantity="other">Пропущено %1$d нечитаемых extra интента. Базовые данные интента по-прежнему доступны.</item>
+    </plurals>
+    <string name="backup_extras_skip_dialog_item">%1$s (%2$s)</string>
+    <string name="backup_extras_item_ssaid">SSAID</string>
+    <string name="restore_internet_rule_warning">Блокировка интернета: %1$s</string>
+    <string name="restore_internet_allow_warning">Повторное разрешение доступа в интернет: %1$s</string>
+    <string name="pref_backup_network_destination_summary">Выберите папку SMB, WebDAV, SFTP или облака, доступную через приложение-провайдер файлов.</string>
+    <string name="backup_folder_access_failed">Не удалось открыть выбранную папку.</string>
+    <string name="app_details_tracker_dialog_message">Блокировка отключает известные рекламные, аналитические и трекинговые компоненты этого приложения. Разблокировка возвращает эти компоненты, если приложение перестаёт работать правильно.</string>
+    <string name="receiver_broadcast_confirm_message">Приёмник: %1$s\nДействие: %2$s\nПользователь: %3$d\nМаршрут: %4$s\nТребуемое разрешение: %5$s\nОбъявленные категории: %6$s\nВыбрано категорий: %7$d\nДополнений (extras): %8$d</string>
+    <string name="provider_query_uri_preview">URI: %1$s</string>
+    <plurals name="log_viewer_count_total">
+        <item quantity="one">%1$d запись</item>
+        <item quantity="few">%1$d записи</item>
+        <item quantity="many">%1$d записей</item>
+        <item quantity="other">%1$d записи</item>
+    </plurals>
+    <string name="log_export_json">JSON</string>
+    <string name="log_export_csv">CSV</string>
+    <string name="toast_history_filter_item">%1$s (%2$d)</string>
+    <string name="toast_history_search_hint">Поиск по тостам</string>
+    <string name="toast_history_no_matches_title">Нет подходящих тостов</string>
+    <string name="toast_history_no_matches">Ни текст тоста, ни название приложения, ни пакет не соответствуют этому запросу.</string>
+    <string name="toast_history_shade">Показывать недавние toast в шторке уведомлений</string>
+    <string name="toast_history_shade_line">%1$s  %2$s: %3$s</string>
+    <string name="toast_history_shade_needs_permission">Разрешите уведомления, чтобы недавние toast оставались в шторке.</string>
+    <string name="notification_filter_title">Фильтр уведомлений</string>
+    <string name="notification_filter_settings_summary">Отключайте звук или блокируйте уведомления по приложению и тексту и смотрите, что было отфильтровано.</string>
+    <string name="notification_filter_access_title">Доступ к уведомлениям</string>
+    <string name="notification_filter_access_on">Включён. Правила и тихий режим работают.</string>
+    <string name="notification_filter_access_off">Выключен. Пока вы его не включите, ничего не фильтруется.</string>
+    <string name="notification_filter_access_summary">Фильтр читает уведомления по мере их поступления. Всё остаётся на этом устройстве.</string>
+    <string name="notification_filter_access_open_settings">Включить</string>
+    <string name="notification_filter_access_manage">Открыть настройки</string>
+    <string name="notification_filter_access_grant_privileged">Включить через root или ADB</string>
+    <string name="notification_filter_access_granted">Доступ к уведомлениям включён.</string>
+    <string name="notification_filter_access_grant_failed">Не удалось включить. Для этого нужен режим root или ADB.</string>
+    <string name="notification_filter_access_no_settings">Не удалось открыть настройки доступа к уведомлениям.</string>
+    <string name="notification_filter_post_needed">Разрешите уведомления, чтобы можно было показывать беззвучные копии и копии с вибрацией.</string>
+    <string name="notification_filter_quiet_mode">Тихий режим</string>
+    <string name="notification_filter_quiet_summary">Когда он включен, уведомления, не разрешенные ни одним правилом, поступают без звука или только с вибрацией. Уведомления, разрешенные правилами, по-прежнему всплывают.</string>
+    <string name="notification_filter_quiet_on_manual">Включён, пока вы его не выключите</string>
+    <string name="notification_filter_quiet_on_until">Включён по расписанию до %1$s</string>
+    <string name="notification_filter_quiet_off_next">Выкл. Начало в %1$s.</string>
+    <string name="notification_filter_quiet_action_hint">В тихом режиме</string>
+    <string name="notification_filter_schedule">Ежедневное расписание</string>
+    <string name="notification_filter_schedule_from">С %1$s</string>
+    <string name="notification_filter_schedule_until">До %1$s</string>
+    <string name="notification_filter_rules_summary">Проверяются сверху вниз.\Решение принимает первое подходящие правило.</string>
+    <string name="notification_filter_flash_note">Режимы «Без звука» и «Только вибрация» создают тихую копию и удаляют оригинал, поэтому его всплывающее окно может на мгновение мелькнуть.</string>
+    <string name="notification_filter_rules_empty">Правил пока нет.</string>
+    <string name="notification_filter_rule_add">Добавить правило</string>
+    <string name="notification_filter_rule_move_up">Переместить вверх</string>
+    <string name="notification_filter_rule_move_down">Переместить вниз</string>
+    <string name="notification_filter_rule_delete">Удалить правило</string>
+    <string name="notification_filter_rule_deleted">Удалено: %1$s</string>
+    <string name="notification_filter_rule_any_app">Все приложения</string>
+    <string name="notification_filter_rule_condition_all">Каждое уведомление</string>
+    <string name="notification_filter_rule_condition_contains">%1$s содержит «%2$s»</string>
+    <string name="notification_filter_rule_condition_regex">%1$s соответствует регулярному выражению %2$s</string>
+    <string name="notification_filter_rule_summary">%1$s. %2$s. %3$s</string>
+    <string name="notification_filter_rule_invalid">Регулярное выражение нельзя использовать, поэтому это правило никогда не сработает.</string>
+    <string name="notification_filter_rule_new">Новое правило</string>
+    <string name="notification_filter_rule_edit">Изменить правило</string>
+    <string name="notification_filter_rule_name">Название</string>
+    <string name="notification_filter_rule_name_helper">Необязательно</string>
+    <string name="notification_filter_rule_app">Приложение</string>
+    <string name="notification_filter_rule_app_helper">Введите название для поиска</string>
+    <string name="notification_filter_rule_pick_app">Выберите приложение из списка или очистите поле для любого приложения.</string>
+    <string name="notification_filter_rule_field">Где искать</string>
+    <string name="notification_filter_rule_pattern">Текст для совпадения</string>
+    <string name="notification_filter_rule_pattern_helper">Без учета регистра. Оставьте пустым, чтобы правило применялось ко всем уведомлениям.</string>
+    <string name="notification_filter_rule_regex">Регулярное выражение</string>
+    <string name="notification_filter_rule_action">Действие</string>
+    <string name="notification_filter_rule_saved">Правило сохранено</string>
+    <string name="notification_filter_rule_gone">Это правило было удалено.</string>
+    <string name="notification_filter_rule_default_name">%1$s: %2$s</string>
+    <string name="notification_filter_field_any">Все поля</string>
+    <string name="notification_filter_field_title">Заголовок</string>
+    <string name="notification_filter_field_text">Текст</string>
+    <string name="notification_filter_field_sender">Отправитель или беседа</string>
+    <string name="notification_filter_action_allow">Разрешить всплывающие окна</string>
+    <string name="notification_filter_action_silent">Без звука</string>
+    <string name="notification_filter_action_vibrate">Только вибрация</string>
+    <string name="notification_filter_action_allow_summary">Пропускается без изменений. Всплывает как обычно, тихий режим на него не действует.</string>
+    <string name="notification_filter_action_silent_summary">Отображается в панели уведомлений без звука, вибрации и всплывающих окон.</string>
+    <string name="notification_filter_action_vibrate_summary">Отображается в панели уведомлений только с вибрацией. Без звука и всплывающего окна.</string>
+    <string name="notification_filter_action_block_summary">Удаляется из панели уведомлений. Остаётся в истории уведомлений.</string>
+    <string name="notification_filter_channel_silent">Отфильтровано, без звука</string>
+    <string name="notification_filter_channel_vibrate">Отфильтровано, только вибрация</string>
+    <string name="notification_filter_copy_sub_text">%1$s, %2$s</string>
+    <string name="notification_filter_history_summary">Хранит уведомления, к которым применились правила или тихий режим. Данные не покидают это устройство.</string>
+    <string name="notification_filter_record_all">Записывать все уведомления</string>
+    <string name="notification_filter_retention_hint">Хранить</string>
+    <plurals name="notification_filter_retention_days">
+        <item quantity="one">%d день</item>
+        <item quantity="few">%d дня</item>
+        <item quantity="many">%d дней</item>
+        <item quantity="other">%d дня</item>
+    </plurals>
+    <string name="notification_filter_history_open">Открыть историю</string>
+    <string name="notification_history_title">История уведомлений</string>
+    <string name="notification_history_search_hint">Поиск по уведомлениям</string>
+    <string name="notification_history_filter_action_all">Все действия</string>
+    <string name="notification_history_action_none">Не отфильтровано</string>
+    <string name="notification_history_by_rule">%1$s по правилу %2$s</string>
+    <string name="notification_history_by_quiet_mode">%1$s тихим режимом</string>
+    <string name="notification_history_cleared">История уведомлений очищена.</string>
+    <string name="notification_history_empty_title">Уведомлений пока нет</string>
+    <string name="notification_history_empty">Здесь отображаются уведомления, к которым применилось правило или тихий режим.</string>
+    <string name="notification_history_no_matches">Ни заголовок, ни текст, ни отправитель, ни название приложения, ни пакет не соответствуют этому запросу.</string>
+    <string name="search_regex_unusable">Это неподходящее регулярное выражение, поэтому ему ничего не соответствует.</string>
+    <string name="audio_player_playback_speed_default">1x</string>
+    <plurals name="keystore_import_success">
+        <item quantity="one">Успешно импортирован %1$d ключ.</item>
+        <item quantity="few">Успешно импортировано %1$d ключа.</item>
+        <item quantity="many">Успешно импортировано %1$d ключей.</item>
+        <item quantity="other">Успешно импортировано %1$d ключа.</item>
+    </plurals>
+    <plurals name="keystore_import_partial">
+        <item quantity="one">Импортирован %1$d ключ; ошибок: %2$d.</item>
+        <item quantity="few">Импортировано %1$d ключа; ошибок: %2$d.</item>
+        <item quantity="many">Импортировано %1$d ключей; ошибок: %2$d.</item>
+        <item quantity="other">Импортировано %1$d ключа; ошибок: %2$d.</item>
+    </plurals>
+    <plurals name="installer_permissions_dangerous">
+        <item quantity="one">Запрашивает %1$d разрешение, из них чувствительных: %2$d: %3$s</item>
+        <item quantity="few">Запрашивает %1$d разрешения, из них чувствительных: %2$d: %3$s</item>
+        <item quantity="many">Запрашивает %1$d разрешений, из них чувствительных: %2$d: %3$s</item>
+        <item quantity="other">Запрашивает %1$d разрешения, из них чувствительных: %2$d: %3$s</item>
+    </plurals>
+    <plurals name="installer_permissions_plain">
+        <item quantity="one">Запрашивает %1$d разрешение, ни одно не чувствительное</item>
+        <item quantity="few">Запрашивает %1$d разрешения, ни одно не чувствительное</item>
+        <item quantity="many">Запрашивает %1$d разрешений, ни одно не чувствительное</item>
+        <item quantity="other">Запрашивает %1$d разрешения, ни одно не чувствительное</item>
+    </plurals>
+    <string name="installer_session_sha256_message">Это байты, которые AppManagerNG записал в сеанс установки. Сравните эту контрольную сумму с SHA-256, опубликованной издателем, прежде чем принимать запрос установки Android:\n\n%1$s</string>
+    <string name="installer_session_file">Файл: %1$s</string>
+    <string name="installer_session_show_changes">Показать изменения</string>
+    <string name="installer_session_changes_reading">Чтение APK…</string>
+    <string name="installer_session_changes_unreadable">Не удалось прочитать манифест этого APK.</string>
+    <string name="installer_session_version_update">Версия %1$s → %2$s</string>
+    <string name="installer_session_version_new">Новая установка, версия %1$s</string>
+    <string name="installer_session_kind_changed">%1$s: добавлено %2$d, удалено %3$d</string>
+    <string name="installer_session_kind_unchanged">%1$s: без изменений</string>
+    <string name="installer_session_kind_total">%1$s: %2$d</string>
+    <string name="installer_session_added">Добавлено</string>
+    <string name="installer_session_removed">Удалено</string>
+    <string name="installer_session_expanded">Развёрнуто</string>
+    <string name="installer_session_collapsed">Свёрнуто</string>
+    <string name="confirm_installation_of_file">Подтвердите установку %1$s</string>
+    <string name="pref_installer_show_session_changes">Показывать, что меняет установка</string>
+    <string name="pref_installer_show_session_changes_msg">Рядом с SHA-256 перечислять версию, а также разрешения, активити, службы, приёмники и поставщики, которые добавляет или убирает обновление</string>
+    <plurals name="installer_split_cert_removed">
+        <item quantity="one">Удалён %1$d несовпадающий split.</item>
+        <item quantity="few">Удалено %1$d несовпадающих split.</item>
+        <item quantity="many">Удалено %1$d несовпадающих split.</item>
+        <item quantity="other">Удалено %1$d несовпадающих split.</item>
+    </plurals>
+    <string name="pref_toggle_internet_msg_floss_disabled">Необязательные функции интернета отключены в этой FLOSS-сборке. Установите полную сборку из GitHub Releases, чтобы включить VirusTotal и автообновление определений debloat.</string>
+    <string name="pref_auto_update_debloat_definitions_msg_floss_disabled">Эта FLOSS-сборка использует только встроенные определения debloat.</string>
+    <string name="pref_check_tracker_database_msg_floss_disabled">Эта FLOSS-сборка использует только встроенную базу трекеров.</string>
+    <string name="root_refused_magisk_superuser">Root не предоставлен. Добавьте AppManagerNG в Magisk &gt; Superuser &gt; +.</string>
+    <string name="server_control_reference">Отправляйте пакету %1$s. Android отбрасывает широковещательные сообщения, в которых не указан пакет или компонент.\n\nДействия\n%1$s.action.SERVER_START запускает сервер в сохранённом режиме.\n%1$s.action.SERVER_STOP останавливает сервер и сохраняет режим, поэтому при открытии приложения он запустится снова.\n%1$s.action.SERVER_SET_MODE переключает на режим из extra «mode» и сохраняет его, когда переключение удалось.\n\nExtras (все строки)\nauth: ключ из менеджера авторизации. Обязателен.\nmode: auto, root, shizuku, adb_tcp, adb_wifi или no-root. Обязателен для SERVER_SET_MODE, для остальных двух отклоняется.\nrequest_id: необязателен, до 64 букв, цифр, точек, подчёркиваний, двоеточий или дефисов, возвращается вам.\nresult_package: необязателен, пакет, который получит широковещательное сообщение с результатом.\n\nКод результата, читается из упорядоченной рассылки\n-1 выполнено\n0 никто не получил сообщение\n1 ещё выполняется, ответ в сообщении с результатом\n2 эта настройка выключена\n3 неверный или отсутствующий ключ\n4 неизвестное действие, режим или extra\n5 выполняется другое переключение режима\n6 завершено, но сохранённый режим не запускает сервер\n100 и выше: 100 плюс статус режима работы\n\nСообщение с результатом\n%1$s.action.SERVER_CONTROL_RESULT отправляется в result_package после завершения команды, с extras result_code, command, mode (сохранённый режим), uid (uid, от имени которого выполняются операции), ops_status и request_id. Его используют вызывающие, которые не умеют читать результат упорядоченной рассылки, например «Отправить интент» в Tasker.\n\nПример\nadb shell am broadcast -a %1$s.action.SERVER_SET_MODE -p %1$s --es auth &lt;key&gt; --es mode adb_tcp</string>
+    <plurals name="tracker_cta_title_unblocked">
+        <item quantity="one">Обнаружен %1$d трекер</item>
+        <item quantity="few">Обнаружено %1$d трекера</item>
+        <item quantity="many">Обнаружено %1$d трекеров</item>
+        <item quantity="other">Обнаружено %1$d трекера</item>
+    </plurals>
+    <plurals name="tracker_cta_title_all_blocked">
+        <item quantity="one">Все трекеры заблокированы (%1$d)</item>
+        <item quantity="few">Все трекеры заблокированы (%1$d)</item>
+        <item quantity="many">Все трекеры заблокированы (%1$d)</item>
+        <item quantity="other">Все трекеры заблокированы (%1$d)</item>
+    </plurals>
+    <string name="component_switch_allowed_a11y">Компонент разрешён: %1$s. Нажмите дважды, чтобы заблокировать.</string>
+    <string name="component_switch_blocked_a11y">Компонент заблокирован: %1$s. Нажмите дважды, чтобы разрешить.</string>
+    <plurals name="tracker_block_in_tab_activities">
+        <item quantity="one">Проверить трекеры: %1$d активити</item>
+        <item quantity="few">Проверить трекеры: %1$d активити</item>
+        <item quantity="many">Проверить трекеры: %1$d активити</item>
+        <item quantity="other">Проверить трекеры: %1$d активити</item>
+    </plurals>
+    <plurals name="tracker_block_in_tab_services">
+        <item quantity="one">Проверить %1$d службу трекера</item>
+        <item quantity="few">Проверить %1$d службы трекеров</item>
+        <item quantity="many">Проверить %1$d служб трекеров</item>
+        <item quantity="other">Проверить %1$d службы трекеров</item>
+    </plurals>
+    <plurals name="tracker_block_in_tab_receivers">
+        <item quantity="one">Проверить %1$d приёмник трекера</item>
+        <item quantity="few">Проверить %1$d приёмника трекеров</item>
+        <item quantity="many">Проверить %1$d приёмников трекеров</item>
+        <item quantity="other">Проверить %1$d приёмника трекеров</item>
+    </plurals>
+    <plurals name="tracker_block_in_tab_providers">
+        <item quantity="one">Проверить %1$d поставщика трекера</item>
+        <item quantity="few">Проверить %1$d поставщика трекеров</item>
+        <item quantity="many">Проверить %1$d поставщиков трекеров</item>
+        <item quantity="other">Проверить %1$d поставщика трекеров</item>
+    </plurals>
+    <plurals name="app_details_tracker_block_review_title">
+        <item quantity="one">Заблокировать %1$d трекер?</item>
+        <item quantity="few">Заблокировать %1$d трекера?</item>
+        <item quantity="many">Заблокировать %1$d трекеров?</item>
+        <item quantity="other">Заблокировать %1$d трекера?</item>
+    </plurals>
+    <plurals name="app_details_trackers_blocked_snackbar">
+        <item quantity="one">Заблокирован %1$d трекер</item>
+        <item quantity="few">Заблокировано %1$d трекера</item>
+        <item quantity="many">Заблокировано %1$d трекеров</item>
+        <item quantity="other">Заблокировано %1$d трекера</item>
+    </plurals>
+    <plurals name="app_details_trackers_unblocked_snackbar">
+        <item quantity="one">Разблокирован %1$d трекер</item>
+        <item quantity="few">Разблокировано %1$d трекера</item>
+        <item quantity="many">Разблокировано %1$d трекеров</item>
+        <item quantity="other">Разблокировано %1$d трекера</item>
+    </plurals>
+    <string name="onboarding_mode_root_title">Root</string>
+    <string name="onboarding_mode_shizuku_title">Shizuku</string>
+    <string name="onboarding_mode_root_pick_magisk_grant_first">Magisk 31.1 и новее больше не спрашивает у приложений root. Откройте Magisk, перейдите в Superuser, нажмите + и выберите AppManagerNG. Пока вы этого не сделаете, большинство операций будут завершаться ошибкой.\n\nПродолжить в режиме Root?</string>
+    <string name="onboarding_mode_root_open_magisk">Открыть Magisk</string>
+    <string name="mode_of_op_capability_root">• Root: %1$s</string>
+    <string name="mode_of_op_capability_shizuku">• Shizuku: %1$s</string>
+    <string name="privilege_health_capability_feature_app_ops">операции приложений</string>
+    <string name="privilege_health_root_extra_zygisk_next"> + ZygiskNext</string>
+    <string name="privilege_health_root_extra_sui"> + Sui</string>
+    <string name="privilege_health_modules_title">Модули</string>
+    <plurals name="privilege_health_modules_summary">
+        <item quantity="one">%1$d модуль: %2$s</item>
+        <item quantity="few">%1$d модуля: %2$s</item>
+        <item quantity="many">%1$d модулей: %2$s</item>
+        <item quantity="other">%1$d модуля: %2$s</item>
+    </plurals>
+    <string name="privilege_health_capability_dropping_magisk_version">%1$s (%2$s)</string>
+    <plurals name="privilege_health_capability_dropping_magisk_policy_matched">
+        <item quantity="one">совпало %1$d подходящее правило</item>
+        <item quantity="few">совпало %1$d подходящих правила</item>
+        <item quantity="many">совпало %1$d подходящих правил</item>
+        <item quantity="other">совпало %1$d подходящих правила</item>
+    </plurals>
+    <plurals name="privilege_health_kernelsu_sulog_denials">
+        <item quantity="one">%1$d недавний отказ</item>
+        <item quantity="few">%1$d недавних отказа</item>
+        <item quantity="many">%1$d недавних отказов</item>
+        <item quantity="other">%1$d недавних отказа</item>
+    </plurals>
+    <string name="privilege_health_kernelsu_details_seccomp">Seccomp: %1$s</string>
+    <string name="privilege_health_kernelsu_details_sulog">Sulog: %1$s</string>
+    <string name="privilege_health_shizuku_title">Shizuku</string>
+    <string name="privilege_health_dhizuku_title">Dhizuku</string>
+    <string name="privilege_health_untested_android_title">Непроверенная версия Android</string>
+    <string name="privilege_health_untested_android_summary">Эта сборка проверена до Android API %1$d. Это устройство работает на API %2$d. Приложение продолжит работать, но функции, опирающиеся на скрытые вызовы Android, могут показывать меньше данных или давать сбой. Нажмите, чтобы скрыть это до следующего обновления Android.</string>
+    <string name="privilege_health_untested_android_hidden">Скрыто до следующего обновления Android</string>
+    <string name="os_revert_operation_appop">AppOp %1$s</string>
+    <string name="os_revert_doze_detail">Пакет больше не находится в запрошенном состоянии списка разрешённых для Doze. Политика OEM, списки только для системных приложений или политика простоя устройства могли изменить его после того, как AppManagerNG записал состояние.</string>
+    <string name="tracker_category_push">Push</string>
+    <string name="delete_base_backups_confirmation">Удалить базовые бекапы этих приложений? Именованные бекапы сохраняются.</string>
+    <plurals name="delete_base_backup_count">
+        <item quantity="one">%1$d базовый бекап</item>
+        <item quantity="few">%1$d базовых бекапа</item>
+        <item quantity="many">%1$d базовых бекапов</item>
+        <item quantity="other">%1$d базовых бекапа</item>
+    </plurals>
+    <plurals name="delete_named_backup_count">
+        <item quantity="one">%1$d именованный бекап</item>
+        <item quantity="few">%1$d именованных бекапа</item>
+        <item quantity="many">%1$d именованных бекапов</item>
+        <item quantity="other">%1$d именованных бекапа</item>
+    </plurals>
+    <string name="backup_dialog_meta">%1$s · %2$s</string>
+    <plurals name="backup_dialog_installed_app_count">
+        <item quantity="one">%1$d установленное приложение</item>
+        <item quantity="few">%1$d установленных приложения</item>
+        <item quantity="many">%1$d установленных приложений</item>
+        <item quantity="other">%1$d установленных приложения</item>
+    </plurals>
+    <plurals name="backup_dialog_existing_base_backup_count">
+        <item quantity="one">%1$d существующий базовый бекап</item>
+        <item quantity="few">%1$d существующих базовых бекапа</item>
+        <item quantity="many">%1$d существующих базовых бекапов</item>
+        <item quantity="other">%1$d существующих базовых бекапа</item>
+    </plurals>
+    <string name="restore_dialog_meta">%1$s · %2$s</string>
+    <plurals name="restore_dialog_restorable_app_count">
+        <item quantity="one">%1$d приложение для восстановления</item>
+        <item quantity="few">%1$d приложения для восстановления</item>
+        <item quantity="many">%1$d приложений для восстановления</item>
+        <item quantity="other">%1$d приложения для восстановления</item>
+    </plurals>
+    <plurals name="restore_dialog_skipped_app_count">
+        <item quantity="one">%1$d пропущенное приложение</item>
+        <item quantity="few">%1$d пропущенных приложения</item>
+        <item quantity="many">%1$d пропущенных приложений</item>
+        <item quantity="other">%1$d пропущенных приложения</item>
+    </plurals>
+    <plurals name="backup_restore_version_count">
+        <item quantity="one">%1$d версия бекапа</item>
+        <item quantity="few">%1$d версии бекапа</item>
+        <item quantity="many">%1$d версий бекапа</item>
+        <item quantity="other">%1$d версии бекапа</item>
+    </plurals>
+    <plurals name="backup_restore_content_selected_count">
+        <item quantity="one">Выбран %1$d тип данных</item>
+        <item quantity="few">Выбрано %1$d типа данных</item>
+        <item quantity="many">Выбрано %1$d типов данных</item>
+        <item quantity="other">Выбрано %1$d типа данных</item>
+    </plurals>
+    <plurals name="backup_restore_backup_selection_count">
+        <item quantity="one">Выбран %1$d бекап</item>
+        <item quantity="few">Выбрано %1$d бекапа</item>
+        <item quantity="many">Выбрано %1$d бекапов</item>
+        <item quantity="other">Выбрано %1$d бекапа</item>
+    </plurals>
+    <plurals name="backup_verification_failed_files">
+        <item quantity="one">%1$d файл не прошёл проверку</item>
+        <item quantity="few">%1$d файла не прошли проверку</item>
+        <item quantity="many">%1$d файлов не прошли проверку</item>
+        <item quantity="other">%1$d файла не прошли проверку</item>
+    </plurals>
+    <string name="import_backups_folder_unreadable">Не удалось прочитать папку для импорта</string>
+    <plurals name="alert_failed_to_archive">
+        <item quantity="one">Не удалось запросить архивацию для %1$d приложения</item>
+        <item quantity="few">Не удалось запросить архивацию для %1$d приложений</item>
+        <item quantity="many">Не удалось запросить архивацию для %1$d приложений</item>
+        <item quantity="other">Не удалось запросить архивацию для %1$d приложений</item>
+    </plurals>
+    <plurals name="alert_failed_to_unarchive">
+        <item quantity="one">Не удалось запросить разархивацию для %1$d приложения</item>
+        <item quantity="few">Не удалось запросить разархивацию для %1$d приложений</item>
+        <item quantity="many">Не удалось запросить разархивацию для %1$d приложений</item>
+        <item quantity="other">Не удалось запросить разархивацию для %1$d приложений</item>
+    </plurals>
+    <string name="pref_cat_settings_foundation_summary">Язык, тема, режим доступа и параметры безопасности приложений по умолчанию.</string>
+    <string name="pref_cat_settings_package_workflows_summary">Установка, бекап, подпись, сканирование и управление приложениями.</string>
+    <string name="pref_cat_settings_tools_summary">Журналы, файлы, правила и расширенное поведение системы.</string>
+    <string name="pref_cat_settings_support_summary">Сведения об устройстве, о приложении и инструменты восстановления.</string>
+    <string name="pref_glossary_root_title">Root</string>
+    <string name="pref_glossary_appops_title">Операции приложений</string>
+    <plurals name="import_app_list_selected_count">
+        <item quantity="one">Выбрано %1$d импортированное приложение.</item>
+        <item quantity="few">Выбрано %1$d импортированных приложения.</item>
+        <item quantity="many">Выбрано %1$d импортированных приложений.</item>
+        <item quantity="other">Выбрано %1$d импортированных приложения.</item>
+    </plurals>
+    <string name="foreground_service_refused_keep_open">Android не разрешает этой задаче работать в фоне. Оставайтесь в AppManagerNG, пока она не завершится, иначе она может остановиться на полпути.</string>
+    <string name="foreground_service_stopped_title">Не завершено</string>
+    <string name="foreground_service_stopped">Android остановил это в фоне, поэтому задача могла не завершиться. Проверьте результат, прежде чем запускать её снова.</string>
+    <string name="foreground_service_stopped_with_queue">Android остановил это в фоне, поэтому задача могла не завершиться, а то, что ждало в очереди, не запустилось. Запустите это снова из AppManagerNG.</string>
+    <string name="log_recording_refused">Android не разрешает AppManagerNG записывать журналы в фоне, поэтому запись остановится вскоре после выхода из приложения. То, что успело записаться, сохранено.</string>
+    <string name="freeze_on_lock_refused">Android не позволил AppManagerNG ждать блокировки телефона, поэтому приложения, которые вы пока разморозили, не заморозятся снова сами. Когда закончите, нажмите уведомление «Нажмите, чтобы заморозить» у каждого приложения.</string>
+    <string name="auto_lock_refused">Android не позволил AppManagerNG следить за блокировкой телефона, поэтому приложение не заблокируется само. Оно остаётся разблокированным, пока Android его не закроет.</string>
+    <string name="session_lock_refused">Android не позволил AppManagerNG показать своё уведомление, поэтому в этот раз нет кнопки «Заблокировать приложение». Приложение снова заблокируется, когда Android его закроет.</string>
+    <string name="persistent_session_refused">Android не позволил AppManagerNG продолжать работу в фоне, поэтому в следующий раз оно может открыться немного дольше.</string>
+    <string name="wifi_wait_refused">Android не позволил AppManagerNG ждать Wi-Fi в фоне, поэтому оно не будет само переподключаться к беспроводной отладке. Откройте приложение, чтобы подключиться.</string>
+    <string name="adb_pairing_refused">Android не позволил AppManagerNG искать порт сопряжения, поэтому сопряжение остановилось. Повторите с открытым приложением. Если это повторяется, установите для AppManagerNG использование батареи «Без ограничений».</string>
+    <string name="top_app_overlay_recent_row">%1$s (%2$s)</string>
+    <string name="top_app_overlay_layer_overlay">Наложение</string>
+    <string name="top_app_overlay_layer_overlay_gone">Наложение, уже исчезло</string>
+    <string name="top_app_overlay_layer_underneath">Под ним</string>
+    <string name="top_app_overlay_overlay_description">Наложение нарисовано %1$s. Нажмите для сведений о приложении, долгое нажатие — недавние приложения, перетащите, чтобы переместить.</string>
+    <string name="top_app_overlay_overlay_gone_description">Наложение нарисовано %1$s, уже исчезло. Нажмите для сведений о приложении, долгое нажатие — недавние приложения, перетащите, чтобы переместить.</string>
+    <string name="top_app_overlay_underneath_description">Приложение под %1$s. Нажмите для сведений о приложении, долгое нажатие — недавние приложения, перетащите, чтобы переместить.</string>
+    <string name="top_app_overlay_notification_layers">%1$s рисует поверх %2$s. Нажмите, чтобы открыть сведения о приложении.</string>
+    <string name="top_app_history_title">История верхнего приложения</string>
+    <string name="top_app_history_record">Записывать приложения и наложения, которые видит пузырёк</string>
+    <string name="top_app_history_empty_title">Записей пока нет</string>
+    <string name="top_app_history_empty_off">Включите запись, чтобы вести список всех приложений и наложений, которые видит пузырёк верхнего приложения, с указанием времени их появления. Данные не покидают это устройство.</string>
+    <string name="top_app_history_turn_on">Включить запись</string>
+    <string name="top_app_history_bubble_off">Запись идёт, пока включён пузырёк верхнего приложения.</string>
+    <string name="top_app_history_start_bubble">Запустить пузырёк</string>
+    <string name="top_app_history_empty_on">Приложения и наложения появляются здесь по мере того, как их видит пузырёк.</string>
+    <string name="top_app_history_switched">Переключение с %1$s на %2$s</string>
+    <string name="top_app_history_came_up">%1$s появилось</string>
+    <string name="top_app_history_overlay_over">%1$s нарисовало наложение поверх %2$s</string>
+    <string name="top_app_history_overlay">%1$s нарисовало наложение</string>
+    <string name="top_app_history_overlay_gone">Наложение от %1$s исчезло</string>
+    <string name="top_app_history_cleared">История верхнего приложения очищена.</string>
+    <string name="top_app_history_clear_failed">Не удалось очистить историю верхнего приложения.</string>
+    <string name="top_app_history_copy_failed">Не удалось скопировать историю верхнего приложения.</string>
+    <string name="top_app_history_nothing_to_copy">Копировать нечего.</string>
+    <string name="terminal_route_root">Root</string>
+    <string name="terminal_route_shizuku">Shizuku</string>
+    <string name="terminal_route_adb">ADB</string>
+    <plurals name="dexopt_scope_selected">
+        <item quantity="one">Будет поставлена в очередь оптимизация времени выполнения для %1$d выбранного приложения.</item>
+        <item quantity="few">Будет поставлена в очередь оптимизация времени выполнения для %1$d выбранных приложений.</item>
+        <item quantity="many">Будет поставлена в очередь оптимизация времени выполнения для %1$d выбранных приложений.</item>
+        <item quantity="other">Будет поставлена в очередь оптимизация времени выполнения для %1$d выбранных приложений.</item>
+    </plurals>
+    <string name="memory_tagging_dialog_title">Маркировка памяти</string>
+    <plurals name="sdk_sandbox_chip_count">
+        <item quantity="one">SDK Runtime: %1$d SDK</item>
+        <item quantity="few">SDK Runtime: %1$d SDK</item>
+        <item quantity="many">SDK Runtime: %1$d SDK</item>
+        <item quantity="other">SDK Runtime: %1$d SDK</item>
+    </plurals>
+    <string name="sdk_sandbox_dialog_title">SDK Runtime</string>
+    <plurals name="health_connect_chip_count">
+        <item quantity="one">Health Connect: %1$d разрешение</item>
+        <item quantity="few">Health Connect: %1$d разрешения</item>
+        <item quantity="many">Health Connect: %1$d разрешений</item>
+        <item quantity="other">Health Connect: %1$d разрешения</item>
+    </plurals>
+    <string name="health_connect_dialog_title">Health Connect</string>
+    <plurals name="credential_provider_chip_count">
+        <item quantity="one">Провайдер учётных данных: %1$d служба</item>
+        <item quantity="few">Провайдер учётных данных: %1$d службы</item>
+        <item quantity="many">Провайдер учётных данных: %1$d служб</item>
+        <item quantity="other">Провайдер учётных данных: %1$d службы</item>
+    </plurals>
+    <plurals name="app_functions_chip_count">
+        <item quantity="one">Функции приложения: %1$d служба</item>
+        <item quantity="few">Функции приложения: %1$d службы</item>
+        <item quantity="many">Функции приложения: %1$d служб</item>
+        <item quantity="other">Функции приложения: %1$d службы</item>
+    </plurals>
+    <string name="credential_provider_dialog_unsupported">Android предоставляет провайдеров Credential Manager начиная с Android 14. Это устройство работает на API %1$d.</string>
+    <string name="credential_provider_dialog_header">Credential Manager в манифесте: %1$s, включая %2$s.</string>
+    <plurals name="credential_provider_service_count">
+        <item quantity="one">%1$d служба провайдера</item>
+        <item quantity="few">%1$d службы провайдера</item>
+        <item quantity="many">%1$d служб провайдера</item>
+        <item quantity="other">%1$d службы провайдера</item>
+    </plurals>
+    <plurals name="credential_provider_system_action_count">
+        <item quantity="one">%1$d действие системного провайдера</item>
+        <item quantity="few">%1$d действия системного провайдера</item>
+        <item quantity="many">%1$d действий системного провайдера</item>
+        <item quantity="other">%1$d действия системного провайдера</item>
+    </plurals>
+    <plurals name="manifest_metadata_chip_count">
+        <item quantity="one">Метаданные манифеста: %1$d строка</item>
+        <item quantity="few">Метаданные манифеста: %1$d строки</item>
+        <item quantity="many">Метаданные манифеста: %1$d строк</item>
+        <item quantity="other">Метаданные манифеста: %1$d строки</item>
+    </plurals>
+    <plurals name="domain_link_conflict_count">
+        <item quantity="one">Конфликт с %1$d приложением</item>
+        <item quantity="few">Конфликт с %1$d приложениями</item>
+        <item quantity="many">Конфликт с %1$d приложениями</item>
+        <item quantity="other">Конфликт с %1$d приложениями</item>
+    </plurals>
+    <plurals name="debloat_export_success">
+        <item quantity="one">Экспортирован %1$d пакет</item>
+        <item quantity="few">Экспортировано %1$d пакета</item>
+        <item quantity="many">Экспортировано %1$d пакетов</item>
+        <item quantity="other">Экспортировано %1$d пакета</item>
+    </plurals>
+    <string name="debloat_import_failed">Не удалось импортировать набор debloat</string>
+    <plurals name="debloat_import_success">
+        <item quantity="one">Импортировано пакетов: %1$d из %2$d</item>
+        <item quantity="few">Импортировано пакетов: %1$d из %2$d</item>
+        <item quantity="many">Импортировано пакетов: %1$d из %2$d</item>
+        <item quantity="other">Импортировано пакетов: %1$d из %2$d</item>
+    </plurals>
+    <plurals name="debloat_import_not_found">
+        <item quantity="one">%1$d пакет из набора не найден на этом устройстве</item>
+        <item quantity="few">%1$d пакета из набора не найдено на этом устройстве</item>
+        <item quantity="many">%1$d пакетов из набора не найдено на этом устройстве</item>
+        <item quantity="other">%1$d пакета из набора не найдено на этом устройстве</item>
+    </plurals>
+    <string name="debloat_preset_preview_title">Набор «%1$s»</string>
+    <string name="debloat_preset_recommended_action">Рекомендуемое действие: %1$s.</string>
+    <string name="debloat_preset_no_matches_message">Набор «%1$s» не совпал ни с одной установленной на этом устройстве рекомендацией debloat.</string>
+    <plurals name="debloat_preset_match_count">
+        <item quantity="one">%d установленное совпадение</item>
+        <item quantity="few">%d установленных совпадения</item>
+        <item quantity="many">%d установленных совпадений</item>
+        <item quantity="other">%d установленных совпадения</item>
+    </plurals>
+    <plurals name="debloater_status_all_recommendations">
+        <item quantity="one">%d рекомендация debloat</item>
+        <item quantity="few">%d рекомендации debloat</item>
+        <item quantity="many">%d рекомендаций debloat</item>
+        <item quantity="other">%d рекомендации debloat</item>
+    </plurals>
+    <plurals name="debloater_status_showing_recommendations">
+        <item quantity="one">Показано рекомендаций: %1$d из %2$d</item>
+        <item quantity="few">Показано рекомендаций: %1$d из %2$d</item>
+        <item quantity="many">Показано рекомендаций: %1$d из %2$d</item>
+        <item quantity="other">Показано рекомендаций: %1$d из %2$d</item>
+    </plurals>
+    <string name="debloater_item_content_description">%1$s, пакет %2$s, %3$s, список %4$s</string>
+    <plurals name="debloat_card_dependencies">
+        <item quantity="one">Зависит от %d пакета</item>
+        <item quantity="few">Зависит от %d пакетов</item>
+        <item quantity="many">Зависит от %d пакетов</item>
+        <item quantity="other">Зависит от %d пакетов</item>
+    </plurals>
+    <plurals name="debloat_card_required_by">
+        <item quantity="one">Требуется %d пакету</item>
+        <item quantity="few">Требуется %d пакетам</item>
+        <item quantity="many">Требуется %d пакетам</item>
+        <item quantity="other">Требуется %d пакетам</item>
+    </plurals>
+    <plurals name="rootless_debloat_dependency_warnings">
+        <item quantity="one">%d выбранное приложение объявляет предупреждения о зависимостях или требованиях.</item>
+        <item quantity="few">%d выбранных приложения объявляют предупреждения о зависимостях или требованиях.</item>
+        <item quantity="many">%d выбранных приложений объявляют предупреждения о зависимостях или требованиях.</item>
+        <item quantity="other">%d выбранных приложения объявляют предупреждения о зависимостях или требованиях.</item>
+    </plurals>
+    <plurals name="rootless_debloat_factory_reset_updates">
+        <item quantity="one">%d обновлённое системное приложение будет сброшено до заводской версии перед удалением.</item>
+        <item quantity="few">%d обновлённых системных приложения будут сброшены до заводской версии перед удалением.</item>
+        <item quantity="many">%d обновлённых системных приложений будут сброшены до заводской версии перед удалением.</item>
+        <item quantity="other">%d обновлённых системных приложения будут сброшены до заводской версии перед удалением.</item>
+    </plurals>
+    <plurals name="rootless_debloat_oem_disable_fallbacks">
+        <item quantity="one">%1$d выбранное приложение совпадает с блокировщиком удаления OEM и будет заморожено вместо удаления: %2$s.</item>
+        <item quantity="few">%1$d выбранных приложения совпадают с блокировщиками удаления OEM и будут заморожены вместо удаления: %2$s.</item>
+        <item quantity="many">%1$d выбранных приложений совпадают с блокировщиками удаления OEM и будут заморожены вместо удаления: %2$s.</item>
+        <item quantity="other">%1$d выбранных приложения совпадают с блокировщиками удаления OEM и будут заморожены вместо удаления: %2$s.</item>
+    </plurals>
+    <plurals name="debloat_impact_preview_header">
+        <item quantity="one">Предпросмотр влияния: удаление %d выбранного приложения отвяжет роль приложения по умолчанию. Android предложит выбрать замену при первом использовании.</item>
+        <item quantity="few">Предпросмотр влияния: удаление %d выбранных приложений отвяжет роли приложений по умолчанию. Android предложит выбрать замену при первом использовании.</item>
+        <item quantity="many">Предпросмотр влияния: удаление %d выбранных приложений отвяжет роли приложений по умолчанию. Android предложит выбрать замену при первом использовании.</item>
+        <item quantity="other">Предпросмотр влияния: удаление %d выбранных приложений отвяжет роли приложений по умолчанию. Android предложит выбрать замену при первом использовании.</item>
+    </plurals>
+    <plurals name="debloat_critical_package_confirm_message">
+        <item quantity="one">%1$d выбранное приложение входит в состав Android, служб Google Play, телефонии производителя, геолокации или самого AppManagerNG: %2$s.\n\nПродолжение может нарушить работу телефона, геолокации, управления пакетами или доступа к восстановлению для этого пользователя.</item>
+        <item quantity="few">%1$d выбранных приложения входят в состав Android, служб Google Play, телефонии производителя, геолокации или самого AppManagerNG: %2$s.\n\nПродолжение может нарушить работу телефона, геолокации, управления пакетами или доступа к восстановлению для этого пользователя.</item>
+        <item quantity="many">%1$d выбранных приложений входят в состав Android, служб Google Play, телефонии производителя, геолокации или самого AppManagerNG: %2$s.\n\nПродолжение может нарушить работу телефона, геолокации, управления пакетами или доступа к восстановлению для этого пользователя.</item>
+        <item quantity="other">%1$d выбранных приложения входят в состав Android, служб Google Play, телефонии производителя, геолокации или самого AppManagerNG: %2$s.\n\nПродолжение может нарушить работу телефона, геолокации, управления пакетами или доступа к восстановлению для этого пользователя.</item>
+    </plurals>
+    <plurals name="debloat_put_back_confirmation">
+        <item quantity="one">Вернуть %1$d удалённое приложение для выбранного профиля пользователя? AppManagerNG вызовет путь Android «Установить существующее», который работает, только пока базовый системный пакет остаётся на устройстве.</item>
+        <item quantity="few">Вернуть %1$d удалённых приложения для выбранных профилей пользователей? AppManagerNG вызовет путь Android «Установить существующее», который работает, только пока базовые системные пакеты остаются на устройстве.</item>
+        <item quantity="many">Вернуть %1$d удалённых приложений для выбранных профилей пользователей? AppManagerNG вызовет путь Android «Установить существующее», который работает, только пока базовые системные пакеты остаются на устройстве.</item>
+        <item quantity="other">Вернуть %1$d удалённых приложения для выбранных профилей пользователей? AppManagerNG вызовет путь Android «Установить существующее», который работает, только пока базовые системные пакеты остаются на устройстве.</item>
+    </plurals>
+    <plurals name="debloat_put_back_skip_installed">
+        <item quantity="one">%1$d выбранное приложение уже установлено и будет пропущено: %2$s.</item>
+        <item quantity="few">%1$d выбранных приложения уже установлены и будут пропущены: %2$s.</item>
+        <item quantity="many">%1$d выбранных приложений уже установлены и будут пропущены: %2$s.</item>
+        <item quantity="other">%1$d выбранных приложения уже установлены и будут пропущены: %2$s.</item>
+    </plurals>
+    <string name="debloat_known_preinstall_oem">OEM: %1$s</string>
+    <plurals name="batch_rename_preview_count">
+        <item quantity="one">Будет переименован %1$d выбранный элемент.</item>
+        <item quantity="few">Будет переименовано %1$d выбранных элемента.</item>
+        <item quantity="many">Будет переименовано %1$d выбранных элементов.</item>
+        <item quantity="other">Будет переименовано %1$d выбранных элемента.</item>
+    </plurals>
+    <plurals name="batch_rename_conflict_count">
+        <item quantity="one">%1$d конфликт целевого имени получит альтернативное имя.</item>
+        <item quantity="few">%1$d конфликта целевых имён получат альтернативные имена.</item>
+        <item quantity="many">%1$d конфликтов целевых имён получат альтернативные имена.</item>
+        <item quantity="other">%1$d конфликта целевых имён получат альтернативные имена.</item>
+    </plurals>
+    <string name="batch_rename_preview_row">%1$s → %2$s</string>
+    <plurals name="and_n_more">
+        <item quantity="one">и ещё %1$d</item>
+        <item quantity="few">и ещё %1$d</item>
+        <item quantity="many">и ещё %1$d</item>
+        <item quantity="other">и ещё %1$d</item>
+    </plurals>
+    <string name="batch_rename_result_success_row">%1$s → %2$s</string>
+    <string name="pref_use_vt_floss_disabled">VirusTotal отключён в этой FLOSS-сборке. Установите полную сборку из GitHub Releases, чтобы включить необязательные онлайн-отчёты сканирования.</string>
+    <string name="pref_preview_new_design">Предпросмотр нового дизайна (БЕТА)</string>
+    <string name="pref_preview_new_design_msg">Применить обновлённый визуальный стиль: доработанная типографика, более спокойные поверхности, более плотные отступы и ограниченные элементы управления. После переключения перезапустите приложение. В этом выпуске макеты не меняются.</string>
+    <string name="verified_boot">Проверенная загрузка</string>
+    <plurals name="per_app_rollback_inverse_count">
+        <item quantity="one">%d обратная операция</item>
+        <item quantity="few">%d обратные операции</item>
+        <item quantity="many">%d обратных операций</item>
+        <item quantity="other">%d обратные операции</item>
+    </plurals>
+    <plurals name="per_app_rollback_manual_count">
+        <item quantity="one">%d операция</item>
+        <item quantity="few">%d операции</item>
+        <item quantity="many">%d операций</item>
+        <item quantity="other">%d операции</item>
+    </plurals>
+    <string name="per_app_rollback_image_step">%1$s: %2$s, назад к %3$s</string>
+    <string name="per_app_rollback_changed_elsewhere">Изменено в другом месте: %1$s. AppManagerNG оставил %2$s, теперь %3$s</string>
+    <string name="per_app_rollback_target_net_policy">Сетевая политика</string>
+    <plurals name="per_app_rollback_changed_elsewhere_count">
+        <item quantity="one">%d настройка была изменена в другом месте после того, как её установил AppManagerNG, поэтому она оставлена как есть.</item>
+        <item quantity="few">%d настройки были изменены в другом месте после того, как их установил AppManagerNG, поэтому они оставлены как есть.</item>
+        <item quantity="many">%d настроек были изменены в другом месте после того, как их установил AppManagerNG, поэтому они оставлены как есть.</item>
+        <item quantity="other">%d настройки были изменены в другом месте после того, как их установил AppManagerNG, поэтому они оставлены как есть.</item>
+    </plurals>
+    <string name="snapshot_default_filename">AppManagerNG-snapshot-%1$s.zip</string>
+    <string name="snapshot_export_done">Снимок сохранён · настройки: %1$d · профили: %2$d · правила: %3$d · строки истории: %4$d · фильтры: %5$d · избранное: %6$d · заморозка: %7$d · закреплённые подписи: %8$d</string>
+    <string name="snapshot_export_failed">Не удалось записать пакет снимка</string>
+    <string name="snapshot_import_confirm_title">Импортировать пакет снимка?</string>
+    <string name="snapshot_import_confirm_message">Это добавит историю операций из пакета, объединит настройки и правила блокировки/заморозки с текущей установкой и перезапишет профили и теги содержимым пакета. Если нужен путь отката, сначала сделайте новый снимок.</string>
+    <string name="snapshot_import_done">Снимок импортирован · настройки: %1$d · профили: %2$d · правила: %3$d · строки истории: %4$d · фильтры: %5$d · избранное: %6$d · заморозка: %7$d · закреплённые подписи: %8$d</string>
+    <string name="network_ledger_compiled_out">исключено при сборке (floss)</string>
+    <plurals name="profiles_external_import_done">
+        <item quantity="one">Импортирован %2$d пакет (%1$s)</item>
+        <item quantity="few">Импортировано %2$d пакета (%1$s)</item>
+        <item quantity="many">Импортировано %2$d пакетов (%1$s)</item>
+        <item quantity="other">Импортировано %2$d пакета (%1$s)</item>
+    </plurals>
+    <plurals name="pref_backup_schedule_minimum_age_days">
+        <item quantity="one">%1$d день</item>
+        <item quantity="few">%1$d дня</item>
+        <item quantity="many">%1$d дней</item>
+        <item quantity="other">%1$d дня</item>
+    </plurals>
+    <string name="auto_backup_diagnostics_catch_up">Наверстывание</string>
+    <plurals name="auto_backup_result_all_recent">
+        <item quantity="one">Пропущено %1$d приложение; бекап ещё свежий</item>
+        <item quantity="few">Пропущено %1$d приложения; бекапы ещё свежие</item>
+        <item quantity="many">Пропущено %1$d приложений; бекапы ещё свежие</item>
+        <item quantity="other">Пропущено %1$d приложения; бекапы ещё свежие</item>
+    </plurals>
+    <plurals name="auto_backup_result_success">
+        <item quantity="one">Бекап сделан для %1$d приложения</item>
+        <item quantity="few">Бекап сделан для %1$d приложений</item>
+        <item quantity="many">Бекап сделан для %1$d приложений</item>
+        <item quantity="other">Бекап сделан для %1$d приложений</item>
+    </plurals>
+    <plurals name="auto_backup_result_success_with_skipped">
+        <item quantity="one">%1$s; пропущен %2$d свежий бекап</item>
+        <item quantity="few">%1$s; пропущено %2$d свежих бекапа</item>
+        <item quantity="many">%1$s; пропущено %2$d свежих бекапов</item>
+        <item quantity="other">%1$s; пропущено %2$d свежих бекапа</item>
+    </plurals>
+    <string name="auto_backup_result_waiting_for_network">Ожидание сети, которой может пользоваться AppManagerNG. Экономия трафика или ограничение батареи могут блокировать его доступ к сети. Бекап запустится, когда сеть станет доступна.</string>
+    <plurals name="backup_retention_prune_done">
+        <item quantity="one">Удалён %1$d старый бекап</item>
+        <item quantity="few">Удалено %1$d старых бекапа</item>
+        <item quantity="many">Удалено %1$d старых бекапов</item>
+        <item quantity="other">Удалено %1$d старых бекапа</item>
+    </plurals>
+    <string name="delete_duplicate_backups_confirm">Удалить лишние копии бекапов той же версии, оставив выбранную вами копию каждого пакета? Это нельзя отменить.</string>
+    <plurals name="delete_duplicate_backups_confirm_with_reclaim">
+        <item quantity="one">Удалить %1$d лишний бекап той же версии, освободив около %2$s? Сохранённая копия каждой версии приложения остаётся.</item>
+        <item quantity="few">Удалить %1$d лишних бекапа той же версии, освободив около %2$s? Сохранённая копия каждой версии приложения остаётся.</item>
+        <item quantity="many">Удалить %1$d лишних бекапов той же версии, освободив около %2$s? Сохранённая копия каждой версии приложения остаётся.</item>
+        <item quantity="other">Удалить %1$d лишних бекапа той же версии, освободив около %2$s? Сохранённая копия каждой версии приложения остаётся.</item>
+    </plurals>
+    <plurals name="duplicate_backups_pruned">
+        <item quantity="one">Удалён %1$d дубликат бекапа.</item>
+        <item quantity="few">Удалено %1$d дубликата бекапа.</item>
+        <item quantity="many">Удалено %1$d дубликатов бекапа.</item>
+        <item quantity="other">Удалено %1$d дубликата бекапа.</item>
+    </plurals>
+    <plurals name="duplicate_backups_pruned_with_reclaim">
+        <item quantity="one">Удалён %1$d дубликат бекапа, освобождено %2$s.</item>
+        <item quantity="few">Удалено %1$d дубликата бекапа, освобождено %2$s.</item>
+        <item quantity="many">Удалено %1$d дубликатов бекапа, освобождено %2$s.</item>
+        <item quantity="other">Удалено %1$d дубликата бекапа, освобождено %2$s.</item>
+    </plurals>
+    <plurals name="permission_change_monitor_body">
+        <item quantity="one">%1$d новое опасное разрешение: %2$s</item>
+        <item quantity="few">%1$d новых опасных разрешения: %2$s</item>
+        <item quantity="many">%1$d новых опасных разрешений: %2$s</item>
+        <item quantity="other">%1$d новых опасных разрешения: %2$s</item>
+    </plurals>
+    <plurals name="permission_watcher_check_drift">
+        <item quantity="one">%1$d отслеживаемое разрешение не совпало. См. уведомление.</item>
+        <item quantity="few">%1$d отслеживаемых разрешения не совпали. См. уведомление.</item>
+        <item quantity="many">%1$d отслеживаемых разрешений не совпали. См. уведомление.</item>
+        <item quantity="other">%1$d отслеживаемых разрешения не совпали. См. уведомление.</item>
+    </plurals>
+    <plurals name="permission_watcher_more">
+        <item quantity="one">и ещё %1$d</item>
+        <item quantity="few">и ещё %1$d</item>
+        <item quantity="many">и ещё %1$d</item>
+        <item quantity="other">и ещё %1$d</item>
+    </plurals>
+    <plurals name="permission_watcher_notification_title">
+        <item quantity="one">Изменилось %1$d отслеживаемое разрешение</item>
+        <item quantity="few">Изменились %1$d отслеживаемых разрешения</item>
+        <item quantity="many">Изменились %1$d отслеживаемых разрешений</item>
+        <item quantity="other">Изменились %1$d отслеживаемых разрешения</item>
+    </plurals>
+    <plurals name="permission_watcher_notification_enforced">
+        <item quantity="one">Возвращено %1$d отслеживаемое разрешение</item>
+        <item quantity="few">Возвращено %1$d отслеживаемых разрешения</item>
+        <item quantity="many">Возвращено %1$d отслеживаемых разрешений</item>
+        <item quantity="other">Возвращено %1$d отслеживаемых разрешения</item>
+    </plurals>
+    <plurals name="app_change_feed_count">
+        <item quantity="one">%1$d событие</item>
+        <item quantity="few">%1$d события</item>
+        <item quantity="many">%1$d событий</item>
+        <item quantity="other">%1$d события</item>
+    </plurals>
+    <string name="app_change_feed_entry_meta">%1$s · %2$s · %3$s</string>
+    <plurals name="app_change_feed_import_done">
+        <item quantity="one">Импортировано %1$d событие изменения приложения.</item>
+        <item quantity="few">Импортировано %1$d события изменения приложения.</item>
+        <item quantity="many">Импортировано %1$d событий изменения приложения.</item>
+        <item quantity="other">Импортировано %1$d события изменения приложения.</item>
+    </plurals>
+    <string name="op_history_execute_confirmation">Запустить эту операцию снова с сохранёнными параметрами.</string>
+    <string name="op_history_item_metadata">%1$s · %2$s · %3$s</string>
+    <string name="op_history_item_content_description">%1$s, %2$s, %3$s, %4$s</string>
+    <string name="op_history_detail_line">%1$s: %2$s</string>
+    <string name="op_history_detail_header_summary">%1$s · %2$s</string>
+    <plurals name="op_history_target_count">
+        <item quantity="one">%1$d цель</item>
+        <item quantity="few">%1$d цели</item>
+        <item quantity="many">%1$d целей</item>
+        <item quantity="other">%1$d цели</item>
+    </plurals>
+    <plurals name="op_history_failed_count">
+        <item quantity="one">%1$d сбой</item>
+        <item quantity="few">%1$d сбоя</item>
+        <item quantity="many">%1$d сбоев</item>
+        <item quantity="other">%1$d сбоя</item>
+    </plurals>
+    <plurals name="op_history_operation_count">
+        <item quantity="one">%1$d операция</item>
+        <item quantity="few">%1$d операции</item>
+        <item quantity="many">%1$d операций</item>
+        <item quantity="other">%1$d операции</item>
+    </plurals>
+    <plurals name="op_history_succeeded_count">
+        <item quantity="one">%1$d успешно</item>
+        <item quantity="few">%1$d успешно</item>
+        <item quantity="many">%1$d успешно</item>
+        <item quantity="other">%1$d успешно</item>
+    </plurals>
+    <plurals name="op_history_high_risk_count">
+        <item quantity="one">%1$d высокого риска</item>
+        <item quantity="few">%1$d высокого риска</item>
+        <item quantity="many">%1$d высокого риска</item>
+        <item quantity="other">%1$d высокого риска</item>
+    </plurals>
+    <plurals name="op_history_deleted_count">
+        <item quantity="one">Удалена %1$d запись истории.</item>
+        <item quantity="few">Удалено %1$d записи истории.</item>
+        <item quantity="many">Удалено %1$d записей истории.</item>
+        <item quantity="other">Удалено %1$d записи истории.</item>
+    </plurals>
+    <plurals name="op_history_cleanup_delete_visible">
+        <item quantity="one">Удалить %1$d видимую запись</item>
+        <item quantity="few">Удалить %1$d видимые записи</item>
+        <item quantity="many">Удалить %1$d видимых записей</item>
+        <item quantity="other">Удалить %1$d видимые записи</item>
+    </plurals>
+    <plurals name="op_history_cleanup_visible_confirmation">
+        <item quantity="one">Удалить %1$d видимую запись истории? Это нельзя отменить. Завершённые операции не откатываются.</item>
+        <item quantity="few">Удалить %1$d видимые записи истории? Это нельзя отменить. Завершённые операции не откатываются.</item>
+        <item quantity="many">Удалить %1$d видимых записей истории? Это нельзя отменить. Завершённые операции не откатываются.</item>
+        <item quantity="other">Удалить %1$d видимые записи истории? Это нельзя отменить. Завершённые операции не откатываются.</item>
+    </plurals>
+    <plurals name="op_history_sample_count">
+        <item quantity="one">Добавлена %1$d тестовая запись истории.</item>
+        <item quantity="few">Добавлено %1$d тестовые записи истории.</item>
+        <item quantity="many">Добавлено %1$d тестовых записей истории.</item>
+        <item quantity="other">Добавлено %1$d тестовые записи истории.</item>
+    </plurals>
+    <plurals name="bar_chart_content_description">
+        <item quantity="one">Столбчатая диаграмма с %d точкой данных.</item>
+        <item quantity="few">Столбчатая диаграмма с %d точками данных.</item>
+        <item quantity="many">Столбчатая диаграмма с %d точками данных.</item>
+        <item quantity="other">Столбчатая диаграмма с %d точками данных.</item>
+    </plurals>
+    <string name="memory_usage_accessibility_description">Система сейчас использует %1$s памяти из %2$s, объём доступной памяти — %3$s. Из занятой памяти приложения используют %4$s, %5$s в кэше, а %6$s используются как буферы памяти.</string>
+    <plurals name="editor_tab_size_option_spaces">
+        <item quantity="one">%d пробел</item>
+        <item quantity="few">%d пробела</item>
+        <item quantity="many">%d пробелов</item>
+        <item quantity="other">%d пробела</item>
+    </plurals>
+    <plurals name="editor_tab_size_option_tabs">
+        <item quantity="one">%d табуляция</item>
+        <item quantity="few">%d табуляции</item>
+        <item quantity="many">%d табуляций</item>
+        <item quantity="other">%d табуляции</item>
+    </plurals>
+    <string name="cert_fingerprint_chip_label">Подпись · SHA-256 %1$s</string>
+    <string name="cert_fingerprint_share_subject">Сведения для проверки %1$s</string>
+    <string name="soft_input_flag_adjust_unspecified">Не указано (adjust)</string>
+    <string name="soft_input_flag_state_unspecified">Не указано</string>
+    <string name="perm_recovery_failed">Не удалось восстановить разрешения системных приложений.</string>
+    <string name="finder_filter_saved">Сохранено «%1$s».</string>
+    <string name="perm_inspector_count_short_fmt">%1$d/%2$d</string>
+    <string name="perm_inspector_group_a11y">%1$s. %2$s. %3$s.</string>
+    <string name="permission_reference_unpin">Открепить справку</string>
+    <string name="permission_reference_unpinned">Справка откреплена</string>
+    <string name="permission_reference_unpin_failed">Не удалось открепить справку</string>
+    <plurals name="perm_inspector_bulk_revoked">
+        <item quantity="one">Отозвано у %d приложения</item>
+        <item quantity="few">Отозвано у %d приложений</item>
+        <item quantity="many">Отозвано у %d приложений</item>
+        <item quantity="other">Отозвано у %d приложений</item>
+    </plurals>
+    <plurals name="perm_inspector_bulk_granted">
+        <item quantity="one">Выдано %d приложению</item>
+        <item quantity="few">Выдано %d приложениям</item>
+        <item quantity="many">Выдано %d приложениям</item>
+        <item quantity="other">Выдано %d приложениям</item>
+    </plurals>
+    <plurals name="perm_inspector_bulk_skipped">
+        <item quantity="one">Пропущено %d критическое системное приложение.</item>
+        <item quantity="few">Пропущено %d критических системных приложения.</item>
+        <item quantity="many">Пропущено %d критических системных приложений.</item>
+        <item quantity="other">Пропущено %d критических системных приложения.</item>
+    </plurals>
+    <string name="perm_group_sms">SMS</string>
+    <string name="perm_section_runtime">Разрешения времени выполнения</string>
+    <string name="perm_section_display">Экран и система</string>
+    <string name="perm_section_background">Фоновая активность и батарея</string>
+    <string name="perm_section_network">Данные и сеть</string>
+    <string name="perm_section_files">Установки, файлы и использование</string>
+    <string name="perm_section_system">Доступ системного уровня</string>
+    <string name="special_access_overlay">Поверх других приложений</string>
+    <string name="special_access_overlay_summary">Приложения, которые могут отображаться поверх других окон.</string>
+    <string name="special_access_write_settings">Изменение системных настроек</string>
+    <string name="special_access_write_settings_summary">Приложения, которые могут менять настройки вроде яркости экрана или рингтона.</string>
+    <string name="special_access_pip">Картинка в картинке</string>
+    <string name="special_access_pip_summary">Приложения, которые могут продолжать воспроизведение в маленьком окне, пока вы пользуетесь другими приложениями.</string>
+    <string name="special_access_full_screen">Полноэкранные уведомления</string>
+    <string name="special_access_full_screen_summary">Приложения, которые могут занимать экран для оповещений, например входящих вызовов и будильников.</string>
+    <string name="special_access_accessibility">Службы специальных возможностей</string>
+    <string name="special_access_accessibility_summary">Приложения, которые могут читать экран и действовать за вас. Android позволяет включать их только в своих настройках специальных возможностей.</string>
+    <string name="special_access_notification_listener_summary">Приложения, которые могут читать каждое уведомление и реагировать на него.</string>
+    <string name="special_access_battery_summary">Приложения, для которых отключена оптимизация батареи, поэтому Android разрешает им оставаться активными в фоне.</string>
+    <string name="special_access_background">Фоновая активность</string>
+    <string name="special_access_background_summary">Приложения, работающие в фоне.</string>
+    <string name="special_access_exact_alarms">Будильники и напоминания</string>
+    <string name="special_access_exact_alarms_summary">Приложения, которые могут ставить будильники и напоминания, срабатывающие в точное время.</string>
+    <string name="special_access_unrestricted_data">Неограниченный трафик</string>
+    <string name="special_access_unrestricted_data_summary">Приложения, которые могут свободно использовать мобильный интернет при включённой экономии трафика.</string>
+    <string name="special_access_background_data">Фоновый трафик</string>
+    <string name="special_access_background_data_summary">Приложения, которые могут использовать мобильный интернет в фоне.</string>
+    <string name="special_access_install_unknown">Установка неизвестных приложений</string>
+    <string name="special_access_install_unknown_summary">Приложения, которые могут устанавливать другие приложения.</string>
+    <string name="special_access_all_files">Доступ ко всем файлам</string>
+    <string name="special_access_all_files_summary">Приложения, которые могут читать и изменять каждый файл в вашем хранилище.</string>
+    <string name="special_access_manage_media">Управление медиа</string>
+    <string name="special_access_manage_media_summary">Приложения, которые могут изменять или удалять ваши фото и видео без запроса каждый раз.</string>
+    <string name="special_access_usage_summary">Приложения, которые видят, какими приложениями вы пользуетесь и как часто.</string>
+    <string name="special_access_dnd">Доступ к режиму «Не беспокоить»</string>
+    <string name="special_access_dnd_summary">Приложения, которые могут включать и выключать режим «Не беспокоить» и менять его правила.</string>
+    <string name="special_access_device_admin">Администраторы устройства</string>
+    <string name="special_access_device_admin_summary">Приложения, которые могут заблокировать устройство или стереть его. Отключайте их в настройках безопасности Android.</string>
+    <string name="special_access_vpn">VPN</string>
+    <string name="special_access_vpn_summary">VPN-приложения, которым вы разрешили настраивать соединение.</string>
+    <string name="special_access_no_apps">Ни одно установленное приложение не использует %1$s.</string>
+    <string name="special_access_change_failed">Не удалось изменить. Попробуйте в настройках Android.</string>
+    <string name="perm_app_status_allowed">Выдано</string>
+    <string name="perm_app_status_not_allowed">Не выдано</string>
+    <string name="perm_app_status_not_optimized">Не оптимизировано</string>
+    <string name="perm_app_status_restricted">Ограничено</string>
+    <string name="perm_app_status_blocked">Заблокировано</string>
+    <string name="perm_app_status_active">Активно</string>
+    <string name="perm_app_status_not_active">Не активно</string>
+    <string name="perm_inspector_count_unknown_short_fmt">\?/%1$d</string>
+    <plurals name="perm_inspector_count_unknown">
+        <item quantity="one">%1$d приложение. AppManagerNG не может прочитать это с текущим доступом.</item>
+        <item quantity="few">%1$d приложения. AppManagerNG не может прочитать это с текущим доступом.</item>
+        <item quantity="many">%1$d приложений. AppManagerNG не может прочитать это с текущим доступом.</item>
+        <item quantity="other">%1$d приложения. AppManagerNG не может прочитать это с текущим доступом.</item>
+    </plurals>
+    <string name="shortcut_one_click_ops_short">Операции в 1 клик</string>
+    <string name="backup_tag_policy_preview_line">%1$s — %2$s</string>
+    <string name="backup_tag_policy_aes_encryption">AES</string>
+    <string name="backup_tag_policy_rsa_encryption">RSA</string>
+    <string name="backup_tag_policy_ecc_encryption">ECC</string>
+    <string name="backup_tag_policy_pgp_encryption">OpenPGP</string>
+    <string name="backup_tag_policy_manual_preview_line">%1$s — %2$s — %3$s</string>
+    <string name="lan_sync_note_signature_replace">Подписано другим ключом, чем установленная здесь копия. Замена сначала удалит эту копию и её данные.</string>
+    <string name="lan_sync_note_signature_system">Подписано другим ключом, чем установленное здесь системное приложение. Системное приложение нельзя заменить.</string>
+    <string name="lan_sync_allow_replace">Разрешить замену приложений, подписанных другим ключом (удаляет установленное приложение и его данные)</string>
+    <string name="lan_sync_replace_system">%1$s здесь является системным приложением, поэтому его нельзя заменить</string>
+    <string name="lan_sync_uninstalling">Удаление %1$s</string>
+    <string name="lan_sync_replace_uninstall_failed">Не удалось удалить %1$s, поэтому новая копия не установлена (она в «Полученные APKs»). Причина: %2$s</string>
+    <string name="lan_sync_replace_pin_refused">%1$s не удалено, потому что закрепление подписанта отклоняет новую копию (она в «Полученные APKs»). Причина: %2$s</string>
+    <string name="received_apks_title">Полученные APKs</string>
+    <string name="received_apks_keep_for">Хранить полученные APKs</string>
+    <string name="received_apks_2_hours">2 часа</string>
+    <string name="received_apks_24_hours">1 день</string>
+    <string name="received_apks_keep_installed">Хранить APKs после установки</string>
+    <string name="received_apks_empty">Нет полученных APKs</string>
+    <string name="received_apks_empty_summary">Приложения, полученные с другого устройства, остаются здесь на некоторое время, чтобы их можно было установить снова без него.</string>
+    <string name="received_apks_version">Версия %1$s (%2$d)</string>
+    <string name="received_apks_detail">%1$s, получено %2$s</string>
+    <string name="received_apks_partial">Не завершено: %1$s из %2$s. Получите снова, чтобы продолжить.</string>
+    <string name="received_apks_deleted">Удалено: %1$s</string>
+    <string name="received_apks_gone">%1$s здесь больше нет</string>
+    <string name="received_apks_missing">Этого APK здесь больше нет. Получите его снова с другого устройства.</string>
+    <string name="received_apks_signature_differs">%1$s подписан другим ключом, чем установленная здесь копия</string>
+    <string name="received_apks_install_failed">Не удалось установить %1$s: %2$s</string>
+    <string name="received_apks_system_installer">Использовать установщик Android</string>
+    <string name="received_apks_save_to_downloads">Сохранить в «Загрузки»</string>
+    <string name="received_apks_saved">%1$s сохранено в «Загрузки»</string>
+    <string name="received_apks_save_failed">Не удалось сохранить %1$s: %2$s</string>
+    <string name="received_apks_no_system_installer">Установщик Android недоступен на этом устройстве</string>
+    <string name="received_apks_split_no_system_installer">Установщик Android не принимает split APK. Сохраните их в «Загрузки».</string>
+    <string name="received_apks_storage_denied">Для сохранения в «Загрузки» нужен доступ к хранилищу</string>
+    <string name="lan_sync_install_failed_title">Не удалось установить %1$s</string>
+    <string name="lan_sync_install_failed_try_system">Попробуйте собственный установщик Android или сохраните APK в «Загрузки».</string>
+    <string name="lan_sync_install_failed_try_save">Установщик Android не принимает split APK. Сохраните их в «Загрузки» и откройте файл .apks установщиком, который это умеет.</string>
+    <string name="lan_sync_keep_screen_on">Не гасить экран</string>
+    <string name="lan_sync_keep_screen_10_minutes">10 минут</string>
+    <string name="lan_sync_keep_screen_30_minutes">30 минут</string>
+    <string name="lan_sync_keep_screen_until_done">Пока передачи не завершатся</string>
+    <string name="lan_sync_trouble_nothing_found">Устройства пока не найдены</string>
+    <string name="lan_sync_trouble_connect_failed">Не удалось связаться с другим устройством</string>
+    <string name="lan_sync_trouble_asked">Не удается найти или подключиться к другому устройству?</string>
+    <string name="lan_sync_trouble_firewall">Брандмауэр или настройки доступа к данным для отдельных приложений могут блокировать AppManagerNG. На обоих устройствах разрешите приложению использовать Wi-Fi и локальную сеть (LAN).</string>
+    <string name="lan_sync_trouble_afwall">В AFWall+ отметьте правило LAN для AppManagerNG. Если устройства по-прежнему не видят друг друга, отключите AFWall+ на время синхронизации.</string>
+    <string name="lan_sync_trouble_huawei">В брандмауэре Huawei есть отдельные переключатели для мобильных данных и Wi-Fi. Включите переключатель Wi-Fi для AppManagerNG.</string>
+    <string name="lan_sync_trouble_same_wifi">Оба устройства должны быть подключены к одной сети Wi-Fi. Гостевые сети часто изолируют устройства друг от друга.</string>
+    <string name="apps_db_recovered_title">Не удалось открыть сохранённые данные приложений</string>
+    <string name="apps_db_recovered_text">AppManagerNG не смог прочитать свои сохранённые заметки, историю и избранное, поэтому начал с чистого листа. Старый файл сохранён в %1$s.</string>
+    <string name="apps_db_in_memory_text">AppManagerNG не смог прочитать свои сохранённые заметки, историю и избранное или скопировать их в безопасное место, поэтому оставил их нетронутыми. Изменения, которые вы вносите сейчас, будут потеряны при закрытии приложения.</string>
+    <string name="apps_db_copied_in_memory_text">AppManagerNG не смог прочитать свои сохранённые заметки, историю и избранное. Копия лежит в %1$s, но старый файл заменить не удалось, поэтому изменения, которые вы вносите сейчас, будут потеряны при закрытии приложения.</string>
+    <string name="apps_db_corrupt_kept_text">Сохранённые заметки, история и избранное AppManagerNG выглядят повреждёнными, и их не удалось скопировать в безопасное место, поэтому файл оставлен как есть. Часть данных может не загрузиться.</string>
+    <string name="apps_db_upgrade_skipped_text">AppManagerNG нужно обновить свои сохранённые заметки, историю и избранное, но сначала не удалось скопировать их в безопасное место, поэтому он оставил их нетронутыми. Изменения, которые вы вносите сейчас, будут потеряны при закрытии приложения. Может помочь освобождение места в хранилище.</string>
+    <string name="apps_db_open_failing_text">AppManagerNG не смог открыть свои сохранённые заметки, историю и избранное при трёх последних запусках. Ничего не удалено. Может помочь освобождение места в хранилище или перезагрузка телефона.</string>
+    <string name="internet_access">Доступ в интернет</string>
+    <string name="internet_access_blocked">Заблокирован. Перезагрузка снимает блокировку, пока AppManagerNG не вернёт её, а сделать это он может, только когда запущен root, ADB или Shizuku.</string>
+    <string name="internet_access_not_in_force">Сохранено, но не действует, потому что %1$s.</string>
+    <string name="internet_access_unknown">Сохранено. AppManagerNG не может определить, действует ли оно, потому что %1$s.</string>
+    <string name="internet_access_unavailable">Блокировка невозможна, потому что %1$s.</string>
+    <string name="internet_access_waiting_for_install">Сохранено. Вступит в силу, когда приложение будет установлено у этого пользователя.</string>
+    <string name="internet_access_change_failed">Не удалось изменить доступ в интернет</string>
+    <string name="internet_access_reason_android_version">нужен Android 14 или новее</string>
+    <string name="internet_access_reason_no_privileged_mode">нужен запущенный root, ADB или Shizuku</string>
+    <string name="internet_access_reason_no_permission">текущий режим не может менять сетевые настройки</string>
+    <string name="internet_access_reason_platform">брандмауэр устройства не сохранил правило</string>
+    <string name="internet_access_reason_platform_error">брандмауэр устройства отклонил его (%1$s)</string>
+    <string name="internet_access_reason_shared_uid">%1$s использует тот же UID, что и это приложение, и по-прежнему заблокирован</string>
 </resources>
