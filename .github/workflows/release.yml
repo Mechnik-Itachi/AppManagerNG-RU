@@ -1,0 +1,40 @@
+name: Build Release
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+      - name: Install Android SDK and NDK
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null || true
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-37" "ndk;28.2.13676358" || true
+      - run: chmod +x gradlew
+      - run: ./gradlew assembleFlossRelease --dependency-verification=lenient
+      - name: Sign APK
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KS_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          set -e
+          echo "$KEYSTORE_BASE64" | base64 -d > release.keystore
+          BT=$(ls $ANDROID_HOME/build-tools | sort -V | tail -1)
+          APK=$(find app/build/outputs/apk -name '*.apk' | head -1)
+          $ANDROID_HOME/build-tools/$BT/zipalign -p -f 4 "$APK" aligned.apk
+          $ANDROID_HOME/build-tools/$BT/apksigner sign --ks release.keystore --ks-key-alias "$KEY_ALIAS" --ks-pass env:KS_PASS --key-pass env:KEY_PASS --out AppManagerNG-release.apk aligned.apk
+          rm release.keystore
+      - uses: actions/upload-artifact@v5
+        with:
+          name: AppManagerNG-release
+          path: AppManagerNG-release.apk
+          retention-days: 7
