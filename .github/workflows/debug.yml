@@ -1,0 +1,54 @@
+name: Build Debug
+on:
+  workflow_dispatch:
+    inputs:
+      flavor:
+        description: Вариант сборки
+        type: choice
+        default: floss
+        options:
+          - floss
+          - full
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+      - name: Install Android SDK and NDK
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null || true
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-37" "ndk;28.2.13676358" || true
+      - name: Use my key as debug key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KS_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          set -e
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/my.keystore"
+          mkdir -p ~/.android
+          rm -f ~/.android/debug.keystore
+          keytool -importkeystore -noprompt \
+            -srckeystore "$RUNNER_TEMP/my.keystore" -srcstorepass "$KS_PASS" \
+            -srcalias "$KEY_ALIAS" -srckeypass "$KEY_PASS" \
+            -destkeystore ~/.android/debug.keystore -deststoretype JKS \
+            -deststorepass android -destalias androiddebugkey -destkeypass android
+          rm -f app/dev_keystore.jks
+      - run: chmod +x gradlew
+      - run: ./gradlew assemble${{ inputs.flavor == 'full' && 'Full' || 'Floss' }}Debug --dependency-verification=lenient
+      - name: List APKs
+        run: find app/build/outputs -name '*.apk'
+      - uses: actions/upload-artifact@v5
+        with:
+          name: AppManagerNG-debug
+          path: app/build/outputs/apk/**/*.apk
+          if-no-files-found: error
+          retention-days: 14
