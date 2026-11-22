@@ -30,7 +30,7 @@ jobs:
           printf 'storePassword=%s\n' "$KS_PASS" >> app/keystore.properties
           printf 'keyAlias=%s\n' "$KEY_ALIAS" >> app/keystore.properties
           printf 'keyPassword=%s\n' "$KEY_PASS" >> app/keystore.properties
-          - run: sha256sum app/release.keystore
+      - run: sha256sum app/release.keystore
       - run: ./gradlew assembleFlossRelease --dependency-verification=lenient
       - uses: actions/upload-artifact@v5
         with:
