@@ -30,7 +30,7 @@ jobs:
           printf 'storePassword=%s\n' "$KS_PASS" >> app/keystore.properties
           printf 'keyAlias=%s\n' "$KEY_ALIAS" >> app/keystore.properties
           printf 'keyPassword=%s\n' "$KEY_PASS" >> app/keystore.properties
-      - run: ./gradlew assembleFlossRelease --dependency-verification=lenient
+      - run: ./gradlew assembleFlossRelease assembleFullRelease --dependency-verification=lenient
       - name: List APKs
         run: find app/build/outputs -name '*.apk'
       - uses: actions/upload-artifact@v5
