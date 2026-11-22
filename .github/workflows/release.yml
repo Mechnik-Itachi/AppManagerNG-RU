@@ -30,10 +30,12 @@ jobs:
           printf 'storePassword=%s\n' "$KS_PASS" >> app/keystore.properties
           printf 'keyAlias=%s\n' "$KEY_ALIAS" >> app/keystore.properties
           printf 'keyPassword=%s\n' "$KEY_PASS" >> app/keystore.properties
-      - run: sha256sum app/release.keystore
       - run: ./gradlew assembleFlossRelease --dependency-verification=lenient
+      - name: List APKs
+        run: find app/build/outputs -name '*.apk'
       - uses: actions/upload-artifact@v5
         with:
           name: AppManagerNG-release
-          path: app/build/outputs/apk/**/*universal*.apk
+          path: app/build/outputs/apk/**/*.apk
+          if-no-files-found: error
           retention-days: 7
