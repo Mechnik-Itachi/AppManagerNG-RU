@@ -1,0 +1,95 @@
+name: Build Release (Choose Architecture)
+on:
+  workflow_dispatch:
+    inputs:
+      flavor:
+        description: Вариант сборки
+        type: choice
+        default: floss
+        options:
+          - floss
+          - full
+      abi:
+        description: Архитектура
+        type: choice
+        default: arm64-v8a
+        options:
+          - arm64-v8a
+          - armeabi-v7a
+          - x86
+          - x86_64
+          - universal
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: gradle
+      - name: Install Android SDK and NDK
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null || true
+          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-37" "ndk;28.2.13676358" || true
+      - run: chmod +x gradlew
+      - name: Prepare keystore.properties
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KS_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 -d > "$GITHUB_WORKSPACE/app/release.keystore"
+          printf 'storeFile=%s\n' "$GITHUB_WORKSPACE/app/release.keystore" > app/keystore.properties
+          printf 'storePassword=%s\n' "$KS_PASS" >> app/keystore.properties
+          printf 'keyAlias=%s\n' "$KEY_ALIAS" >> app/keystore.properties
+          printf 'keyPassword=%s\n' "$KEY_PASS" >> app/keystore.properties
+      - name: Build
+        run: |
+          set -e
+          FLAVOR="${{ inputs.flavor == 'full' && 'Full' || 'Floss' }}"
+          if [ "${{ inputs.abi }}" = "universal" ]; then
+            ./gradlew "assemble${FLAVOR}Release" --dependency-verification=lenient
+          else
+            ./gradlew "assemble${FLAVOR}Release" --dependency-verification=lenient \
+              -Pandroid.injected.build.abi=${{ inputs.abi }}
+          fi
+      - name: Read version
+        id: ver
+        run: |
+          VN=$(grep -m1 "versionName" app/build.gradle | sed -E 's/.*"([^"]+)".*/\1/')
+          echo "name=$VN" >> "$GITHUB_OUTPUT"
+      - name: Find matching APK
+        id: find
+        run: |
+          set -e
+          DIR="app/build/outputs/apk/${{ inputs.flavor }}/release"
+          if [ "${{ inputs.abi }}" = "universal" ]; then
+            APK=$(find "$DIR" -name '*universal*.apk' | head -1)
+            [ -z "$APK" ] && APK=$(find "$DIR" -name '*.apk' | head -1)
+          else
+            APK=$(find "$DIR" -name "*${{ inputs.abi }}*.apk" | head -1)
+          fi
+          [ -z "$APK" ] && { echo "APK not found"; find "$DIR" -name '*.apk'; exit 1; }
+          echo "apk=$APK" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v5
+        with:
+          name: AppManagerNG-${{ inputs.flavor }}-${{ inputs.abi }}
+          path: ${{ steps.find.outputs.apk }}
+          retention-days: 14
+      - name: Publish release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          TAG="v${{ steps.ver.outputs.name }}-${{ inputs.flavor }}-${{ inputs.abi }}-$(date +%Y%m%d%H%M)"
+          gh release create "$TAG" "${{ steps.find.outputs.apk }}" \
+            --title "AppManagerNG ${{ steps.ver.outputs.name }} (${{ inputs.flavor }}, ${{ inputs.abi }})" \
+            --notes "Сборка подписана личным ключом."
+
+permissions:
+  contents: write
