@@ -15,12 +15,6 @@ Every report is fixed or built and has a reply posted or queued. What's left nee
   Acceptance: on the S22 or S25, in ADB mode and again in Shizuku mode, grant a permission watched as Always deny from Android's Settings. It's revoked within a few seconds and the notification says so. Reboot, start the server again and repeat once.
   Complexity: S
 
-- [ ] P2: Check an archived app's row on the S22
-  Why: 6be4b000e lists archived apps under the name and icon Android kept for them, with Archived at the front of the row's details line. The unit tests cover it, but the row hasn't been seen on a phone: the S22 was leased to other work both times it came up.
-  Touches: nothing unless it fails (`main/MainListUidFormatter.java`, `main/MainViewModel.java`).
-  Acceptance: on the S22, with the latest floss debug build installed, the archived `com.example.archiveprobe` (installed with `adb install --user 0 -i com.android.vending`, then `pm archive --user 0`) shows in the main list as its label and icon with "Archived ·" leading the details line, and TalkBack's text for the row starts with Archived. Afterwards clear the list's search, close the keyboard and `adb uninstall com.example.archiveprobe`, which is still on the phone from the first try.
-  Complexity: S
-
 - [ ] P2: Check a no-root restore on the S22 (upstream #1286)
   Why: upstream's #1286 crash was a no-root restore on a Samsung phone throwing a SecurityException from `createSession`, because the session was opened in the backup's installer's name. NG opens it in its own name, and the MIUI and HyperOS retry now runs inside the install call (upstream f3db2698a). Both are covered by Robolectric (`PackageInstallerSessionInstallerTest`, `PackageInstallerRetryTest`), but no restore has run on a phone since: the S22 was leased to other work.
   Touches: nothing unless it fails (`apk/installer/PackageInstallerCompat.java`, `backup/RestoreOp.java`).
@@ -38,6 +32,7 @@ Every report is fixed or built and has a reply posted or queued. What's left nee
   Evidence: API 35 emulator, `pm create-user --profileOf 0 --managed`, release build in user 10: `:priv:10` started on port 62011 as uid 1010209, then the app logged `RemoteException: Binder not running` from `ipc/LocalServices.bindAmService`.
   Touches: `server/.../RootServiceMain.java` (how it hands the binder to a non-zero user), `ipc/LocalServices.java`, `servermanager/LocalServerManager.java`.
   Acceptance: a profile instance in ADB mode either binds its service or drops to No root within a few seconds with the reason shown; a test covers the user the binder is delivered to.
+  Cause found 2026-11-22: `ipc/RootServiceServer.broadcast` kept the launch UID only when the caller was root. Its startup broadcast runs inside the server with no binder call, so the "caller" is the server's own UID, the shell (2000) in ADB mode, and the binder went to user 0. Fixed in code with `RootServiceServerClientUidTest` (root or the server's own UID may name the client). Still owed: the API 35 emulator run in a managed profile, after which this item goes. If it still doesn't bind there, the drop-to-No-root half is next.
   Complexity: M
 
 - [ ] P3: Let the debug and release builds run their servers side by side
@@ -139,14 +134,6 @@ Every report is fixed or built and has a reply posted or queued. What's left nee
   Today: Paparazzi 2.0.0-alpha05.1 (2026-09-28) is the newest on Maven Central and its notes list Android Gradle Plugin 9.0.0 support (#2198). PR #2318 closed without merging.
   Unblocked 2026-11-07: a Paparazzi release with AGP 9 support now exists. Confirm it builds against the repo's AGP 9.3.1 and compileSdk 37 before writing tests.
   Complexity: M
-
-- [ ] P2: Publish a concrete coordinated-disclosure policy
-  Why: the public repository has no `SECURITY.md`, and `CONTRIBUTING.md:61` still sends reporters to "the maintainer contact listed" for a root-capable app that handles credentials and backups.
-  Evidence: `.github/` holds only `ISSUE_TEMPLATE`. GitHub private vulnerability reporting is now enabled on the repo.
-  Touches: `.github/SECURITY.md`, `CONTRIBUTING.md`, `.github/ISSUE_TEMPLATE/bug_report.yml`.
-  Acceptance: the Security tab exposes supported versions, an explicit non-public reporting route, requested report fields, acknowledgment/disclosure expectations, and a warning against public exploit details; CONTRIBUTING and the bug template link to the same policy without conflicting instructions.
-  Unblocked 2026-11-07: the old blocker was one past pass's rule about which Markdown it could stage. Nothing outside the repo is missing, and private reporting is already on for the policy to point at.
-  Complexity: S
 
 - [ ] P2: Fix tracked documentation truth and links
   Why: canonical docs refer to removed files/workflows and describe shipped features/tests as future or disabled, so a clean clone gives maintainers contradictory architecture and release guidance.
@@ -323,11 +310,11 @@ Every report is fixed or built and has a reply posted or queued. What's left nee
   Acceptance: each tab applies lists in the order LiveData delivers them; no permission or binder call runs on the main thread; a test posts two lists back to back and sees the second on screen.
   Complexity: M
 
-- [ ] P2: Show Disabled, Frozen, and Suspended as text in app rows
-  Why: upstream #2006 reports difficulty distinguishing state colors, while the compact V2 row still encodes suspension as `°` and announces only installed or uninstalled state.
-  Evidence: `https://github.com/MuntashirAkon/AppManager/issues/2006`; WCAG 2.2 Use of Color; Android accessibility guidance; `main/ApplicationItem.java:323`; `main/MainRecyclerAdapter.java:564`; `res/layout/item_main_v2.xml`.
-  Touches: a shared app-state formatter, `main/ApplicationItem.java`, `main/MainRecyclerAdapter.java`, `item_main_v2.xml`, localized strings, accessibility tests.
-  Acceptance: every non-normal state renders concise inline text in the metadata row, not a new status pill; the row content description uses the same state; color remains reinforcement only; combined states have deterministic precedence; monochrome, large-text, and TalkBack tests retain package-name readability and row density.
+- [ ] P3: Tell a disabled app from a hidden one in app rows
+  Why: app rows now name a suspended app "Suspended" and any other frozen app "Frozen", because the list cache keeps one `is_enabled` bit for disabled and hidden apps alike.
+  Evidence: `db/entity/App.java` (`isEnabled = !FreezeUtils.isFrozen(...)`); `main/MainListStateFormatter.java`; `utils/FreezeUtils.java:78`.
+  Touches: a cached freeze-kind column with a Room migration, `db/entity/App.java`, `main/MainViewModel.java`, `main/MainListStateFormatter.java`, migration and row tests.
+  Acceptance: a disabled app's row says Disabled and a hidden one's says Hidden, read from the cache with no package manager call at bind time; suspended still wins; existing caches migrate without a full rescan losing the state.
   Complexity: S
 
 - [ ] P2: Support complete regex replacement semantics in Code Editor
@@ -351,14 +338,20 @@ Every report is fixed or built and has a reply posted or queued. What's left nee
   Acceptance: class decompilation has explicit input, output, time, and memory ceilings and is cancellable when its host screen closes; malformed, recursive, and oversized fixtures return classified errors without process death; a contract test proves AppManagerNG continues to set `skipResources(true)` and never invokes JADX APK export or GUI paths; reachable upstream fixes are backported or documented against the narrow fork.
   Complexity: M
 
-- [ ] P2: Restore Swift Backup APK plus OBB conversion coverage
-  Why: the only APK plus OBB regression test has been commented out since a legacy Robolectric limitation, while the project pins Robolectric 4.16.1 and v0.6.18 changed Swift manifest validation.
-  Evidence: `backup/convert/SBConverterTest.java:158-176`; `versions.gradle:64`; `backup/convert/SBConverter.java`; v0.6.18 Swift ZIP-comment validation changelog entry.
-  Touches: `SBConverterTest.java`, deterministic Swift fixtures, converter temporary-file cleanup.
-  Acceptance: the test runs in the normal unit suite and proves that a valid fixture emits `base.apk` and the expected OBB payload; malformed comment metadata, package mismatch, missing APK, interrupted conversion, and cleanup of temporary output are covered; no live Swift account is required.
-  Complexity: S
-
 ### P3
+
+- [ ] P3: Act on a permission watcher entry from the App change feed
+  Why: the feed now keeps each app the watcher finds out of step with a rule (`PermissionWatchWorker.FEED_KIND`), but an entry is only a record. AppOpsNext 1.6.7 (2026-11-14) offers "restore previous" and "keep current" on each such entry.
+  Touches: the feed list in `settings/PrivacyPreferences.java`, `permission/watcher/` (apply the rule, or change the rule to what was found), feed entry tests.
+  Acceptance: a watcher entry offers putting the rule's state back (only while root or ADB mode is running) and keeping what was found (which changes the rule); both record a new feed entry; other kinds of entries offer neither.
+  Complexity: M
+
+- [ ] P3: Keep the code editor's "unsaved changes were lost" note across a rotation
+  Why: after Android closes the app, the editor says once that edits weren't saved. The flag lives on the fragment and is read from saved state only while the view model has no text, so if the file finishes reading while the phone is being turned, the new view skips the flag and the note never shows.
+  Evidence: `editor/CodeEditorFragment.java` (`mUnsavedEditsLost`, read in `onViewCreated` only when `getContentLiveData().getValue() == null`).
+  Touches: `CodeEditorFragment`, `CodeEditorViewModel`, `CodeEditorReleaseTest`.
+  Acceptance: the "lost" state lives in the view model, set from saved state by the first view after a restart and cleared when the note shows; a rotation at any point before the note shows still shows it once; a plain rotation with unsaved edits never shows it. Needs a way to finish the read at a chosen point in a test (a seam on the view model's loader) so the window can be hit on purpose.
+  Complexity: S
 
 - [ ] P3: Show AppOps proxy package and attribution provenance
   Why: App Details displays time, duration, and mode but omits the proxy package and attribution tag available on API 30 and later.
@@ -377,14 +370,6 @@ Every report is fixed or built and has a reply posted or queued. What's left nee
 ## Research-Driven Additions (2026-09-05)
 
 ### P2
-
-- [ ] P2: Log permission watcher drift to the app change feed
-  Why: the watcher (`permission/watcher/`) reports a rule mismatch it couldn't fix only as a notification, so once that's dismissed there's no record of which app drifted from the user's rule or when.
-  Evidence: `permission/watcher/PermissionWatchWorker.java:49-52` passes the report to `PermissionWatchNotifier.notify` and nothing else; `permission/monitor/AppChangeFeedStore.java` already keeps the install and update history.
-  Touches: `permission/watcher/PermissionWatchWorker.java`, `permission/monitor/AppChangeFeedStore.java`, the feed's type labels, a worker test.
-  Acceptance: every drift in a report, fixed or not, appends one feed entry naming the app, the permission or op, the rule's state and the state found; an entry for a drift that was fixed says so; a test with a faked rule DAO and grant lookup asserts the entries and fails with the append removed.
-  Research 2026-11-14: AppOpsNext 1.6.7 (2026-11-14) lists every permission that no longer matches what it last set, with "restore previous" and "keep current" per entry. Those two actions on a feed entry would make the record useful, not just visible.
-  Complexity: S
 
 - [ ] P2: Bound the build-expiry lockout so it cannot strand a user
   Why: an expired prerelease build shows a non-cancelable dialog with no way through, expiry is decided from an unvalidated device clock, and the debug update link points at a page this project does not use.
@@ -436,13 +421,6 @@ Every report is fixed or built and has a reply posted or queued. What's left nee
   Research 2026-11-13: realme's ColorOS 16 shell lacks `CREATE_VIRTUAL_DISPLAY` (ccch1mneyyy/dsh-Go #1153), and ColorOS 16 changed dumpsys output (Verlintas/NOIR #19). Both belong in the OEM codes, and fork discussion #5 is from a ColorOS 16 user.
   Complexity: S
 
-- [ ] P2: Honor Android 16 outlined text in custom usage charts
-  Why: `BarChartView` draws labels directly on Canvas, bypassing the platform's automatic outlined-text treatment for users who enable it.
-  Evidence: Android 16 accessibility features; WCAG 2.2 contrast guidance; `usage/BarChartView.java`.
-  Touches: `BarChartView.java`, accessibility-setting adapter, chart paint calculation, light and dark screenshot tests.
-  Acceptance: on Android 16 and later, when outlined text is requested, chart labels draw a contrast-calculated stroke followed by the existing fill without changing metrics; the outline is absent when the setting is off and on older APIs; labels remain legible in light, dark, high-contrast, and large-text snapshots; TalkBack content is unchanged.
-  Complexity: S
-
 - [ ] P2: Keep UI Tracker focused and bound its event work
   Why: on affected Samsung builds, AppManagerNG's own overlay can replace the external target, while every accessibility event can also start a new UsageStats scan and later publish stale data.
   Evidence: upstream App Manager #2039 and #1848; `accessibility/NoRootAccessibilityService.java:42-50`; `accessibility/activity/TrackerWindow.java:194-240,377-408,429-461`; the current fixed-pool queries do not debounce events, honor interruption during the scan, or reject an obsolete callback.
@@ -491,46 +469,6 @@ Every report is fixed or built and has a reply posted or queued. What's left nee
   Confidence: Verified
   Effort: M
 
-- [ ] P2 — Stop log recording through a non-exported receiver
-  Category: Component security
-  Where: `app/src/main/AndroidManifest.xml:1822-1838`; `app/src/main/java/io/github/muntashirakon/AppManager/logcat/RecordingWidgetProvider.java:42-63`; `app/src/main/java/io/github/muntashirakon/AppManager/logcat/helper/ServiceHelper.java:35-41`; `app/src/main/java/io/github/muntashirakon/AppManager/logcat/helper/WidgetHelper.java:70-79`
-  Problem: Any installed app can send the custom explicit widget action to the exported provider and stop active log recording.
-  Evidence: The provider must receive system widget broadcasts, but the same exported component also handles the app-only stop action without caller authentication.
-  Fix: Route the PendingIntent to a non-exported receiver or service and leave only required system widget actions on the exported provider.
-  Acceptance: External broadcasts cannot stop recording; the widget stop control still works from every supported launcher; system update, delete, enable, and disable broadcasts remain functional in instrumentation tests.
-  Confidence: Verified
-  Effort: S
-
-- [ ] P2 — Shut down Debloater worker pools with the ViewModel
-  Category: Resource lifecycle
-  Where: `app/src/main/java/io/github/muntashirakon/AppManager/debloat/DebloaterViewModel.java:40-85,210-310`; `app/src/main/java/io/github/muntashirakon/AppManager/utils/MultithreadedExecutor.java:22-40`
-  Problem: Each Debloater ViewModel creates a fixed thread pool and never cancels queued work or shuts the pool down in `onCleared`.
-  Evidence: The executor uses persistent core threads with no timeout, and the ViewModel has no lifecycle teardown through the end of the class.
-  Fix: Track submitted work, cancel it in `onCleared`, call `shutdownNow`, and prevent late LiveData publication.
-  Acceptance: Fifty create and destroy cycles return executor thread count to baseline; queued and running work cannot publish after clear; shutdown remains idempotent under simultaneous reload and navigation.
-  Confidence: Verified
-  Effort: S
-
-- [ ] P2 — Release the Sora editor when its view is destroyed
-  Category: Resource lifecycle
-  Where: `app/src/main/java/io/github/muntashirakon/AppManager/editor/CodeEditorFragment.java:204-218,312-345,546-568`; `versions.gradle:48`; `app/build.gradle:300-301`
-  Problem: The fragment detaches observers but never calls Sora's `release()`, so editor threads, language resources, and view references can survive back-stack churn.
-  Evidence: The project uses Sora 0.24.6, whose editor lifecycle includes explicit release; current `onDestroyView` cleanup does not perform it.
-  Fix: Stop callbacks, detach language and diagnostics resources, release the editor exactly once, and clear view-bound fields after preserving required state.
-  Acceptance: Repeated open, rotate, back, and reopen cycles retain content and produce no growing editor threads or retained Fragment views; release is once-only and late callbacks are ignored.
-  Confidence: Verified
-  Effort: S
-
-- [ ] P2 — Invalidate Settings search after locale changes
-  Category: Localization
-  Where: `app/src/main/java/io/github/muntashirakon/AppManager/settings/SettingsSearchIndex.java:110-144,187-198`; `app/src/main/java/io/github/muntashirakon/AppManager/settings/ChangeLanguageFragment.java:133-142`; `app/src/main/java/io/github/muntashirakon/AppManager/settings/Prefs.java:179-188`
-  Problem: The process-wide search index caches localized titles and summaries without keying them by locale or invalidating them when the app language changes.
-  Evidence: Language application updates configuration, while the production index cache has no locale transition hook; invalidation appears only in tests.
-  Fix: Key cached entries by effective locale and configuration, or invalidate and rebuild after language application before new search results are shown.
-  Acceptance: Switching languages in one process updates every search title, summary, and normalized query without restart; switching back is also correct; tests cover script and region variants plus rapid consecutive changes.
-  Confidence: Verified
-  Effort: S
-
 - [ ] P2 — Announce onboarding access checks only after they finish
   Category: Accessibility
   Where: `app/src/main/java/io/github/muntashirakon/AppManager/onboarding/OnboardingFragment.java:161-168,267-276,361-414,445-471,659-692`
@@ -540,26 +478,6 @@ Every report is fixed or built and has a reply posted or queued. What's left nee
   Acceptance: TalkBack hears one accurate completion announcement per re-check; slow older probes cannot overwrite newer state; every row's spoken status matches its visible state under success, denial, timeout, and teardown.
   Confidence: Verified
   Effort: M
-
-- [ ] P2 — Keep text-input dialogs open when validation fails
-  Category: Form usability
-  Where: `libcore/ui/src/main/java/io/github/muntashirakon/dialog/TextInputDialogBuilder.java:128-139,191-208`; `app/src/main/java/io/github/muntashirakon/AppManager/details/info/AppInfoFragment.java:972-989`; `app/src/main/java/io/github/muntashirakon/AppManager/filters/EditFilterOptionFragment.java:101-146,208-229`
-  Problem: Positive actions use the platform auto-dismiss listener, so validation callbacks can report an error and return but cannot keep the user's input dialog open.
-  Evidence: Invalid tag input shows feedback and exits the callback, yet the dialog closes because the builder never replaces the positive listener after `show()`.
-  Fix: Add a validated positive-action API that runs after show, dismisses only on success, focuses the invalid field, and exposes inline error text.
-  Acceptance: Invalid values in tag, filter, and log-viewer dialogs retain input and focus; valid values dismiss once; IME action and button paths share validation and have UI tests.
-  Confidence: Verified
-  Effort: S
-
-- [ ] P2 — Use density units for screen-time widget geometry
-  Category: Responsive layout
-  Where: `app/src/main/res/layout/app_widget_screen_time.xml:63-153`; `app/src/main/res/xml/app_widget_info_screen_time.xml:6-16`; `app/src/main/java/io/github/muntashirakon/AppManager/usage/ScreenTimeAppWidget.java:64-72`
-  Problem: Margins and positional geometry use `sp`, so font scaling moves non-text layout independently of widget bounds and can cause overlap or clipping.
-  Evidence: Bubble sizes use `dp`, but several layout margins and top offsets use `sp` in the same fixed widget composition.
-  Fix: Use `dp` or constraints for geometry, reserve `sp` for text size, and provide size-specific resources where launcher bounds require different composition.
-  Acceptance: Widget snapshots at 100, 130, and 200 percent font scale and minimum and expanded launcher sizes show no overlap, clipping, or displaced controls in light and dark themes.
-  Confidence: Likely
-  Effort: S
 
 - [ ] P2 — Stop screens probing for root while no-root is selected
   Category: Privilege boundaries
@@ -693,19 +611,19 @@ Sources and reasoning: RESEARCH.md (2026-11-13). The four crash fixes come first
   Research 2026-11-14: zstd-jni is now 1.5.7-28 (2026-11-13). The test-only org.json 20251224 (`versions.gradle:33`) is inside GHSA-ghc9-756g-vrcv, fixed in 20260719, and 20260814 is the newest. It never ships in the APK, but the bump is free.
   Complexity: S
 
-- [ ] P2: Read the per-user disabled state the same way on a full load and a refresh
-  Why: a full load (`PackageUtils.mergeApplicationItems`) records no enabled or disabled users for a row, but a one-package refresh (`MainViewModel.getNewApplicationItem`) does. An app disabled for one user and enabled for another gets the per-user tint on its UID after a refresh and loses it on the next full load.
-  Evidence: `utils/PackageUtils.java` `mergeApplicationItems`, `main/MainViewModel.java` `getNewApplicationItem`, `MainListUidFormatter.isHighlighted`. Found while making the two paths agree on uninstalled users (2026-11-14).
-  Touches: `mergeApplicationItems`, `getNewApplicationItem`, `PackageUtilsMergeTest`, `MainViewModelNewApplicationItemTest`.
-  Acceptance: for the same database rows, both paths give the row the same `userIds`, `disabledUserIds` and `uninstalledUserIds`, and one test runs both over an app disabled for one of two users.
-  Complexity: S
-
 - [ ] P2: Stop passing log messages in as format strings
   Why: `Log.v/d/i/w/e(tag, format, args)` formats its first string, so a call like `Log.w(TAG, "Error: " + e.getMessage())` throws `MissingFormatArgumentException` or `UnknownFormatConversionException` when the message holds a `%`, such as a URL-encoded path. The SSAID read in `AppDb.updateVariableData` did this and stopped a package refresh on the test host. About 190 such calls remain in about 70 files.
   Evidence: `logs/Log.java` (`String.format(Locale.ROOT, format, args)`); `rg 'Log\.[vdiwe]\(TAG, "[^"]*" \+' app/src/main`.
   Touches: those call sites, or a `Log` overload that takes a plain message, and a test that logs a `%`.
   Acceptance: no production call builds the format string from runtime text, a message holding `%3A` logs as written, and the change keeps each call's level and throwable.
   Complexity: M
+
+- [ ] P2: Check the log recording and screen-time widgets on a phone's launcher
+  Why: widget taps now go through a non-exported receiver instead of the widget provider (9f65e25ed), and the medium screen-time widget now places its bubbles in dp with each label centred on its bubble. Robolectric covers the tap's PendingIntent, the receiver and the layout geometry, but not a real launcher's broadcasts to the provider or how the widgets look there.
+  Evidence: `logcat/RecordingWidgetActionReceiver.java`, `logcat/RecordingWidgetProvider.java`, `AndroidManifest.xml`, `res/layout/app_widget_screen_time.xml`.
+  Touches: device check only, on the S22 or S25.
+  Acceptance: on a phone, add the recording widget, tap it to start and again to stop a recording, then confirm it still updates after a reboot and after another widget instance is added and removed. `adb shell am broadcast -a <applicationId>.action.RECORD_OR_STOP -n <applicationId>/io.github.muntashirakon.AppManager.logcat.RecordingWidgetActionReceiver` is refused (not exported) and the provider still gets `APPWIDGET_UPDATE`, `APPWIDGET_ENABLED` and `APPWIDGET_DELETED`. Screenshots of the screen-time widget at its smallest, medium and largest launcher sizes, at 100%, 130% and 200% font size (`settings put system font_scale`, put back after), in light and dark, show no overlap, clipping or label away from its bubble.
+  Complexity: S
 
 ### P3
 
@@ -791,6 +709,13 @@ Sources and reasoning: RESEARCH.md (2026-11-13). The four crash fixes come first
   Evidence: `settings/SettingsActivity.java` (`defaultPref` in `onAuthenticated`, `onNewIntent`). Found by the 2026-11-14 review of the settings restore fix. HEAD before that fix behaved the same.
   Touches: `SettingsActivity`, `SettingsActivityRecreateTest`.
   Acceptance: in dual pane a link that opens no page falls back to the default fill, an empty link leaves the saved path alone, and both have a Robolectric case.
+  Complexity: S
+
+- [ ] P3: Building the language list rewrites the live configuration's locale
+  Why: `LangUtils.loadAppLanguages` takes `res.getConfiguration()` (the live object, not a copy) and calls `setLocale` on it for every entry in locales_config, so the context it was handed claims the last listed locale (zh-TW) until something rewrites it. `applyOnlyLocale` happens to correct it right after on the usual path, but `ChangeLanguageFragment` and `LanguagePacksPreferences` call `getAppLanguages` with an activity, and anything reading that configuration before the next update sees the wrong locale. `sLocaleMap` is also filled in place without a lock, so a second thread can get a half-built map.
+  Evidence: `utils/LangUtils.java` `loadAppLanguages` (`Configuration conf = res.getConfiguration(); conf.setLocale(...)`). Found 2026-11-22 while fixing the Settings search locale cache.
+  Touches: `LangUtils`, a Robolectric test that reads the configuration's locales before and after `getAppLanguages`.
+  Acceptance: building the list leaves the passed context's configuration unchanged (work on `new Configuration(...)`), the map is published whole, and a test pins both.
   Complexity: S
 
 ## Research-Driven Additions (2026-11-14)
@@ -1262,3 +1187,25 @@ Sources and reasoning: RESEARCH.md (2026-11-14).
   Evidence: `dhizuku/DhizukuOps.java` `canRun` only allows the current user; `apk/installer/InstallerPrivilegeCascade.java` uses Dhizuku for the current user or a single-user device.
   Acceptance: in a work profile with Dhizuku as profile owner, NG running in that profile hides, suspends, grants and installs through Dhizuku, and NG in the main profile says Dhizuku isn't available there; on a ColorOS 16 phone (a user report counts) the same operations work in No root mode.
   Complexity: S
+
+## Found During the v0.9.0 Release (2026-11-22)
+
+### P3
+
+- [ ] P3: Declared permissions without a group read "Group: null"
+  Why: the Permissions tab (permissions an app declares) prints the group with string concatenation, so a permission with no group shows the word "null". Seen on the S22 in the v0.9.0 walk on Google Play services (`BIND_ALLOWLIST_PROVIDER_SERVICE` and others).
+  Evidence: `details/AppDetailsPermissionsFragment.java:1057` builds `permissionInfo.group + permAppOp(permissionInfo.name)`; the Uses permissions rows at :737 and :881 already skip a null group.
+  Acceptance: a declared permission with no group shows no Group line (or only its app op), and a Robolectric test on the row binding pins it.
+  Complexity: S
+
+- [ ] P3: Rename the release APKs with ABI and short hash, with a heads-up first (#44)
+  Why: #44 asked for `%abi%` and `%sha256_short%` in release asset names too. Obtainium and other update trackers match today's names, so the reporter suggested a one-time in-app notice in the release before the change, with either re-adding the repo or an APK filter regex like `^AppManagerNG-.*-(foss|floss)-.*\.apk$` as the fix.
+  Touches: `scripts/verify_reproducible_release.sh` (publish names), the release gate's artifact checks, `docs/distribution/*`, a one-time notice.
+  Acceptance: Matt decides whether to rename. If yes, one release ships the notice and the next one the new names, and Obtainium with the suggested regex picks up both.
+  Complexity: M
+
+- [ ] P3: Look at a bring-your-own-model runtime in Labs (#46)
+  Why: after the related words search shipped, #46 suggested shipping only a small inference runtime (LiteRT or ONNX Runtime) in Labs and letting people pick their own `.tflite` or `.onnx` file, with no bundled model and no download.
+  Touches: a new Labs screen, a runtime dependency (size, licence and F-Droid fit to check), SAF file picking.
+  Acceptance: Matt decides whether it fits. If yes, the runtime adds under about 4 MB to the APK, works offline with a picked model, and nothing loads until the user opens it.
+  Complexity: L

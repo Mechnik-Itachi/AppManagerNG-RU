@@ -42,6 +42,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.Future;
 
 import io.github.muntashirakon.AppManager.apk.parser.AndroidBinXmlDecoder;
@@ -103,6 +104,7 @@ public class CodeEditorViewModel extends AndroidViewModel {
     private volatile String mOriginalContent;
     @Nullable
     private String mLanguage;
+    private boolean mLanguagePicked;
     private boolean mCanGenerateJava;
     @XmlType
     private int mXmlType = XML_TYPE_NONE;
@@ -118,7 +120,9 @@ public class CodeEditorViewModel extends AndroidViewModel {
     private final MutableLiveData<Content> mContentLiveData = new MutableLiveData<>();
     // Only for smali
     private final SingleLiveEvent<Uri> mJavaFileLiveData = new SingleLiveEvent<>();
-    private final MutableLiveData<SaveResult> mSaveFileLiveData = new MutableLiveData<>();
+    // An event, not state: a view made again (rotation, back from the Java view) must not take an old
+    // "saved" as news and mark edits made since then as saved
+    private final SingleLiveEvent<SaveResult> mSaveFileLiveData = new SingleLiveEvent<>();
     // Save and exit leaves only after a save lands, so the request outlives a configuration change.
     private volatile boolean mExitAfterSave;
 
@@ -128,21 +132,30 @@ public class CodeEditorViewModel extends AndroidViewModel {
         public final boolean originalIntact;
         @Nullable
         public final String reason;
+        /** The text written, as it was when the save began. Empty for a failure. */
+        @NonNull
+        public final String savedText;
+        /** Where it was written. {@code null} for a failure. */
+        @Nullable
+        final Uri savedTo;
 
-        private SaveResult(boolean success, boolean originalIntact, @Nullable String reason) {
+        private SaveResult(boolean success, boolean originalIntact, @Nullable String reason, @NonNull String savedText,
+                           @Nullable Uri savedTo) {
             this.success = success;
             this.originalIntact = originalIntact;
             this.reason = reason;
+            this.savedText = savedText;
+            this.savedTo = savedTo;
         }
 
         @NonNull
-        static SaveResult saved() {
-            return new SaveResult(true, true, null);
+        static SaveResult saved(@NonNull String savedText, @NonNull Uri savedTo) {
+            return new SaveResult(true, true, null, savedText, savedTo);
         }
 
         @NonNull
         static SaveResult failed(@NonNull String reason, boolean originalIntact) {
-            return new SaveResult(false, originalIntact, reason);
+            return new SaveResult(false, originalIntact, reason, "", null);
         }
     }
 
@@ -175,11 +188,18 @@ public class CodeEditorViewModel extends AndroidViewModel {
     }
 
     public void setOptions(@NonNull CodeEditorFragment.Options options) {
+        // A view made again for the same file (a rotation, back from the Java view) keeps a
+        // language picked by hand
+        boolean sameFile = mOptions != null && Objects.equals(mOptions.uri, options.uri);
         mOptions = options;
         mSourceFile = options.uri != null ? Paths.get(options.uri) : null;
         String extension = mSourceFile != null ? mSourceFile.getExtension() : null;
-        mLanguage = getLanguageFromExt(extension);
-        mCanGenerateJava = options.javaSmaliToggle || "smali".equals(mLanguage);
+        String extensionLanguage = getLanguageFromExt(extension);
+        if (!sameFile || !mLanguagePicked) {
+            mLanguage = extensionLanguage;
+            mLanguagePicked = false;
+        }
+        mCanGenerateJava = options.javaSmaliToggle || "smali".equals(extensionLanguage);
     }
 
     @Nullable
@@ -210,7 +230,13 @@ public class CodeEditorViewModel extends AndroidViewModel {
     }
 
     public void loadFileContentIfAvailable() {
-        if (mSourceFile == null) return;
+        if (mSourceFile == null) {
+            // A new document starts empty. The editor types into this text, so the view model holds
+            // it for a view made again after a rotation, as it does a file's.
+            mOriginalContent = "";
+            mContentLiveData.postValue(new Content());
+            return;
+        }
         if (mContentLoaderResult != null) {
             mContentLoaderResult.cancel(true);
         }
@@ -281,12 +307,21 @@ public class CodeEditorViewModel extends AndroidViewModel {
             Path savingPath = alternativeFile != null ? alternativeFile : sourceFile;
             try {
                 EditorSaver.save(() -> encode(text, xmlType), new EditorSaver.PathTarget(savingPath), MAX_FILE_BYTES);
-                mSaveFileLiveData.postValue(SaveResult.saved());
+                mSaveFileLiveData.postValue(SaveResult.saved(text, savingPath.getUri()));
             } catch (EditorSaver.SaveException e) {
                 Log.e(TAG, "Could not save %s (original intact: %b)", e, savingPath, e.originalIntact);
                 mSaveFileLiveData.postValue(SaveResult.failed(String.valueOf(e.getMessage()), e.originalIntact));
             }
         });
+    }
+
+    /**
+     * Whether a save went to the file this editor has open, so the editor's text now matches it. A
+     * Save As that couldn't take the new file over wrote a copy and leaves the open file as it was.
+     * A new document has no file of its own, so wherever its text went counts.
+     */
+    public boolean savedToOpenFile(@NonNull SaveResult result) {
+        return mSourceFile == null || (result.savedTo != null && result.savedTo.equals(mSourceFile.getUri()));
     }
 
     /** Asks the editor to close after the next save, but only if that save succeeds. */
@@ -378,6 +413,7 @@ public class CodeEditorViewModel extends AndroidViewModel {
      */
     public void setLanguage(@Nullable String language) {
         mLanguage = language;
+        mLanguagePicked = true;
     }
 
     public void generateJava(Content smaliContent) {

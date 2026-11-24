@@ -2,7 +2,9 @@
 
 package io.github.muntashirakon.AppManager.settings;
 
+import android.content.ComponentCallbacks;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
 import android.util.Log;
@@ -15,6 +17,8 @@ import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.XmlRes;
 import androidx.annotation.WorkerThread;
+import androidx.core.os.ConfigurationCompat;
+import androidx.core.os.LocaleListCompat;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -24,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import io.github.muntashirakon.AppManager.R;
 
@@ -109,36 +114,91 @@ public final class SettingsSearchIndex {
 
     @Nullable
     private static volatile SettingsSearchIndex sInstance;
+    /**
+     * Moves on with every configuration change and every {@link #invalidate()}. On a configuration
+     * change Android first puts the app's resources back in the system language and only then does
+     * the app reapply its own, so text read across one can be in two languages under unchanged tags.
+     */
+    private static final AtomicInteger sGeneration = new AtomicInteger();
+    @Nullable
+    private static Context sWatchedContext;
+    private static final ComponentCallbacks CONFIGURATION_WATCHER = new ComponentCallbacks() {
+        @Override
+        public void onConfigurationChanged(@NonNull Configuration newConfig) {
+            sGeneration.incrementAndGet();
+        }
+
+        @Override
+        public void onLowMemory() {
+        }
+    };
 
     @NonNull
     private final List<Entry> mEntries;
+    /** The app's locales when the text was read, as language tags */
+    @NonNull
+    private final String mLocaleTags;
+    /** Lowercases both the text and the query, so they follow the same language's rules */
+    @NonNull
+    private final Locale mLocale;
+    private final int mGeneration;
 
-    private SettingsSearchIndex(@NonNull List<Entry> entries) {
+    private SettingsSearchIndex(@NonNull List<Entry> entries, @NonNull LocaleListCompat locales, int generation) {
         mEntries = Collections.unmodifiableList(entries);
+        mLocaleTags = locales.toLanguageTags();
+        Locale first = locales.get(0);
+        mLocale = first != null ? first : Locale.getDefault();
+        mGeneration = generation;
+    }
+
+    private boolean isCurrent(@NonNull LocaleListCompat locales, int generation) {
+        return mGeneration == generation && mLocaleTags.equals(locales.toLanguageTags());
     }
 
     /**
      * Lazily build (or return) the singleton index for {@code context}. The
      * harvest walks ~15 small XML files and resolves their string references,
      * which is cheap enough to run on a background thread on first use.
+     *
+     * <p>The index is rebuilt when the app's language has changed since it was read, so a
+     * language picked in this process is searched in that language.</p>
      */
     @AnyThread
     @NonNull
     public static SettingsSearchIndex get(@NonNull Context context) {
+        Context appContext = context.getApplicationContext();
+        watchConfiguration(appContext);
+        // Both read before the text, so a change made while it's being read leaves an index that
+        // looks stale and is read again next time
+        int generation = sGeneration.get();
+        LocaleListCompat locales = ConfigurationCompat.getLocales(appContext.getResources().getConfiguration());
         SettingsSearchIndex local = sInstance;
-        if (local != null) {
+        if (local != null && local.isCurrent(locales, generation)) {
             return local;
         }
         synchronized (SettingsSearchIndex.class) {
-            if (sInstance == null) {
-                sInstance = new SettingsSearchIndex(buildEntries(context.getApplicationContext()));
+            local = sInstance;
+            if (local == null || !local.isCurrent(locales, generation)) {
+                local = new SettingsSearchIndex(buildEntries(appContext), locales, generation);
+                sInstance = local;
             }
-            return sInstance;
+            return local;
         }
     }
 
-    /** Clear the cache. Call after a locale change so titles re-resolve. */
+    private static synchronized void watchConfiguration(@NonNull Context appContext) {
+        if (sWatchedContext != appContext) {
+            appContext.registerComponentCallbacks(CONFIGURATION_WATCHER);
+            sWatchedContext = appContext;
+        }
+    }
+
+    /**
+     * Clear the cache. A change of language is noticed on its own; call this when the app's text
+     * changes without one, such as a language file being used or stopped.
+     */
     public static void invalidate() {
+        sGeneration.incrementAndGet();
         synchronized (SettingsSearchIndex.class) {
             sInstance = null;
         }
@@ -164,7 +224,7 @@ public final class SettingsSearchIndex {
     @NonNull
     public List<Entry> search(@Nullable CharSequence query) {
         if (query == null) return Collections.emptyList();
-        String needle = query.toString().trim().toLowerCase(Locale.getDefault());
+        String needle = query.toString().trim().toLowerCase(mLocale);
         if (needle.isEmpty()) return Collections.emptyList();
         List<Entry> matches = new ArrayList<>();
         for (Entry entry : mEntries) {
@@ -177,9 +237,9 @@ public final class SettingsSearchIndex {
         return matches;
     }
 
-    private static boolean matches(@Nullable CharSequence haystack, @NonNull String needle) {
+    private boolean matches(@Nullable CharSequence haystack, @NonNull String needle) {
         if (haystack == null) return false;
-        return haystack.toString().toLowerCase(Locale.getDefault()).contains(needle);
+        return haystack.toString().toLowerCase(mLocale).contains(needle);
     }
 
     @WorkerThread

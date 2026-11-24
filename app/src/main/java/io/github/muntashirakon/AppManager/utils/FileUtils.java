@@ -34,11 +34,12 @@ import java.util.Objects;
 import java.util.concurrent.Executor;
 import java.util.zip.ZipEntry;
 
+import io.github.muntashirakon.AppManager.ipc.LocalServices;
 import io.github.muntashirakon.AppManager.logs.Log;
 import io.github.muntashirakon.AppManager.progress.ProgressHandler;
 import io.github.muntashirakon.AppManager.runner.Runner;
-import io.github.muntashirakon.AppManager.runner.RunnerUtils;
 import io.github.muntashirakon.AppManager.self.filecache.FileCache;
+import io.github.muntashirakon.AppManager.settings.Ops;
 import io.github.muntashirakon.io.FileSystemManager;
 import io.github.muntashirakon.io.IoUtils;
 import io.github.muntashirakon.io.Path;
@@ -238,7 +239,12 @@ public final class FileUtils {
         try {
             return getBestExternalPath(extDirs);
         } catch (FileNotFoundException originalError) {
-            if (extDirs == null || !RunnerUtils.isRootGiven()) {
+            // Only when the commands below run as root. Runner uses its root shell in root mode (even
+            // while the privileged service is down and the working UID is the app's), and otherwise
+            // the privileged service while it's up, which is root under Sui, Shizuku as root or ADB
+            // as root. Asking su in any other mode is a superuser prompt, and an ADB shell can't hand
+            // the folder to its owner anyway.
+            if (extDirs == null || !(Ops.isDirectRoot() || (LocalServices.alive() && Ops.isWorkingUidRoot()))) {
                 throw originalError;
             }
             for (File extDir : extDirs) {

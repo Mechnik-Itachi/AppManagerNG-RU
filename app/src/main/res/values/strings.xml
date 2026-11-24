@@ -419,6 +419,7 @@
     <string name="deletion_failed">Deletion failed</string>
     <string name="code_editor_unavailable">Couldn\'t open the code editor: <xliff:g id="reason" example="no such font">%1$s</xliff:g></string>
     <string name="saved_successfully">Saved</string>
+    <string name="editor_unsaved_edits_lost">Android closed App Manager while it was in the background, so the changes that weren\'t saved are gone. This is the file as it was last saved.</string>
     <string name="saving_failed">Saving failed, try again.</string>
     <string name="editor_save_failed_unchanged">Couldn\'t save the file: <xliff:g id="reason" example="the saved file did not read back as written">%1$s</xliff:g>. The file wasn\'t changed.</string>
     <string name="editor_save_failed_damaged">Couldn\'t save the file: <xliff:g id="reason" example="the saved file did not read back as written">%1$s</xliff:g>. Putting the original back failed too, so the file may be incomplete. Your text is still in the editor.</string>
@@ -4433,6 +4434,14 @@
     <string name="permission_watcher_line_deny_failed">%1$s: couldn\'t deny %2$s (%3$s)</string>
     <string name="permission_watcher_line_should_be_allowed">%1$s: %2$s is denied but should be allowed</string>
     <string name="permission_watcher_line_should_be_denied">%1$s: %2$s is allowed but should be denied</string>
+    <string name="permission_watcher_feed_title">%1$s: %2$s didn\'t match your rule</string>
+    <string name="permission_watcher_feed_title_user">%1$s (user %3$d): %2$s didn\'t match your rule</string>
+    <string name="permission_watcher_feed_title_op">%1$s: app op %2$s didn\'t match your rule</string>
+    <string name="permission_watcher_feed_title_op_user">%1$s (user %3$d): app op %2$s didn\'t match your rule</string>
+    <string name="permission_watcher_feed_found_allowed">It was allowed, and your rule says deny.</string>
+    <string name="permission_watcher_feed_found_denied">It was denied, and your rule says allow.</string>
+    <string name="permission_watcher_feed_changed_back">It was changed back.</string>
+    <string name="permission_watcher_feed_change_failed">Changing it back didn\'t work: %1$s</string>
     <plurals name="permission_watcher_notification_title">
         <item quantity="one">%1$d watched permission changed</item>
         <item quantity="other">%1$d watched permissions changed</item>
@@ -4442,7 +4451,7 @@
         <item quantity="other">Put back %1$d watched permissions</item>
     </plurals>
     <string name="app_change_feed_title">App change feed</string>
-    <string name="app_change_feed_summary">Review local app update audit events from permission, signing-key, component, and tracker monitors.</string>
+    <string name="app_change_feed_summary">Review local app update audit events from permission, signing-key, component, and tracker monitors, and the permission watcher.</string>
     <string name="app_change_feed_empty">No app change events recorded yet.</string>
     <string name="app_change_feed_filter_package">Package contains</string>
     <string name="app_change_feed_filter_kind">Event type</string>

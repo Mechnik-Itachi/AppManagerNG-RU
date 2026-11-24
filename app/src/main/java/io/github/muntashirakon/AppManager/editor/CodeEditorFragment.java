@@ -3,6 +3,7 @@
 package io.github.muntashirakon.AppManager.editor;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
@@ -51,6 +52,9 @@ import com.google.android.material.progressindicator.LinearProgressIndicator;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.Future;
 import java.util.regex.PatternSyntaxException;
@@ -89,6 +93,8 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
     private static final String TAG = CodeEditorFragment.class.getSimpleName();
 
     public static final String ARG_OPTIONS = "options";
+    private static final String STATE_UNSAVED_EDITS = "unsaved_edits";
+    private static final String STATE_PENDING_SAVE_AS = "pending_save_as";
 
     public static class Options implements Parcelable {
         @Nullable
@@ -230,7 +236,17 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
     @Nullable
     private Future<?> mDiffResult;
     private int mDiffRequestId;
+    private final List<Dialog> mOpenDialogs = new ArrayList<>();
+    private final List<PopupMenu> mOpenPopups = new ArrayList<>();
     private boolean mTextModified = false;
+    // Whether this view has been given the text yet, or the news that it couldn't be read
+    private boolean mContentShown;
+    // A Save As answer that came back before the text was read: Android closed the app while the
+    // picker was open. It's saved once the text is in.
+    @Nullable
+    private Intent mPendingSaveAs;
+    // Made again after Android closed the app with edits that weren't saved, which went with it
+    private boolean mUnsavedEditsLost;
     private final Runnable mInvisibleCharHintsUpdater = this::updateInvisibleCharHints;
     private final ActivityResultLauncher<Intent> mSaveOpenedFile = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
@@ -242,27 +258,45 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
                         return;
                     }
                     Intent data = result.getData();
-                    Uri uri = IntentCompat.getDataUri(data);
-                    if (uri == null) {
+                    if (IntentCompat.getDataUri(data) == null) {
                         mViewModel.setExitAfterSave(false);
                         return;
                     }
-                    int takeFlags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION
-                            | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                    saveFile(mEditor.getText(), uri);
-                    if (takeFlags != 0) {
-                        // Make this URI the current URI
-                        mOptions = new Options.Builder(mOptions)
-                                .setUri(uri)
-                                .setSubtitle(Paths.get(uri).getName())
-                                .build();
-                        mViewModel.setOptions(mOptions);
+                    if (!mContentShown) {
+                        // Back after Android closed the app while the picker was open. The file is
+                        // still being read, and saving now would write an empty file.
+                        mPendingSaveAs = data;
+                        return;
                     }
+                    saveAs(data);
                 } finally {
                     showProgressIndicator(false);
                     unlockEditor();
                 }
             });
+
+    private void saveAs(@NonNull Intent data) {
+        Uri uri = Objects.requireNonNull(IntentCompat.getDataUri(data));
+        int takeFlags = data.getFlags() & (Intent.FLAG_GRANT_READ_URI_PERMISSION
+                | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        saveFile(mEditor.getText(), uri);
+        if (takeFlags != 0) {
+            // Make this URI the current URI, in the arguments too: a view made again (after
+            // a rotation or the Java view) reads its options there, and keeps this text
+            mOptions = new Options.Builder(mOptions)
+                    .setUri(uri)
+                    .setSubtitle(Paths.get(uri).getName())
+                    .build();
+            String languageBefore = mViewModel.getLanguage();
+            mViewModel.setOptions(mOptions);
+            requireArguments().putParcelable(ARG_OPTIONS, mOptions);
+            if (!Objects.equals(languageBefore, mViewModel.getLanguage())) {
+                // The new file's extension picked another language
+                showLanguage();
+            }
+            updateStartupMenu();
+        }
+    }
     private final OnBackPressedCallback mExitSearchBackPressedCallback = new OnBackPressedCallback(false) {
         @Override
         public void handleOnBackPressed() {
@@ -278,7 +312,7 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
         @Override
         public void handleOnBackPressed() {
             if (mTextModified) {
-                new MaterialAlertDialogBuilder(requireContext())
+                showDialog(new MaterialAlertDialogBuilder(requireContext())
                         .setTitle(R.string.exit_confirmation)
                         .setMessage(R.string.file_modified_are_you_sure)
                         .setPositiveButton(R.string.no, null)
@@ -293,7 +327,7 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
                             mViewModel.setExitAfterSave(true);
                             saveFile();
                         })
-                        .show();
+                        .create());
                 return;
             }
             setEnabled(false);
@@ -320,6 +354,8 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        // A view back from the back stack is given the text again when it starts
+        mContentShown = false;
         mViewModel = new ViewModelProvider(this).get(CodeEditorViewModel.class);
         mOptions = Objects.requireNonNull(BundleCompat.getParcelable(requireArguments(), ARG_OPTIONS, Options.class));
         mViewModel.setOptions(mOptions);
@@ -334,20 +370,32 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
         mEditor.setWordwrap(Prefs.Editor.isWordWrapEnabled());
         // Sora registers no inlay renderer by default; the invisible character badges need one
         mEditor.registerInlayHintRenderer(new TextInlayHintRenderer());
+        // Each handler checks the event comes from the editor on screen: one from an editor whose
+        // view is gone would touch views this fragment no longer has.
         mEditor.subscribeEvent(ContentChangeEvent.class, (event, unsubscribe) -> {
+            if (event.getEditor() != mEditor) {
+                return;
+            }
             if (!mTextModified && event.getAction() != ContentChangeEvent.ACTION_SET_NEW_TEXT) {
                 markTextModified();
             }
-            mEditor.postDelayed(this::updateLiveButtons, 50);
+            // Skipped once the editor is released
+            mEditor.postDelayedInLifecycle(this::updateLiveButtons, 50);
             scheduleInvisibleCharHints();
         });
-        mEditor.subscribeEvent(SelectionChangeEvent.class, (event, unsubscribe) -> getFragmentActivity()
-                .ifPresent(activity -> updatePositionText()));
-        mEditor.subscribeEvent(PublishSearchResultEvent.class, (event, unsubscribe) -> getFragmentActivity()
-                .ifPresent(activity -> {
+        mEditor.subscribeEvent(SelectionChangeEvent.class, (event, unsubscribe) -> {
+            if (event.getEditor() == mEditor) {
+                getFragmentActivity().ifPresent(activity -> updatePositionText());
+            }
+        });
+        mEditor.subscribeEvent(PublishSearchResultEvent.class, (event, unsubscribe) -> {
+            if (event.getEditor() == mEditor) {
+                getFragmentActivity().ifPresent(activity -> {
                     updatePositionText();
                     updateSearchResult();
-                }));
+                });
+            }
+        });
         DirectAccessProps props = mEditor.getProps();
         props.useICULibToSelectWords = false;
         props.symbolPairAutoCompletion = false;
@@ -424,7 +472,7 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
                         search(mSearchView.getText());
                         return true;
                     });
-            popupMenu.show();
+            showPopup(popupMenu);
         });
         view.findViewById(R.id.search_close_button).setOnClickListener(v -> hideSearchWidget());
         mSearchResultCount = view.findViewById(R.id.search_result_count);
@@ -499,7 +547,7 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
                     return true;
                 });
             }
-            popupMenu.show();
+            showPopup(popupMenu);
         });
         mPositionButton = view.findViewById(R.id.position);
         mPositionButton.setOnClickListener(v -> showGoToLineDialog());
@@ -512,7 +560,11 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
 
         mViewModel.getContentLiveData().observe(getViewLifecycleOwner(), content -> {
             showProgressIndicator(false);
+            mContentShown = true;
             if (content == null) {
+                // Nothing was read, so a copy waiting for the text isn't written
+                mPendingSaveAs = null;
+                mUnsavedEditsLost = false;
                 UIUtils.displayLongToast(R.string.failed);
                 return;
             }
@@ -532,21 +584,48 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
             indentSizeButton.setText(buildTabSizeLabel());
             lineSeparatorButton.setEnabled(!mViewModel.isReadOnly());
             mEditor.setText(content);
+            // A view made again after a rotation is a new fragment, and the text it gets back can
+            // hold edits that aren't saved yet
+            if (!content.toString().equals(mViewModel.getOriginalContent())) {
+                markTextModified();
+            }
             lineSeparatorButton.setText(mEditor.getLineSeparator().name());
             updatePositionText();
             // setText() and setEditorLanguage() drop every inlay hint
             scheduleInvisibleCharHints();
+            if (mUnsavedEditsLost) {
+                mUnsavedEditsLost = false;
+                UIUtils.displayLongToast(R.string.editor_unsaved_edits_lost);
+            }
+            if (mPendingSaveAs != null) {
+                Intent pending = mPendingSaveAs;
+                mPendingSaveAs = null;
+                saveAs(pending);
+            }
         });
         mViewModel.getSaveFileLiveData().observe(getViewLifecycleOwner(), result -> {
             if (result.success) {
                 UIUtils.displayShortToast(R.string.saved_successfully);
-                if (mEditor != null) {
-                    mViewModel.updateOriginalContent(mEditor.getText().toString());
+                // A copy saved elsewhere leaves the open file, and so the unsaved mark, as they were
+                if (mViewModel.savedToOpenFile(result)) {
+                    // What was written is the text as it was when Save was tapped. Anything typed
+                    // while it was being written is still unsaved.
+                    mViewModel.updateOriginalContent(result.savedText);
+                    if (mEditor != null && !result.savedText.contentEquals(mEditor.getText())) {
+                        markTextModified();
+                    } else {
+                        mTextModified = false;
+                        mTextModifiedBackPressedCallback.setEnabled(false);
+                        getActionBar().ifPresent(actionBar -> actionBar.setSubtitle(mOptions.subtitle));
+                    }
                 }
-                mTextModified = false;
-                mTextModifiedBackPressedCallback.setEnabled(false);
-                getActionBar().ifPresent(actionBar -> actionBar.setSubtitle(mOptions.subtitle));
                 if (mViewModel.consumeExitAfterSave(true)) {
+                    // Everything on screen went into the file just written, even a copy saved
+                    // elsewhere, so leave without asking again. Text typed while it was being
+                    // written still gets the question.
+                    if (mEditor == null || result.savedText.contentEquals(mEditor.getText())) {
+                        mTextModifiedBackPressedCallback.setEnabled(false);
+                    }
                     requireActivity().getOnBackPressedDispatcher().onBackPressed();
                 }
             } else {
@@ -580,7 +659,28 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
                     .addToBackStack(null)
                     .commit());
         });
-        mViewModel.loadFileContentIfAvailable();
+        // Only the first view reads the file. A view made again (back from the Java view, or after a
+        // rotation) shows the text the view model already holds, edits not saved yet included.
+        if (mViewModel.getContentLiveData().getValue() == null) {
+            // A view model made again after Android closed the app holds none of the edits that
+            // weren't saved, so the editor says they're gone once the file is shown
+            mUnsavedEditsLost = savedInstanceState != null && savedInstanceState.getBoolean(STATE_UNSAVED_EDITS);
+            mViewModel.loadFileContentIfAvailable();
+        }
+        if (savedInstanceState != null && mPendingSaveAs == null) {
+            mPendingSaveAs = BundleCompat.getParcelable(savedInstanceState, STATE_PENDING_SAVE_AS, Intent.class);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Android can close the app while it's in the background, the file picker open over it, and
+        // the view model and its edits go with it
+        outState.putBoolean(STATE_UNSAVED_EDITS, mTextModified || mUnsavedEditsLost);
+        if (mPendingSaveAs != null) {
+            outState.putParcelable(STATE_PENDING_SAVE_AS, mPendingSaveAs);
+        }
     }
 
     @Override
@@ -590,6 +690,45 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
             mDiffResult = null;
         }
         ++mDiffRequestId;
+        // Cancelling (not dismissing) runs a dialog's cancel listener, so a Save and exit waiting on
+        // the read-only prompt is called off as if the user had backed out of it
+        for (Dialog dialog : mOpenDialogs) {
+            if (dialog.isShowing()) {
+                dialog.cancel();
+            }
+        }
+        mOpenDialogs.clear();
+        for (PopupMenu popup : new ArrayList<>(mOpenPopups)) {
+            popup.dismiss();
+        }
+        mOpenPopups.clear();
+        if (mEditor != null) {
+            mEditor.removeCallbacks(mInvisibleCharHintsUpdater);
+            // Stops the highlighter's thread, which otherwise holds this editor and the screen around
+            // it for as long as the app runs, and unhooks the editor from the text. The view model
+            // keeps that text for the next view, so an old editor must stop reacting to its edits.
+            // Sora releases an editor only once.
+            mEditor.release();
+        }
+        // The fragment outlives its view on the back stack. Holding these would keep the old view
+        // tree alive until the next one is made.
+        mEditor = null;
+        mSymbolInputView = null;
+        mPositionButton = null;
+        mLockButton = null;
+        mSearchWidget = null;
+        mSearchView = null;
+        mReplaceView = null;
+        mReplaceViewContainer = null;
+        mReplaceButton = null;
+        mReplaceAllButton = null;
+        mSearchResultCount = null;
+        mJavaDecompileUnsupportedBanner = null;
+        mSaveMenu = null;
+        mUndoMenu = null;
+        mRedoMenu = null;
+        mJavaSmaliToggleMenu = null;
+        mShareMenu = null;
         super.onDestroyView();
     }
 
@@ -904,7 +1043,18 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
             }).setChecked(lang.equals(current));
         }
         menu.setGroupCheckable(0, true, true);
-        popup.show();
+        showPopup(popup);
+    }
+
+    /** Shows the view model's language: the highlighter, and the language and indent labels. */
+    private void showLanguage() {
+        View view = getView();
+        if (mEditor == null || view == null) return;
+        String language = mViewModel.getLanguage();
+        mEditor.setEditorLanguage(getLanguage(language));
+        scheduleInvisibleCharHints();
+        ((TextView) view.findViewById(R.id.language)).setText(language);
+        ((TextView) view.findViewById(R.id.tab_size)).setText(buildTabSizeLabel());
     }
 
     /**
@@ -925,7 +1075,7 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
                 return true;
             });
         }
-        popup.show();
+        showPopup(popup);
     }
 
     /**
@@ -951,7 +1101,7 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
     private void showGoToLineDialog() {
         if (mViewModel == null) return;
         int lineCount = mEditor.getText().getLineCount();
-        new TextInputDialogBuilder(requireContext(), R.string.editor_go_to_line_input_label)
+        showDialog(new TextInputDialogBuilder(requireContext(), R.string.editor_go_to_line_input_label)
                 .setTitle(R.string.editor_go_to_line_title)
                 .setInputInputType(android.text.InputType.TYPE_CLASS_NUMBER)
                 .setNegativeButton(R.string.cancel, null)
@@ -967,7 +1117,28 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
                     if (line > lineCount) line = lineCount;
                     mEditor.setSelection(line - 1, 0);
                 })
-                .show();
+                .create());
+    }
+
+    /**
+     * Shows a dialog that is cancelled when this view goes away. Its buttons use the editor and
+     * other views, so one left open (the Java view replacing this one, say) must not be tapped.
+     */
+    private void showDialog(@NonNull Dialog dialog) {
+        for (Iterator<Dialog> it = mOpenDialogs.iterator(); it.hasNext(); ) {
+            if (!it.next().isShowing()) {
+                it.remove();
+            }
+        }
+        mOpenDialogs.add(dialog);
+        dialog.show();
+    }
+
+    /** Shows a popup menu that is dismissed when this view goes away, for the same reason. */
+    private void showPopup(@NonNull PopupMenu popup) {
+        mOpenPopups.add(popup);
+        popup.setOnDismissListener(menu -> mOpenPopups.remove(popup));
+        popup.show();
     }
 
     @MainThread
@@ -1019,13 +1190,13 @@ public class CodeEditorFragment extends AndroidFragment implements MenuProvider 
         } else if (mViewModel.canWrite()) {
             saveFile(mEditor.getText(), null);
         } else {
-            new MaterialAlertDialogBuilder(requireContext())
+            showDialog(new MaterialAlertDialogBuilder(requireContext())
                     .setTitle(R.string.read_only_file)
                     .setMessage(R.string.read_only_file_warning)
                     .setPositiveButton(R.string.yes, (dialog, which) -> launchIntentSaver())
                     .setNegativeButton(R.string.no, (dialog, which) -> mViewModel.setExitAfterSave(false))
                     .setOnCancelListener(dialog -> mViewModel.setExitAfterSave(false))
-                    .show();
+                    .create());
         }
     }
 
