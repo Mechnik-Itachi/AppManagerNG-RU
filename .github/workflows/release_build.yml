@@ -1,39 +1,77 @@
+
 name: Build Release
+
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v5
+      - name: Checkout repository
+        uses: actions/checkout@v5
         with:
           submodules: recursive
-      - uses: actions/setup-java@v5
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '21'
           cache: gradle
+
       - name: Install Android SDK and NDK
         run: |
-          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses > /dev/null || true
-          $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "platforms;android-37" "ndk;28.2.13676358" || true
-      - run: chmod +x gradlew
-      - name: Create keystore.properties
+          yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" \
+            "platforms;android-37" \
+            "ndk;28.2.13676358"
+
+      - name: Prepare Gradle
+        run: chmod +x gradlew
+
+      - name: Prepare keystore.properties
         env:
           KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
           KS_PASS: ${{ secrets.KEYSTORE_PASSWORD }}
           KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
           KEY_PASS: ${{ secrets.KEY_PASSWORD }}
         run: |
+          set -euo pipefail
+
           echo "$KEYSTORE_BASE64" | base64 -d > "$GITHUB_WORKSPACE/app/release.keystore"
+
           printf 'storeFile=%s\n' "$GITHUB_WORKSPACE/app/release.keystore" > app/keystore.properties
           printf 'storePassword=%s\n' "$KS_PASS" >> app/keystore.properties
           printf 'keyAlias=%s\n' "$KEY_ALIAS" >> app/keystore.properties
           printf 'keyPassword=%s\n' "$KEY_PASS" >> app/keystore.properties
-      - run: ./gradlew assembleFlossRelease assembleFullRelease --dependency-verification=lenient
+
+      - name: Build Release
+        run: |
+          ./gradlew assembleFlossRelease assembleFullRelease \
+            --dependency-verification=lenient
+
       - name: List APKs
-        run: find app/build/outputs -name '*.apk'
-      - uses: actions/upload-artifact@v5
+        run: |
+          find app/build/outputs -type f -name '*.apk'
+
+      - name: Verify APKs
+        run: |
+          set -euo pipefail
+
+          APK_COUNT=$(find app/build/outputs/apk -type f -name '*.apk' | wc -l)
+
+          if [ "$APK_COUNT" -lt 2 ]; then
+            echo "Expected Floss and Full APKs, but found $APK_COUNT"
+            exit 1
+          fi
+
+      - name: Upload APK artifacts
+        uses: actions/upload-artifact@v5
         with:
           name: AppManagerNG-release
           path: app/build/outputs/apk/**/*.apk
